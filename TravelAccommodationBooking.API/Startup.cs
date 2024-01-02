@@ -11,6 +11,7 @@
 
         // Add services to the container
         public void ConfigureServices(IServiceCollection services)
+            ConfigureAuthorization(services);
             ConfigureDbContext(services);
         }
 
@@ -31,6 +32,13 @@
                 app.UseDeveloperExceptionPage();
             }
         }
+
+        private void ConfigureAuthorization(IServiceCollection services)
+        {
+            services.AddAuthorization();
+            services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+        }
+
         private void ConfigureDbContext(IServiceCollection services)
         {
             var connectionString = Configuration.GetConnectionString("SqlServerConnection");
