@@ -22,6 +22,7 @@ namespace TravelAccommodationBooking.API
         // Add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            ConfigureLogging(services);            
             ConfigureAuthentication(services);
             ConfigureAuthorization(services);
             ConfigureAutoMapper(services);
@@ -33,6 +34,8 @@ namespace TravelAccommodationBooking.API
 
         // Configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            app.UseExceptionLogging();
             app.UseAuthentication();
             app.UseRouting();
             app.UseAuthorization();
@@ -52,6 +55,14 @@ namespace TravelAccommodationBooking.API
 
         }
 
+            public void ConfigureLogging(IServiceCollection services)
+        {
+            Log.Logger = new LoggerConfiguration()
+                .WriteTo.Console()
+                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)  // Log to a file with daily rolling
+                .CreateLogger();
+
+            services.AddLogging(builder => builder.AddSerilog()); // Add Serilog to the LoggerFactory
         }
 
         private void ConfigureAuthentication(IServiceCollection services)
