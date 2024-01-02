@@ -1,3 +1,8 @@
+﻿using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.OpenApi.Models;
+using Serilog;
 using System.Reflection;
 using TravelAccommodationBooking.API.Services;
 using TravelAccommodationBooking.API.Utilities;
@@ -29,12 +34,14 @@ namespace TravelAccommodationBooking.API
             ConfigureControllers(services);
             ConfigureScopedServices(services);
             ConfigureRepositories(services);
+            ConfigureSwagger(services);
             ConfigureDbContext(services);
         }
 
         // Configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseSerilogRequestLogging();
             app.UseExceptionLogging();
             app.UseAuthentication();
             app.UseRouting();
@@ -46,6 +53,8 @@ namespace TravelAccommodationBooking.API
                 endpoints.MapControllers();
             });
 
+            ConfigureSwaggerUI(app);
+
             //to get more detailed error information
             if (env.IsDevelopment())
             {
@@ -53,6 +62,29 @@ namespace TravelAccommodationBooking.API
             }
         }
 
+        private void ConfigureSwagger(IServiceCollection services)
+        {
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "Travel Accommodation Booking API v1",
+                    Version = "v1"
+                });
+                // Include XML comments for Swagger documentation
+                var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+        }
+
+        private void ConfigureSwaggerUI(IApplicationBuilder app)
+        {
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Travel Accommodation Booking API v1");
+            });
         }
 
             public void ConfigureLogging(IServiceCollection services)
