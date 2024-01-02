@@ -29,6 +29,43 @@ namespace TravelAccommodationBooking.API.Services
             _mapper = mapper;
         }
 
+        public async Task<UserResponse> RegisterUserAsync(UserRequest userRequest)
+        {
+            var user = _mapper.Map<User>(userRequest);
+            try
+            {
+                if (user == null)
+                {
+                    _logger.LogError("User is null.");
+                    ArgumentNullException.ThrowIfNull(user);
+                }
+
+                if (!await IsUsernameUniqueAsync(user.Username))
+                {
+                    _logger.LogError("Username {Username} already exists.", user.Username);
+                    throw new DuplicateUsernameException(user.Username);
+                }
+
+                if (!await IsEmailUniqueAsync(user.Email))
+                {
+                    _logger.LogError("Email {Email} already exists.", user.Email);
+                    throw new DuplicateEmailException(user.Email);
+                }
+
+                user.Password = _passwordHasher.HashPassword(user.Password);
+                var registeredUser = await _userRepository.CreateUserAsync(user);
+
+                _logger.LogInformation("User {Username} registered successfully.", user.Username);
+
+                return _mapper.Map<UserResponse>(registeredUser);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error registering user.");
+                throw;
+            }
+        }
+
         public async Task<User> GetUserByIdAsync(Guid userId)
         {
             try

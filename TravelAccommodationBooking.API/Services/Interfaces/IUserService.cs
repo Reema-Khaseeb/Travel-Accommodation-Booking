@@ -5,6 +5,7 @@ namespace TravelAccommodationBooking.API.Services
 {
     public interface IUserService
     {
+        Task<UserResponse> RegisterUserAsync(UserRequest userRequest);
         Task<User> GetUserByIdAsync(Guid userId);
         Task<UserResponse> GetUserByUsernameAsync(string username);
         Task<User> GetUserByEmailAsync(string email);
