@@ -1,4 +1,14 @@
-﻿namespace TravelAccommodationBooking.API
+using System.Reflection;
+using TravelAccommodationBooking.API.Services;
+using TravelAccommodationBooking.API.Utilities;
+using TravelAccommodationBooking.Db;
+using TravelAccommodationBooking.Db.Repositories.Interfaces;
+using TravelAccommodationBooking.Db.Repositories;
+using TravelAccommodationBooking.API.Utilities.Validators;
+using TravelAccommodationBooking.API.Services.Interfaces;
+using TravelAccommodationBooking.API.Utilities.MappingProfiles;
+
+namespace TravelAccommodationBooking.API
 {
     public class Startup
     {
@@ -11,8 +21,13 @@
 
         // Add services to the container
         public void ConfigureServices(IServiceCollection services)
+        {
+            ConfigureAuthentication(services);
             ConfigureAuthorization(services);
+            ConfigureAutoMapper(services);
+            ConfigureControllers(services);
             ConfigureScopedServices(services);
+            ConfigureRepositories(services);
             ConfigureDbContext(services);
         }
 
@@ -27,11 +42,30 @@
             {
                 endpoints.MapControllers();
             });
+
             //to get more detailed error information
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+        }
+
+        }
+
+        }
+
+        private void ConfigureAuthentication(IServiceCollection services)
+        {
+            var secretKey = Configuration["Authentication:SecretKey"];
+
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParametersBuilder()
+                        .WithSecretKey(secretKey)
+                        .WithDefaultValidationParameters()
+                        .Build();
+                });
         }
 
         private void ConfigureAuthorization(IServiceCollection services)
@@ -42,7 +76,34 @@
 
         private void ConfigureScopedServices(IServiceCollection services)
         {
+            services.AddScoped<TravelAccommodationBookingDbContext>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPasswordHasher, PasswordHasher>();
+        }
+
+        private void ConfigureRepositories(IServiceCollection services)
+        {
+            services.AddScoped<IUserRepository, UserRepository>();
+        }
+
+
+        private void ConfigureAutoMapper(IServiceCollection services)
+        {
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+
+            //services.AddAutoMapper(typeof(Startup), typeof(MappingProfile));
+            services.AddAutoMapper(typeof(UserProfile));
+
+        }
+
+        private void ConfigureControllers(IServiceCollection services)
+        {
+            services.AddControllers()
+                .AddFluentValidation(fv => fv
+                .RegisterValidatorsFromAssemblyContaining<UserValidator>()
+                .RegisterValidatorsFromAssemblyContaining<LoginValidator>()
+                );
         }
 
         private void ConfigureDbContext(IServiceCollection services)
