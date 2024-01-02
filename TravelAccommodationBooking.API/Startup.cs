@@ -12,6 +12,7 @@
         // Add services to the container
         public void ConfigureServices(IServiceCollection services)
             ConfigureAuthorization(services);
+            ConfigureScopedServices(services);
             ConfigureDbContext(services);
         }
 
@@ -37,6 +38,11 @@
         {
             services.AddAuthorization();
             services.AddSingleton<IJwtTokenGenerator, JwtTokenGenerator>();
+        }
+
+        private void ConfigureScopedServices(IServiceCollection services)
+        {
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
         }
 
         private void ConfigureDbContext(IServiceCollection services)
