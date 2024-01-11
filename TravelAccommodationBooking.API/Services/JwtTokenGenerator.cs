@@ -2,7 +2,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-using TravelAccommodationBooking.API.Models.User;
+using TravelAccommodationBooking.Db.Models;
 
 namespace TravelAccommodationBooking.API.Utilities
 {
@@ -16,7 +16,7 @@ namespace TravelAccommodationBooking.API.Utilities
                 ?? throw new ArgumentNullException(nameof(configuration));
         }
 
-        public string GenerateToken(UserResponse user)
+        public string GenerateToken(User user)
         {
             const int expiringDays = 2;
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -48,7 +48,7 @@ namespace TravelAccommodationBooking.API.Utilities
             }
         }
 
-        private ClaimsIdentity GetClaimsIdentity(UserResponse userResponse)
+        private ClaimsIdentity GetClaimsIdentity(User user)
         {
             return new ClaimsIdentity(new[]
             {

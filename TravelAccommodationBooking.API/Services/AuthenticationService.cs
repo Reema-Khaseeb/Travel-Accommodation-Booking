@@ -2,6 +2,7 @@
 using TravelAccommodationBooking.API.Models.User;
 using TravelAccommodationBooking.API.Services.Interfaces;
 using TravelAccommodationBooking.API.Utilities;
+using TravelAccommodationBooking.Db.Models;
 
 namespace TravelAccommodationBooking.API.Services
 {
@@ -32,9 +33,9 @@ namespace TravelAccommodationBooking.API.Services
             return _tokenGenerator.GenerateToken(user);
         }
 
-        private void VerifyUserPassword(LoginRequest login, UserResponse userResponse)
+        private void VerifyUserPassword(LoginRequest login, User user)
         {
-            if (!_passwordHasher.VerifyPassword(login.Password, userResponse.Password))
+            if (!_passwordHasher.VerifyPassword(login.Password, user.Password))
             {
                 _logger.LogWarning("Authentication failed: Invalid password for user {Username}.", login.Username);
                 throw new InvalidPasswordException("Invalid password.");

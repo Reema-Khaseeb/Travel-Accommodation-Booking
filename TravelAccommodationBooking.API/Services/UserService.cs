@@ -87,7 +87,7 @@ namespace TravelAccommodationBooking.API.Services
             }
         }
 
-        public async Task<UserResponse> GetUserByUsernameAsync(string username)
+        public async Task<User> GetUserByUsernameAsync(string username)
         {
             try
             {
@@ -99,7 +99,7 @@ namespace TravelAccommodationBooking.API.Services
                     throw new NotFoundException($"User '{username}' not found.");
                 }
 
-                return _mapper.Map<UserResponse>(user);
+                return user;
             }
 
             catch (Exception ex)

@@ -1,10 +1,10 @@
-﻿using TravelAccommodationBooking.API.Models.User;
+﻿using TravelAccommodationBooking.Db.Models;
 
 namespace TravelAccommodationBooking.API.Utilities
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(UserResponse user);
+        string GenerateToken(User user);
         bool ValidateToken(string token);
     }
 }
