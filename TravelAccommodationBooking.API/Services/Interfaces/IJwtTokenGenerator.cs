@@ -1,6 +1,6 @@
 ﻿using TravelAccommodationBooking.Db.Models;
 
-namespace TravelAccommodationBooking.API.Utilities
+namespace TravelAccommodationBooking.API.Services.Interfaces
 {
     public interface IJwtTokenGenerator
     {

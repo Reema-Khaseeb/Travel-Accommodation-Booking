@@ -2,9 +2,10 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using TravelAccommodationBooking.API.Services.Interfaces;
 using TravelAccommodationBooking.Db.Models;
 
-namespace TravelAccommodationBooking.API.Utilities
+namespace TravelAccommodationBooking.API.Services
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
