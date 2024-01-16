@@ -21,7 +21,7 @@ namespace TravelAccommodationBooking.Db.Repositories
             return user;
         }
 
-        public async Task<User> GetUserByIdAsync(Guid userId)
+        public async Task<User> GetUserByIdAsync(int userId)
         {
             return await _dbContext.Users.FindAsync(userId);
         }

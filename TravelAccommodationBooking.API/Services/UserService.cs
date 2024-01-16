@@ -67,6 +67,7 @@ namespace TravelAccommodationBooking.API.Services
         }
 
         public async Task<User> GetUserByIdAsync(Guid userId)
+        public async Task<User> GetUserByIdAsync(int userId)
         {
             try
             {
