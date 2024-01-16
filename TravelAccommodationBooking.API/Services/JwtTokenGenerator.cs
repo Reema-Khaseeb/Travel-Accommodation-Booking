@@ -3,6 +3,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TravelAccommodationBooking.API.Services.Interfaces;
+using TravelAccommodationBooking.API.Utilities;
 using TravelAccommodationBooking.Db.Models;
 
 namespace TravelAccommodationBooking.API.Services
@@ -53,7 +54,9 @@ namespace TravelAccommodationBooking.API.Services
         {
             return new ClaimsIdentity(new[]
             {
-            new Claim(ClaimTypes.Name, userResponse.Username)
+            new Claim(ClaimTypes.Name, user.Username),
+            new Claim(ClaimTypes.Role, user.Role.ToString()),
+            new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()), // token unique identifier; preventing token replay attacks
             });
         }
 
