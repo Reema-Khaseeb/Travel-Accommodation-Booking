@@ -2,10 +2,10 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using TravelAccommodationBooking.API.Dtos.Error;
+using TravelAccommodationBooking.API.Dtos.Login;
+using TravelAccommodationBooking.API.Dtos.User;
 using TravelAccommodationBooking.API.Exceptions;
-using TravelAccommodationBooking.API.Models.Error;
-using TravelAccommodationBooking.API.Models.Login;
-using TravelAccommodationBooking.API.Models.User;
 using TravelAccommodationBooking.API.Services;
 using TravelAccommodationBooking.API.Services.Interfaces;
 using TravelAccommodationBooking.Db.Utilities.Enums;
@@ -63,24 +63,23 @@ namespace TravelAccommodationBooking.API.Controllers
             try
             {
                 var token = await _authenticationService.LoginAsync(loginRequest);
-                var loginResponse = new LoginResponse { Token = token };
+                var loginResponse = new LoginResponse(token);
                 return Ok(loginResponse);
             }
             catch (NotFoundException ex)
             {
-                return NotFound(new ErrorResponse { Message = ex.Message });
+                return NotFound(new ErrorResponse("An error occurred", ex.Message));
             }
             catch (InvalidPasswordException ex)
             {
-                return Unauthorized(new ErrorResponse { Message = ex.Message });
+                return Unauthorized(new ErrorResponse("An error occurred", ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new ErrorResponse
-                {
-                    Message = "An error occurred during login.",
-                    Error = ex.Message
-                });
+                return StatusCode(500, new ErrorResponse(
+                    "An error occurred during login.",
+                    ex.Message
+                ));
             }
         }
 
@@ -104,25 +103,24 @@ namespace TravelAccommodationBooking.API.Controllers
 
             try
             {
-                userRequest.Role = UserRole.User;
-                var registeredUser = await _userService.RegisterUserAsync(userRequest);
+                var userRequestWithRole = userRequest with { Role = UserRole.User };
+                var registeredUser = await _userService.RegisterUserAsync(userRequestWithRole);
                 return Ok(new { Message = "User registered successfully.", User = registeredUser });
             }
             catch (DuplicateUsernameException ex)
             {
-                return Conflict(new ErrorResponse { Message = ex.Message });
+                return Conflict(new ErrorResponse("An error occurred", ex.Message));
             }
             catch (DuplicateEmailException ex)
             {
-                return Conflict(new ErrorResponse { Message = ex.Message });
+                return Conflict(new ErrorResponse("An error occurred", ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new ErrorResponse
-                {
-                    Message = "An error occurred while registering the user.",
-                    Error = ex.Message
-                });
+                return StatusCode(500, new ErrorResponse(
+                    "An error occurred while registering the user.",
+                    ex.Message
+                ));
             }
         }
 
@@ -146,25 +144,24 @@ namespace TravelAccommodationBooking.API.Controllers
 
             try
             {
-                userRequest.Role = UserRole.Admin;
-                var registeredUser = await _userService.RegisterUserAsync(userRequest);
+                var userRequestWithRole = userRequest with { Role = UserRole.Admin };
+                var registeredUser = await _userService.RegisterUserAsync(userRequestWithRole);
                 return Ok(new { Message = "Admin user registered successfully.", User = registeredUser });
             }
             catch (DuplicateUsernameException ex)
             {
-                return Conflict(new ErrorResponse { Message = ex.Message });
+                return Conflict(new ErrorResponse("An error occurred", ex.Message));
             }
             catch (DuplicateEmailException ex)
             {
-                return Conflict(new ErrorResponse { Message = ex.Message });
+                return Conflict(new ErrorResponse("An error occurred", ex.Message));
             }
             catch (Exception ex)
             {
-                return StatusCode(500, new ErrorResponse
-                {
-                    Message = "An error occurred while registering the admin user.",
-                    Error = ex.Message
-                });
+                return StatusCode(500, new ErrorResponse(
+                    "An error occurred while registering the admin user.",
+                    ex.Message
+                ));
             }
         }
 

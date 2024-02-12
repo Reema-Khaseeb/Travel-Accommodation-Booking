@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using TravelAccommodationBooking.API.Models.User;
+using TravelAccommodationBooking.API.Dtos.User;
 using TravelAccommodationBooking.API.Services.Interfaces;
 using TravelAccommodationBooking.Db.Models;
 using TravelAccommodationBooking.Db.Repositories.Interfaces;

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
-using TravelAccommodationBooking.API.Models.Error;
-using TravelAccommodationBooking.API.Models.User;
+using TravelAccommodationBooking.API.Dtos.User;
+using TravelAccommodationBooking.API.Dtos.Error;
 using TravelAccommodationBooking.API.Services;
 
 namespace TravelAccommodationBooking.API.Controllers
@@ -15,6 +15,7 @@ namespace TravelAccommodationBooking.API.Controllers
 
         public UserController(
             IUserService userService,
+            IMapper mapper
             )
         {
             _userService = userService;

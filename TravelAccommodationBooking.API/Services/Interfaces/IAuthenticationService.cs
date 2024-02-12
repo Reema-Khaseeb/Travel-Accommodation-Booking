@@ -1,4 +1,4 @@
-﻿using TravelAccommodationBooking.API.Models.User;
+﻿using TravelAccommodationBooking.API.Dtos.Login;
 
 namespace TravelAccommodationBooking.API.Services.Interfaces
 {
