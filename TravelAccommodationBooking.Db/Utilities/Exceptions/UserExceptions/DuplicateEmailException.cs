@@ -1,4 +1,4 @@
-﻿namespace TravelAccommodationBooking.Db.Utilities.Exceptions
+﻿namespace TravelAccommodationBooking.Db.Utilities.Exceptions.UserExceptions
 {
     public class DuplicateEmailException : Exception
     {

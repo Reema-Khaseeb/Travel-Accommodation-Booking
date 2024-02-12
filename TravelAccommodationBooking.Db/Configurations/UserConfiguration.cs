@@ -28,8 +28,8 @@ namespace TravelAccommodationBooking.Db.Configurations
             builder.Property(u => u.Email)
                 .IsRequired();
 
-            // Table Name
-            builder.ToTable("Users");
+            // Table Name in Database
+            builder.ToTable("User");
         }
     }
 }
