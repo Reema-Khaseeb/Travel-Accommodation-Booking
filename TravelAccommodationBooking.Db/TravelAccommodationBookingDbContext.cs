@@ -22,6 +22,13 @@ namespace TravelAccommodationBooking.Db
         {
         }
 
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //        @"Server=localhost\SQLEXPRESS;Database=TravelAccommodationBookingCore;Trusted_Connection=True;Encrypt=False"
+        //        );
+        //}
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure relationships and constraints

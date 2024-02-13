@@ -12,5 +12,6 @@ namespace TravelAccommodationBooking.Db.Models
 
         // Navigation properties
         public IEnumerable<Review> Reviews { get; set; }
+        public IEnumerable<Booking> Bookings { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using TravelAccommodationBooking.Db.Models;
+using TravelAccommodationBooking.Db.Utilities;
 
 namespace TravelAccommodationBooking.Db.Configurations
 {
@@ -34,6 +35,9 @@ namespace TravelAccommodationBooking.Db.Configurations
             // Define SQL check constraints for capacity ranges
             builder.HasCheckConstraint("CK_Room_AdultsCapacity", "[AdultsCapacity] BETWEEN 1 AND 4");
             builder.HasCheckConstraint("CK_Room_ChildrenCapacity", "[ChildrenCapacity] BETWEEN 0 AND 2");
+
+            // Seed Data
+            builder.HasData(SeedData.SeedRooms());
 
             // Table Name in Database
             builder.ToTable("Room");

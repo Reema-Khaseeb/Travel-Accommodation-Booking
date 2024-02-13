@@ -7,9 +7,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAccommodationBooking"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAccommodationBooking.Tests", "..\TravelAccommodationBooking.Tests\TravelAccommodationBooking.Tests.csproj", "{398B1E99-57B6-4EF1-9D94-52FAF602CC5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAccommodationBooking.Db", "..\TravelAccommodationBooking.Db\TravelAccommodationBooking.Db.csproj", "{B11885B8-E7E3-4B37-983A-882F2192A2C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAccommodationBooking.Db", "..\TravelAccommodationBooking.Db\TravelAccommodationBooking.Db.csproj", "{B11885B8-E7E3-4B37-983A-882F2192A2C3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelAccommodationBooking.API", "..\TravelAccommodationBooking.API\TravelAccommodationBooking.API.csproj", "{9CD3162C-9D2F-4FA2-B4E0-3D70F6BFC7FE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TravelAccommodationBooking.API", "..\TravelAccommodationBooking.API\TravelAccommodationBooking.API.csproj", "{9CD3162C-9D2F-4FA2-B4E0-3D70F6BFC7FE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{0935FCEA-0DAA-4ECF-A7F2-1286DCB05C18}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

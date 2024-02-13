@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TravelAccommodationBooking.Db.Models;
+using TravelAccommodationBooking.Db.Utilities;
 
 namespace TravelAccommodationBooking.Db.Configurations
 {
@@ -27,6 +28,9 @@ namespace TravelAccommodationBooking.Db.Configurations
 
             builder.Property(u => u.Email)
                 .IsRequired();
+
+            // Seed Data
+            builder.HasData(SeedData.SeedUsers());
 
             // Table Name in Database
             builder.ToTable("User");
