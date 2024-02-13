@@ -12,6 +12,7 @@ namespace TravelAccommodationBooking.Db
         public DbSet<HotelLocation> Locations { get; set; }
         public DbSet<HotelImage> HotelImages { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
+        public DbSet<Room> Rooms { get; set; }
 
         public TravelAccommodationBookingDbContext(
             DbContextOptions<TravelAccommodationBookingDbContext> options)
@@ -28,6 +29,7 @@ namespace TravelAccommodationBooking.Db
             modelBuilder.ApplyConfiguration(new HotelImageConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
+            modelBuilder.ApplyConfiguration(new RoomConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
