@@ -7,6 +7,7 @@ namespace TravelAccommodationBooking.Db
     public class TravelAccommodationBookingDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<City> Cities { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<HotelLocation> Locations { get; set; }
         public DbSet<HotelImage> HotelImages { get; set; }
@@ -22,6 +23,7 @@ namespace TravelAccommodationBooking.Db
         {
             // Configure relationships and constraints
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new CityConfiguration());
             modelBuilder.ApplyConfiguration(new HotelConfiguration());
             modelBuilder.ApplyConfiguration(new HotelImageConfiguration());
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
