@@ -17,12 +17,12 @@ namespace TravelAccommodationBooking.Db.Models
 
         // Foreign keys
         public int CityId { get; set; }
-
         public int LocationId { get; set; }
 
         // Navigation properties
         public City City { get; set; }
         public HotelLocation Location { get; set; }
+        public IEnumerable<Room> Rooms { get; set; }
         public IEnumerable<HotelImage> Images { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
     }

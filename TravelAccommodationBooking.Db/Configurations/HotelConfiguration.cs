@@ -28,6 +28,11 @@ namespace TravelAccommodationBooking.Db.Configurations
                 .IsRequired();
 
             // Relationships and Constraints
+            builder.HasMany(h => h.Rooms)
+                .WithOne(r => r.Hotel)
+                .HasForeignKey(r => r.HotelId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             builder.HasMany(h => h.Images)
                 .WithOne(i => i.Hotel)
                 .HasForeignKey(i => i.HotelId)

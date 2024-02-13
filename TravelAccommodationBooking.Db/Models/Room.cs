@@ -20,5 +20,6 @@ namespace TravelAccommodationBooking.Db.Models
 
         // Navigation property
         public Hotel Hotel { get; set; }
+        public IEnumerable<Booking> Bookings { get; set; }
     }
 }
