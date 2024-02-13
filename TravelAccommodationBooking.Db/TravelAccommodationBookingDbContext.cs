@@ -7,6 +7,10 @@ namespace TravelAccommodationBooking.Db
     public class TravelAccommodationBookingDbContext : DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Hotel> Hotels { get; set; }
+        public DbSet<HotelLocation> Locations { get; set; }
+        public DbSet<HotelImage> HotelImages { get; set; }
+        public IEnumerable<Review> Reviews { get; set; }
 
         public TravelAccommodationBookingDbContext(
             DbContextOptions<TravelAccommodationBookingDbContext> options)
@@ -18,6 +22,10 @@ namespace TravelAccommodationBooking.Db
         {
             // Configure relationships and constraints
             modelBuilder.ApplyConfiguration(new UserConfiguration());
+            modelBuilder.ApplyConfiguration(new HotelConfiguration());
+            modelBuilder.ApplyConfiguration(new HotelImageConfiguration());
+            modelBuilder.ApplyConfiguration(new LocationConfiguration());
+            modelBuilder.ApplyConfiguration(new ReviewConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
