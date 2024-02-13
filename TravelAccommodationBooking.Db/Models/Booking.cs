@@ -17,5 +17,6 @@ namespace TravelAccommodationBooking.Db.Models
         // Navigation
         public User User { get; set; }
         public Room Room { get; set; }
+        public Payment Payment { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace TravelAccommodationBooking.Db
         public IEnumerable<Review> Reviews { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public TravelAccommodationBookingDbContext(
             DbContextOptions<TravelAccommodationBookingDbContext> options)
@@ -32,6 +33,7 @@ namespace TravelAccommodationBooking.Db
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
