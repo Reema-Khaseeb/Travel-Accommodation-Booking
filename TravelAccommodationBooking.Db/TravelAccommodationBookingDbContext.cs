@@ -13,12 +13,21 @@ namespace TravelAccommodationBooking.Db
         public DbSet<HotelImage> HotelImages { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
         public DbSet<Room> Rooms { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
+        public DbSet<Payment> Payments { get; set; }
 
         public TravelAccommodationBookingDbContext(
             DbContextOptions<TravelAccommodationBookingDbContext> options)
             : base(options)
         {
         }
+
+        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        //{
+        //    optionsBuilder.UseSqlServer(
+        //        @"Server=localhost\SQLEXPRESS;Database=TravelAccommodationBookingCore;Trusted_Connection=True;Encrypt=False"
+        //        );
+        //}
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +39,8 @@ namespace TravelAccommodationBooking.Db
             modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
+            modelBuilder.ApplyConfiguration(new BookingConfiguration());
+            modelBuilder.ApplyConfiguration(new PaymentConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
