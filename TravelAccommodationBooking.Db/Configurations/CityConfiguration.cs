@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using TravelAccommodationBooking.Db.Models;
+using TravelAccommodationBooking.Db.Utilities;
 
 namespace TravelAccommodationBooking.Db.Configurations
 {
@@ -32,6 +33,9 @@ namespace TravelAccommodationBooking.Db.Configurations
                 .WithOne(h => h.City)
                 .HasForeignKey(h => h.CityId)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            // Seed Data
+            builder.HasData(SeedData.SeedCities());
 
             // Table Name in Database
             builder.ToTable("City");

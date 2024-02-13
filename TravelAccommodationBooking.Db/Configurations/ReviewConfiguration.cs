@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using TravelAccommodationBooking.Db.Models;
+using TravelAccommodationBooking.Db.Utilities;
 
 namespace TravelAccommodationBooking.Db.Configurations
 {
@@ -26,6 +27,9 @@ namespace TravelAccommodationBooking.Db.Configurations
             
             builder.Property(hr => hr.ReviewDate)
                 .IsRequired();
+
+            // Seed Data
+            builder.HasData(SeedData.SeedReviews());
 
             // Table Name in Database
             builder.ToTable("Review");

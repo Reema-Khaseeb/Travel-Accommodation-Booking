@@ -44,6 +44,9 @@ namespace TravelAccommodationBooking.Db.Configurations
                 .HasName("IX_Bookings_RoomId_CheckInDate_CheckOutDate")
                 .IsUnique();
 
+            // Seed Data
+            builder.HasData(SeedData.SeedBookings());
+
             // Table Name in Database
             builder.ToTable("Booking");
         }

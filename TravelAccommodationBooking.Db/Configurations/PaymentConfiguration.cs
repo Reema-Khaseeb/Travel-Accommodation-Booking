@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using TravelAccommodationBooking.Db.Models;
+using TravelAccommodationBooking.Db.Utilities;
 
 namespace TravelAccommodationBooking.Db.Configurations
 {
@@ -31,6 +32,9 @@ namespace TravelAccommodationBooking.Db.Configurations
             builder.HasOne(p => p.Booking)
                 .WithOne(b => b.Payment)
                 .HasForeignKey<Payment>(p => p.BookingId);
+
+            // Seed Data
+            builder.HasData(SeedData.SeedPayments());
 
             // Table Name in Database
             builder.ToTable("Payment");
