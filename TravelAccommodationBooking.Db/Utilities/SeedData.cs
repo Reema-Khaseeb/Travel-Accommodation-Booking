@@ -143,50 +143,6 @@ namespace TravelAccommodationBooking.Db.Utilities
             return rooms;
         }
 
-        public static List<RoomAvailability> SeedRoomAvailabilities()
-        {
-            var roomAvailabilities = new List<RoomAvailability>();
-
-            for (int i = 1; i <= 50; i++)
-            {
-                roomAvailabilities.Add(new RoomAvailability
-                {
-                    Id = i,
-                    RoomId = i,
-                    Date = DateTime.Now.AddDays(i),
-                    IsAvailable = i % 4 != 0
-                });
-            }
-
-            return roomAvailabilities;
-        }
-
-        //public static List<Booking> SeedBookings()
-        //{
-        //    var bookings = new List<Booking>();
-        //    Random rand = new Random();
-        //    DateTime today = DateTime.Today;
-
-        //    for (int i = 1; i <= 50; i++)
-        //    {
-        //        var checkInDate = today.AddDays(rand.Next(-30, 30)); // within the last or next 30 days
-        //        bookings.Add(new Booking
-        //        {
-        //            BookingId = i,
-        //            UserId = i,
-        //            RoomId = i,
-        //            CheckInDate = checkInDate,
-        //            CheckOutDate = checkInDate.AddDays(rand.Next(1, 15)),
-        //            TotalPrice = rand.Next(100, 1000),
-        //            Status = BookingStatus.Confirmed,
-        //            CreatedAt = DateTime.UtcNow,
-        //            UpdatedAt = null
-        //        });
-        //    }
-
-        //    return bookings;
-        //}
-
         public static List<Booking> SeedBookings()
         {
             return new List<Booking>
@@ -297,29 +253,27 @@ namespace TravelAccommodationBooking.Db.Utilities
             };
         }
 
+        public static List<Payment> SeedPayments()
+            {
+                var payments = new List<Payment>();
+                Random rand = new Random();
+                DateTime today = DateTime.Today;
 
-
-            public static List<Payment> SeedPayments()
+                for (int i = 1; i <= 13; i++)
                 {
-                    var payments = new List<Payment>();
-                    Random rand = new Random();
-                    DateTime today = DateTime.Today;
-
-                    for (int i = 1; i <= 13; i++)
+                    payments.Add(new Payment
                     {
-                        payments.Add(new Payment
-                        {
-                            PaymentId = i,
-                            BookingId = i,
-                            Amount = rand.Next(100, 1000),
-                            IsProcessed = true,
-                            PaymentDate = today.AddDays(-rand.Next(0, 30)), // in the past 30 days
-                            Status = PaymentStatus.Success
-                        });
-                    }
-
-                    return payments;
+                        PaymentId = i,
+                        BookingId = i,
+                        Amount = rand.Next(100, 1000),
+                        IsProcessed = true,
+                        PaymentDate = today.AddDays(-rand.Next(0, 30)), // in the past 30 days
+                        Status = PaymentStatus.Success
+                    });
                 }
+
+                return payments;
+            }
 
         public static List<User> SeedUsers()
         {
