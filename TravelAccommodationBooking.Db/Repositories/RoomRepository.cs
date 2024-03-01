@@ -41,5 +41,11 @@ namespace TravelAccommodationBooking.Db.Repositories
         {
             return await _context.Rooms.FindAsync(roomId);
         }
+
+        public async Task<Room> GetRoomByHotelAndNumberAsync(int hotelId, int roomNumber)
+        {
+            return await _context.Rooms
+                .FirstOrDefaultAsync(r => r.HotelId == hotelId && r.Number == roomNumber);
+        }
     }
 }

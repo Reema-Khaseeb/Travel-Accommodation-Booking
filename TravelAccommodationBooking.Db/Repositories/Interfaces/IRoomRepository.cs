@@ -9,5 +9,6 @@ namespace TravelAccommodationBooking.Db.Repositories.Interfaces
         Task DeleteRoomAsync(Room room);
         Task<Room> GetRoomByIdAsync(int roomId);
         Task<IEnumerable<Room>> GetRoomsAsync();
+        Task<Room> GetRoomByHotelAndNumberAsync(int hotelId, int roomNumber);
     }
 }

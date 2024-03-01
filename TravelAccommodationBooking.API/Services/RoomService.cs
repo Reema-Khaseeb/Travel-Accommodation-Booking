@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using TravelAccommodationBooking.API.Dtos.Room;
+using TravelAccommodationBooking.API.Exceptions;
 using TravelAccommodationBooking.API.Services.Interfaces;
 using TravelAccommodationBooking.Db.Models;
 using TravelAccommodationBooking.Db.Repositories.Interfaces;
@@ -31,9 +32,17 @@ namespace TravelAccommodationBooking.API.Services
             var hotel = await _hotelService.GetHotelByIdAsync(hotelId);            
             room.HotelId = hotelId;
 
-            var newRoom = await _roomRepository.CreateRoomAsync(room);
-            _logger.LogInformation($"City {room.Number} created successfully.");
-            return newRoom;
+            if (await IsRoomNumberUniqueAsync(hotelId, room.Number))
+            {
+                var newRoom = await _roomRepository.CreateRoomAsync(room);
+                _logger.LogInformation($"Room {room.Number} created successfully.");
+                return newRoom;
+            }
+            else
+            {
+                _logger.LogError($"Error: Room number {room.Number} is not unique for the hotel {hotelId}.");
+                throw new RoomNumberNotUniqueException("Room number must be unique within the hotel.");
+            }
         }
 
         public async Task UpdateRoomAsync(int hotelId, int roomId, RoomUpdateRequest roomRequest)
@@ -48,9 +57,17 @@ namespace TravelAccommodationBooking.API.Services
                 throw new ArgumentException($"Room with ID {existedRoom.RoomId} does not belong to hotel with ID {hotelId}.");
             }
 
-            existedRoom.ModificationDate = DateTime.UtcNow;
-            await _roomRepository.UpdateRoomAsync(existedRoom);
-            _logger.LogInformation($"Room-{existedRoom.Number} updated successfully.");
+            if (await IsRoomNumberUniqueAsync(hotelId, roomRequest.Number))
+            {
+                existedRoom.ModificationDate = DateTime.UtcNow;
+                await _roomRepository.UpdateRoomAsync(existedRoom);
+                _logger.LogInformation($"Room-{existedRoom.Number} updated successfully.");
+            }
+            else
+            {
+                _logger.LogWarning($"Error: Room number {roomRequest.Number} is not unique for the hotel {hotelId}.");
+                throw new RoomNumberNotUniqueException("Room number must be unique within the hotel.");
+            }
         }
 
         public async Task DeleteRoomAsync(int roomId)
@@ -85,6 +102,13 @@ namespace TravelAccommodationBooking.API.Services
             var rooms = await _roomRepository.GetRoomsAsync();
             _logger.LogInformation("All Rooms successfully retrieved.");
             return rooms;
+        }
+
+        private async Task<bool> IsRoomNumberUniqueAsync(int hotelId, int roomNumber)
+        {
+            // Check if the room number is unique within the hotel
+            return await _roomRepository
+                .GetRoomByHotelAndNumberAsync(hotelId, roomNumber) == null;
         }
     }
 }
