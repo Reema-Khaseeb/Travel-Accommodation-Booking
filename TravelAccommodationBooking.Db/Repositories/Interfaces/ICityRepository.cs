@@ -9,5 +9,7 @@ namespace TravelAccommodationBooking.Db.Repositories.Interfaces
         Task DeleteCityAsync(City city);
         Task<City> GetCityByIdAsync(int cityId);
         Task<IEnumerable<City>> GetCitiesAsync();
+        Task<IEnumerable<CityWithHotelsCountView>> GetCitiesWithHotelsCountViewAsync();
+        Task<CityWithHotelsCountView> GetCityByIdWithHotelsCountViewAsync(int cityId);
     }
 }

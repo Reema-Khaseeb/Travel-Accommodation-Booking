@@ -37,6 +37,17 @@ namespace TravelAccommodationBooking.Db.Repositories
             return await _context.Cities.ToListAsync();
         }
 
+        public async Task<IEnumerable<CityWithHotelsCountView>> GetCitiesWithHotelsCountViewAsync()
+        {
+            return await _context.CitiesWithHotelsCountView.ToListAsync();
+        }
+
+        public async Task<CityWithHotelsCountView> GetCityByIdWithHotelsCountViewAsync(int cityId)
+        {
+            return await _context.CitiesWithHotelsCountView
+                .FirstOrDefaultAsync(c => c.CityId == cityId);
+        }
+
         public async Task<City> GetCityByIdAsync(int cityId)
         {
             return await _context.Cities.FindAsync(cityId);

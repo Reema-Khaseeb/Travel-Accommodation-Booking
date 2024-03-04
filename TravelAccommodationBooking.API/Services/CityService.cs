@@ -31,7 +31,7 @@ namespace TravelAccommodationBooking.API.Services
             return newCity;
         }
 
-        public async Task UpdateCityAsync(int cityId, CityUpdateRequest cityRequest)
+        public async Task UpdateCityAsync(int cityId, CityAdminRequest cityRequest)
         {
             var existedCity = await _cityRepository.GetCityByIdAsync(cityId);
 
@@ -61,10 +61,30 @@ namespace TravelAccommodationBooking.API.Services
             return city;
         }
 
+        public async Task<CityWithHotelsCountView> GetCityByIdWithHotelsCountViewAsync(int cityId)
+        {
+            var city = await _cityRepository.GetCityByIdWithHotelsCountViewAsync(cityId);
+
+            if (city is null)
+            {
+                _logger.LogWarning($"City with ID {cityId} not found.");
+                throw new NotFoundException($"City with ID {cityId} not found.");
+            }
+            _logger.LogInformation($"City with ID {cityId} successfully retrieved.");
+            return city;
+        }
+
         public async Task<IEnumerable<City>> GetCitiesAsync()
         {
             var cities = await _cityRepository.GetCitiesAsync();
             _logger.LogInformation("All cities successfully retrieved.");
+            return cities;
+        }
+
+        public async Task<IEnumerable<CityWithHotelsCountView>> GetCitiesWithHotelsCountViewAsync()
+        {
+            var cities = await _cityRepository.GetCitiesWithHotelsCountViewAsync();
+            _logger.LogInformation("All cities successfully retrieved along with Number of Hotels.");
             return cities;
         }
     }

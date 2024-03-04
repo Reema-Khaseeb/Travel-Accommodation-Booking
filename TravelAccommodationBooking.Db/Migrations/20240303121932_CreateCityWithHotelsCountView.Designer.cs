@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelAccommodationBooking.Db;
 
@@ -11,9 +12,10 @@ using TravelAccommodationBooking.Db;
 namespace TravelAccommodationBooking.Db.Migrations
 {
     [DbContext(typeof(TravelAccommodationBookingDbContext))]
-    partial class TravelAccommodationBookingDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240303121932_CreateCityWithHotelsCountView")]
+    partial class CreateCityWithHotelsCountView
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
