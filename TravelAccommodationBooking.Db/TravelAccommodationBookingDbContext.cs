@@ -15,6 +15,7 @@ namespace TravelAccommodationBooking.Db
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<CityWithHotelsCountView> CitiesWithHotelsCountView { get; set; }
 
         public TravelAccommodationBookingDbContext(
             DbContextOptions<TravelAccommodationBookingDbContext> options)
@@ -41,6 +42,8 @@ namespace TravelAccommodationBooking.Db
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
+            //modelBuilder.Entity<CityWithHotelsCountView>().HasNoKey().ToView("CityWithHotelsCountView");
+            modelBuilder.Entity<CityWithHotelsCountView>().HasNoKey().ToView(nameof(CityWithHotelsCountView));
 
             base.OnModelCreating(modelBuilder);
         }
