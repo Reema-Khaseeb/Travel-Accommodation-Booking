@@ -5,7 +5,6 @@ using TravelAccommodationBooking.Db.Models;
 using TravelAccommodationBooking.Db.Repositories.Interfaces;
 using TravelAccommodationBooking.Common.Exceptions;
 using TravelAccommodationBooking.Common.Exceptions.UserExceptions;
-using TravelAccommodationBooking.Common.UserExceptions.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace TravelAccommodationBooking.Services;
