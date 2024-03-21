@@ -1,4 +1,4 @@
-﻿namespace TravelAccommodationBooking.Db.Utilities.Enums;
+﻿namespace TravelAccommodationBooking.Common.Enums;
 
 public enum BookingStatus
 {
