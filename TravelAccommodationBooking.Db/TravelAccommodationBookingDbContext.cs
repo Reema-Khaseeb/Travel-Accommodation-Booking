@@ -42,7 +42,6 @@ namespace TravelAccommodationBooking.Db
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
             modelBuilder.ApplyConfiguration(new PaymentConfiguration());
-            //modelBuilder.Entity<CityWithHotelsCountView>().HasNoKey().ToView("CityWithHotelsCountView");
             modelBuilder.Entity<CityWithHotelsCountView>().HasNoKey().ToView(nameof(CityWithHotelsCountView));
 
             base.OnModelCreating(modelBuilder);
