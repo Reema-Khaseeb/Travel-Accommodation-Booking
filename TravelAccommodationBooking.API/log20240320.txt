@@ -1,0 +1,546 @@
+2024-03-20 00:52:28.437 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 00:52:29.077 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 00:52:29.079 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 00:52:29.085 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 00:52:29.087 +02:00 [INF] Hosting environment: Development
+2024-03-20 00:52:29.088 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 00:52:32.889 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 00:52:35.416 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 1705.2242 ms
+2024-03-20 00:52:35.746 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 00:52:35.805 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 00:52:36.030 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 3148.7697ms
+2024-03-20 00:52:36.066 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 255.2770ms
+2024-03-20 00:52:36.181 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 435.2238ms
+2024-03-20 00:52:36.514 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 00:52:36.966 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 449.1886 ms
+2024-03-20 00:52:36.969 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 455.1516ms
+2024-03-20 00:53:48.304 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/login application/json 50
+2024-03-20 00:53:48.344 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 00:53:48.390 +02:00 [INF] Route matched with {action = "Login", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TravelAccommodationBooking.API.Dtos.Login.LoginRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 00:54:27.829 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 00:54:27.851 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 1.0431 ms
+2024-03-20 00:54:27.857 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 27.4994ms
+2024-03-20 00:54:27.943 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 00:54:27.943 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 00:54:27.945 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 2.2184ms
+2024-03-20 00:54:27.959 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 16.7745ms
+2024-03-20 00:54:28.300 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 00:54:28.333 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/favicon-32x32.png - -
+2024-03-20 00:54:28.361 +02:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2024-03-20 00:54:28.363 +02:00 [INF] HTTP GET /swagger/favicon-32x32.png responded 200 in 23.3129 ms
+2024-03-20 00:54:28.381 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 78.6761 ms
+2024-03-20 00:54:28.396 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 97.2275ms
+2024-03-20 00:54:28.396 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/favicon-32x32.png - - - 200 628 image/png 63.5613ms
+2024-03-20 00:54:34.082 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 00:54:35.074 +02:00 [INF] Executed DbCommand (100ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[Email], [u].[Password], [u].[Role], [u].[Username]
+FROM [User] AS [u]
+WHERE [u].[Username] = @__username_0
+2024-03-20 00:54:35.317 +02:00 [WRN] Authentication failed: Invalid password for user admin1.
+2024-03-20 00:54:35.471 +02:00 [INF] Executing UnauthorizedObjectResult, writing value of type 'TravelAccommodationBooking.API.Dtos.Error.ErrorResponse'.
+2024-03-20 00:54:35.497 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API) in 47099.6885ms
+2024-03-20 00:54:35.503 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 00:54:35.505 +02:00 [INF] HTTP POST /authentication/login responded 401 in 47179.7037 ms
+2024-03-20 00:54:35.514 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/login application/json 50 - 0 - application/json;+charset=utf-8 47210.1985ms
+2024-03-20 00:54:40.082 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/login application/json 58
+2024-03-20 00:54:40.086 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 00:54:40.088 +02:00 [INF] Route matched with {action = "Login", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TravelAccommodationBooking.API.Dtos.Login.LoginRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 00:54:40.107 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 00:54:40.132 +02:00 [INF] Executed DbCommand (6ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[Email], [u].[Password], [u].[Role], [u].[Username]
+FROM [User] AS [u]
+WHERE [u].[Username] = @__username_0
+2024-03-20 00:54:40.297 +02:00 [INF] User admin1 authenticated successfully.
+2024-03-20 00:54:40.463 +02:00 [INF] Executing OkObjectResult, writing value of type 'TravelAccommodationBooking.API.Dtos.Login.LoginResponse'.
+2024-03-20 00:54:40.467 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API) in 364.5718ms
+2024-03-20 00:54:40.470 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 00:54:40.472 +02:00 [INF] HTTP POST /authentication/login responded 200 in 387.0474 ms
+2024-03-20 00:54:40.476 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/login application/json 58 - 200 - application/json;+charset=utf-8 394.3167ms
+2024-03-20 00:55:52.403 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/hotels application/json 170
+2024-03-20 00:55:52.511 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 00:55:52.516 +02:00 [INF] Route matched with {action = "CreateHotel", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TravelAccommodationBooking.API.Dtos.Hotel.HotelAdminResponse]] CreateHotel(TravelAccommodationBooking.API.Dtos.Hotel.HotelAdminRequest) on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 00:55:52.632 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 00:55:52.879 +02:00 [INF] Executed DbCommand (26ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = Double), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Double), @p9='?' (DbType = Int32), @p10='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Hotel] ([CityId], [CreationDate], [Description], [DiscountRate], [LocationId], [ModificationDate], [Name], [Owner], [Price], [StarRating], [ThumbnailUrl])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+SELECT [HotelId]
+FROM [Hotel]
+WHERE @@ROWCOUNT = 1 AND [HotelId] = scope_identity();
+2024-03-20 00:55:52.955 +02:00 [INF] Hotel 61 created successfully.
+2024-03-20 00:55:52.966 +02:00 [INF] Executing CreatedAtActionResult, writing value of type 'TravelAccommodationBooking.API.Dtos.Hotel.HotelAdminResponse'.
+2024-03-20 00:55:53.019 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API) in 499.3232ms
+2024-03-20 00:55:53.026 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 00:55:53.030 +02:00 [INF] HTTP POST /hotels responded 201 in 611.0340 ms
+2024-03-20 00:55:53.032 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/hotels application/json 170 - 201 - application/json;+charset=utf-8 628.7718ms
+2024-03-20 00:56:02.021 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/hotels - -
+2024-03-20 00:56:02.024 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 00:56:02.032 +02:00 [INF] Route matched with {action = "GetHotels", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetHotels() on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 00:56:02.057 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 00:56:02.075 +02:00 [INF] Executed DbCommand (10ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[CityId], [h].[CreationDate], [h].[Description], [h].[DiscountRate], [h].[LocationId], [h].[ModificationDate], [h].[Name], [h].[Owner], [h].[Price], [h].[StarRating], [h].[ThumbnailUrl]
+FROM [Hotel] AS [h]
+2024-03-20 00:56:02.094 +02:00 [INF] All Hotels successfully retrieved.
+2024-03-20 00:56:02.108 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TravelAccommodationBooking.API.Dtos.Hotel.HotelAdminResponse, TravelAccommodationBooking.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-03-20 00:56:02.113 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API) in 65.529ms
+2024-03-20 00:56:02.118 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 00:56:02.120 +02:00 [INF] HTTP GET /hotels responded 200 in 96.8944 ms
+2024-03-20 00:56:02.123 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/hotels - - - 200 - application/json;+charset=utf-8 101.9239ms
+2024-03-20 02:11:08.240 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 02:11:09.045 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 02:11:09.047 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 02:11:09.054 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 02:11:09.056 +02:00 [INF] Hosting environment: Development
+2024-03-20 02:11:09.058 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 02:11:21.722 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 02:11:22.980 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 978.0915 ms
+2024-03-20 02:11:23.063 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 02:11:22.992 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 02:11:23.932 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 938.7121ms
+2024-03-20 02:11:23.934 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 2218.2887ms
+2024-03-20 02:11:24.208 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 1144.6310ms
+2024-03-20 02:11:24.544 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 02:11:24.945 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 370.4167 ms
+2024-03-20 02:11:24.949 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 406.4523ms
+2024-03-20 02:25:07.001 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 02:25:07.559 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 02:25:07.560 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 02:25:07.565 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 02:25:07.566 +02:00 [INF] Hosting environment: Development
+2024-03-20 02:25:07.567 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 02:25:14.547 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 02:25:15.825 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 1017.1347 ms
+2024-03-20 02:25:15.987 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 02:25:15.987 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 02:25:16.151 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 201.3830ms
+2024-03-20 02:25:16.154 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 1615.7777ms
+2024-03-20 02:25:16.616 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 628.3825ms
+2024-03-20 02:25:16.712 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 02:25:17.087 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 319.1267 ms
+2024-03-20 02:25:17.092 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 380.0229ms
+2024-03-20 02:25:39.105 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/login application/json 58
+2024-03-20 02:25:39.115 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 02:25:39.165 +02:00 [INF] Route matched with {action = "Login", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TravelAccommodationBooking.API.Dtos.Login.LoginRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 02:26:26.482 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 02:26:27.514 +02:00 [INF] Executed DbCommand (93ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[Email], [u].[Password], [u].[Role], [u].[Username]
+FROM [User] AS [u]
+WHERE [u].[Username] = @__username_0
+2024-03-20 02:26:27.795 +02:00 [INF] User admin1 authenticated successfully.
+2024-03-20 02:26:27.980 +02:00 [INF] Executing OkObjectResult, writing value of type 'TravelAccommodationBooking.API.Dtos.Login.LoginResponse'.
+2024-03-20 02:26:28.005 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API) in 48825.4122ms
+2024-03-20 02:26:28.025 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 02:26:28.032 +02:00 [INF] HTTP POST /authentication/login responded 200 in 48923.6083 ms
+2024-03-20 02:26:28.051 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/login application/json 58 - 200 - application/json;+charset=utf-8 48946.0673ms
+2024-03-20 02:27:06.844 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/hotels - -
+2024-03-20 02:27:06.961 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 02:27:06.969 +02:00 [INF] Route matched with {action = "GetHotels", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetHotels() on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 02:27:06.995 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 02:27:07.041 +02:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[CityId], [h].[CreationDate], [h].[Description], [h].[DiscountRate], [h].[LocationId], [h].[ModificationDate], [h].[Name], [h].[Owner], [h].[Price], [h].[StarRating], [h].[ThumbnailUrl]
+FROM [Hotel] AS [h]
+2024-03-20 02:27:07.087 +02:00 [INF] All Hotels successfully retrieved.
+2024-03-20 02:27:07.108 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TravelAccommodationBooking.API.Dtos.Hotel.HotelAdminResponse, TravelAccommodationBooking.API, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-03-20 02:27:07.131 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API) in 157.0114ms
+2024-03-20 02:27:07.137 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 02:27:07.139 +02:00 [INF] HTTP GET /hotels responded 200 in 276.8013 ms
+2024-03-20 02:27:07.141 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/hotels - - - 200 - application/json;+charset=utf-8 297.0998ms
+2024-03-20 02:34:31.802 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 02:34:32.548 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 02:34:32.549 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 02:34:32.554 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 02:34:32.556 +02:00 [INF] Hosting environment: Development
+2024-03-20 02:34:32.557 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 02:34:42.624 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 02:34:43.752 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 890.8139 ms
+2024-03-20 02:34:43.924 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 02:34:43.924 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 02:34:44.004 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 1386.1202ms
+2024-03-20 02:34:44.044 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 120.3925ms
+2024-03-20 02:34:44.458 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 534.5704ms
+2024-03-20 02:34:44.584 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 02:34:45.207 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 353.0358 ms
+2024-03-20 02:34:45.214 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 630.1843ms
+2024-03-20 02:35:29.065 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/hotels - -
+2024-03-20 02:35:29.305 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 02:35:29.331 +02:00 [INF] Route matched with {action = "GetHotels", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetHotels() on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 02:36:15.717 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 02:36:16.465 +02:00 [INF] Executed DbCommand (62ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[CityId], [h].[CreationDate], [h].[Description], [h].[DiscountRate], [h].[LocationId], [h].[ModificationDate], [h].[Name], [h].[Owner], [h].[Price], [h].[StarRating], [h].[ThumbnailUrl]
+FROM [Hotel] AS [h]
+2024-03-20 02:36:16.614 +02:00 [INF] All Hotels successfully retrieved.
+2024-03-20 02:36:16.742 +02:00 [INF] Executing ObjectResult, writing value of type 'TravelAccommodationBooking.Dtos.Error.ErrorResponse'.
+2024-03-20 02:36:16.766 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API) in 47426.5326ms
+2024-03-20 02:36:16.771 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 02:36:16.776 +02:00 [ERR] HTTP GET /hotels responded 500 in 47696.3362 ms
+2024-03-20 02:36:16.789 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/hotels - - - 500 - application/json;+charset=utf-8 47723.6249ms
+2024-03-20 02:41:02.195 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/hotels - -
+2024-03-20 02:41:02.209 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 02:41:02.215 +02:00 [INF] Route matched with {action = "GetHotels", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetHotels() on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 02:41:02.231 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 02:41:02.262 +02:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[CityId], [h].[CreationDate], [h].[Description], [h].[DiscountRate], [h].[LocationId], [h].[ModificationDate], [h].[Name], [h].[Owner], [h].[Price], [h].[StarRating], [h].[ThumbnailUrl]
+FROM [Hotel] AS [h]
+2024-03-20 02:41:02.269 +02:00 [INF] All Hotels successfully retrieved.
+2024-03-20 02:41:02.303 +02:00 [INF] Executing ObjectResult, writing value of type 'TravelAccommodationBooking.Dtos.Error.ErrorResponse'.
+2024-03-20 02:41:02.307 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API) in 85.669ms
+2024-03-20 02:41:02.314 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 02:41:02.317 +02:00 [ERR] HTTP GET /hotels responded 500 in 111.4431 ms
+2024-03-20 02:41:02.320 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/hotels - - - 500 - application/json;+charset=utf-8 158.9262ms
+2024-03-20 02:41:25.223 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/hotels application/json 170
+2024-03-20 02:41:25.234 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 02:41:25.274 +02:00 [INF] Route matched with {action = "CreateHotel", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TravelAccommodationBooking.Dtos.Hotel.HotelAdminResponse]] CreateHotel(TravelAccommodationBooking.Dtos.Hotel.HotelAdminRequest) on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 02:41:25.537 +02:00 [INF] Executing ObjectResult, writing value of type 'TravelAccommodationBooking.Dtos.Error.ErrorResponse'.
+2024-03-20 02:41:25.540 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API) in 260.6159ms
+2024-03-20 02:41:25.544 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 02:41:25.546 +02:00 [ERR] HTTP POST /hotels responded 500 in 314.4416 ms
+2024-03-20 02:41:25.552 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/hotels application/json 170 - 500 - application/json;+charset=utf-8 329.2733ms
+2024-03-20 03:39:00.269 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 03:39:00.991 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 03:39:00.992 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 03:39:00.996 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 03:39:00.997 +02:00 [INF] Hosting environment: Development
+2024-03-20 03:39:00.999 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 03:39:01.615 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 03:39:03.088 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 1157.8478 ms
+2024-03-20 03:39:03.162 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 03:39:03.386 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 03:39:03.521 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 1913.1748ms
+2024-03-20 03:39:03.523 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 361.5380ms
+2024-03-20 03:39:04.070 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 683.9010ms
+2024-03-20 03:39:04.135 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 03:39:04.478 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 333.6623 ms
+2024-03-20 03:39:04.480 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 345.0270ms
+2024-03-20 03:39:48.497 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/register application/json 92
+2024-03-20 03:39:48.511 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:39:48.549 +02:00 [INF] Route matched with {action = "RegisterUser", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterUser(TravelAccommodationBooking.Dtos.User.UserRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 03:40:37.839 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:40:38.794 +02:00 [INF] Executed DbCommand (101ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:40:38.884 +02:00 [INF] Executed DbCommand (11ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:40:38.904 +02:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2024-03-20 03:40:38.930 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API) in 50373.3911ms
+2024-03-20 03:40:38.936 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:40:38.940 +02:00 [INF] HTTP POST /authentication/register responded 400 in 50437.6116 ms
+2024-03-20 03:40:38.955 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/register application/json 92 - 400 - application/problem+json;+charset=utf-8 50458.2204ms
+2024-03-20 03:40:49.992 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/register application/json 95
+2024-03-20 03:40:49.994 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:40:49.995 +02:00 [INF] Route matched with {action = "RegisterUser", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterUser(TravelAccommodationBooking.Dtos.User.UserRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 03:40:50.032 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:40:50.040 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:40:50.045 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:40:50.053 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:40:50.057 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:40:50.191 +02:00 [INF] Executing ObjectResult, writing value of type 'TravelAccommodationBooking.Dtos.Error.ErrorResponse'.
+2024-03-20 03:40:50.197 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API) in 198.0174ms
+2024-03-20 03:40:50.199 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:40:50.200 +02:00 [ERR] HTTP POST /authentication/register responded 500 in 207.5225 ms
+2024-03-20 03:40:50.203 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/register application/json 95 - 500 - application/json;+charset=utf-8 211.3806ms
+2024-03-20 03:43:09.520 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 03:43:10.345 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 03:43:10.347 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 03:43:10.352 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 03:43:10.354 +02:00 [INF] Hosting environment: Development
+2024-03-20 03:43:10.357 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 03:43:10.777 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 03:43:11.455 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 433.7439 ms
+2024-03-20 03:43:11.476 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 707.6427ms
+2024-03-20 03:43:11.511 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 03:43:11.518 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 7.4541ms
+2024-03-20 03:43:11.521 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 03:43:11.657 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 136.6812ms
+2024-03-20 03:43:11.865 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 03:43:12.162 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 294.8825 ms
+2024-03-20 03:43:12.165 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 299.5074ms
+2024-03-20 03:43:39.800 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/register application/json 94
+2024-03-20 03:43:39.810 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:43:39.865 +02:00 [INF] Route matched with {action = "RegisterUser", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterUser(TravelAccommodationBooking.Dtos.User.UserRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 03:44:27.412 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:44:28.278 +02:00 [INF] Executed DbCommand (86ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:44:28.347 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:44:28.366 +02:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2024-03-20 03:44:28.390 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API) in 48516.8517ms
+2024-03-20 03:44:28.393 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:44:28.395 +02:00 [INF] HTTP POST /authentication/register responded 400 in 48592.5758 ms
+2024-03-20 03:44:28.406 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/register application/json 94 - 400 - application/problem+json;+charset=utf-8 48605.4844ms
+2024-03-20 03:44:38.985 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/register application/json 104
+2024-03-20 03:44:38.988 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:44:38.989 +02:00 [INF] Route matched with {action = "RegisterUser", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterUser(TravelAccommodationBooking.Dtos.User.UserRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 03:44:39.022 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:44:39.029 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:44:39.034 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:44:39.042 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:44:39.047 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:44:39.181 +02:00 [INF] Executing ObjectResult, writing value of type 'TravelAccommodationBooking.Dtos.Error.ErrorResponse'.
+2024-03-20 03:44:39.188 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API) in 194.9339ms
+2024-03-20 03:44:39.190 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:44:39.191 +02:00 [ERR] HTTP POST /authentication/register responded 500 in 205.0858 ms
+2024-03-20 03:44:39.193 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/register application/json 104 - 500 - application/json;+charset=utf-8 208.6896ms
+2024-03-20 03:56:57.388 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 03:56:58.173 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 03:56:58.175 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 03:56:58.179 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 03:56:58.181 +02:00 [INF] Hosting environment: Development
+2024-03-20 03:56:58.182 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 03:57:06.407 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 03:57:07.660 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 983.4394 ms
+2024-03-20 03:57:07.707 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 03:57:07.836 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 03:57:08.034 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 1635.9870ms
+2024-03-20 03:57:08.068 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 360.9071ms
+2024-03-20 03:57:08.392 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 555.4487ms
+2024-03-20 03:57:08.716 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 03:57:09.170 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 410.5627 ms
+2024-03-20 03:57:09.173 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 457.3062ms
+2024-03-20 03:57:19.268 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/register application/json 104
+2024-03-20 03:57:19.275 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:57:19.315 +02:00 [INF] Route matched with {action = "RegisterUser", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] RegisterUser(TravelAccommodationBooking.Dtos.User.UserRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 03:58:07.645 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:58:08.504 +02:00 [INF] Executed DbCommand (86ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:58:08.571 +02:00 [INF] Executed DbCommand (5ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:58:08.584 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:58:08.589 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:58:08.606 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Username] = @__username_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:58:08.612 +02:00 [INF] Executed DbCommand (1ms) [Parameters=[@__email_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [User] AS [u]
+        WHERE [u].[Email] = @__email_0) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2024-03-20 03:58:09.001 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (Size = 4000), @p1='?' (Size = 4000), @p2='?' (DbType = Int32), @p3='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [User] ([Email], [Password], [Role], [Username])
+VALUES (@p0, @p1, @p2, @p3);
+SELECT [UserId]
+FROM [User]
+WHERE @@ROWCOUNT = 1 AND [UserId] = scope_identity();
+2024-03-20 03:58:09.070 +02:00 [INF] User n1nnnnnn registered successfully.
+2024-03-20 03:58:09.087 +02:00 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType0`2[[System.String, System.Private.CoreLib, Version=6.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[TravelAccommodationBooking.Dtos.User.UserResponse, TravelAccommodationBooking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-03-20 03:58:09.106 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API) in 49780.6121ms
+2024-03-20 03:58:09.110 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.RegisterUser (TravelAccommodationBooking.API)'
+2024-03-20 03:58:09.113 +02:00 [INF] HTTP POST /authentication/register responded 200 in 49844.2002 ms
+2024-03-20 03:58:09.124 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/register application/json 104 - 200 - application/json;+charset=utf-8 49855.9646ms
+2024-03-20 03:58:44.888 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/authentication/login application/json 58
+2024-03-20 03:58:44.894 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 03:58:44.900 +02:00 [INF] Route matched with {action = "Login", controller = "Authentication"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] Login(TravelAccommodationBooking.Dtos.Login.LoginRequest) on controller TravelAccommodationBooking.API.Controllers.AuthenticationController (TravelAccommodationBooking.API).
+2024-03-20 03:58:44.956 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:58:45.003 +02:00 [INF] Executed DbCommand (3ms) [Parameters=[@__username_0='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(2) [u].[UserId], [u].[Email], [u].[Password], [u].[Role], [u].[Username]
+FROM [User] AS [u]
+WHERE [u].[Username] = @__username_0
+2024-03-20 03:58:45.170 +02:00 [INF] User admin1 authenticated successfully.
+2024-03-20 03:58:45.341 +02:00 [INF] Executing OkObjectResult, writing value of type 'TravelAccommodationBooking.Dtos.Login.LoginResponse'.
+2024-03-20 03:58:45.343 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API) in 423.82ms
+2024-03-20 03:58:45.346 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.AuthenticationController.Login (TravelAccommodationBooking.API)'
+2024-03-20 03:58:45.347 +02:00 [INF] HTTP POST /authentication/login responded 200 in 453.7845 ms
+2024-03-20 03:58:45.349 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/authentication/login application/json 58 - 200 - application/json;+charset=utf-8 461.8613ms
+2024-03-20 03:59:08.287 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/hotels - -
+2024-03-20 03:59:08.390 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 03:59:08.394 +02:00 [INF] Route matched with {action = "GetHotels", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetHotels() on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 03:59:08.450 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:59:08.463 +02:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[CityId], [h].[CreationDate], [h].[Description], [h].[DiscountRate], [h].[LocationId], [h].[ModificationDate], [h].[Name], [h].[Owner], [h].[Price], [h].[StarRating], [h].[ThumbnailUrl]
+FROM [Hotel] AS [h]
+2024-03-20 03:59:08.505 +02:00 [INF] All Hotels successfully retrieved.
+2024-03-20 03:59:08.517 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TravelAccommodationBooking.Dtos.Hotel.HotelAdminResponse, TravelAccommodationBooking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-03-20 03:59:08.537 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API) in 140.0473ms
+2024-03-20 03:59:08.539 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 03:59:08.542 +02:00 [INF] HTTP GET /hotels responded 200 in 249.2063 ms
+2024-03-20 03:59:08.544 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/hotels - - - 200 - application/json;+charset=utf-8 257.6432ms
+2024-03-20 03:59:37.887 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/hotels application/json 170
+2024-03-20 03:59:37.905 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 03:59:37.917 +02:00 [INF] Route matched with {action = "CreateHotel", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TravelAccommodationBooking.Dtos.Hotel.HotelAdminResponse]] CreateHotel(TravelAccommodationBooking.Dtos.Hotel.HotelAdminRequest) on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 03:59:37.979 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 03:59:38.031 +02:00 [INF] Executed DbCommand (7ms) [Parameters=[@p0='?' (DbType = Int32), @p1='?' (DbType = DateTime2), @p2='?' (Size = 4000), @p3='?' (DbType = Double), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime2), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (DbType = Double), @p9='?' (DbType = Int32), @p10='?' (Size = 4000)], CommandType='"Text"', CommandTimeout='30']
+SET NOCOUNT ON;
+INSERT INTO [Hotel] ([CityId], [CreationDate], [Description], [DiscountRate], [LocationId], [ModificationDate], [Name], [Owner], [Price], [StarRating], [ThumbnailUrl])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10);
+SELECT [HotelId]
+FROM [Hotel]
+WHERE @@ROWCOUNT = 1 AND [HotelId] = scope_identity();
+2024-03-20 03:59:38.041 +02:00 [INF] Hotel 62 created successfully.
+2024-03-20 03:59:38.046 +02:00 [INF] Executing CreatedAtActionResult, writing value of type 'TravelAccommodationBooking.Dtos.Hotel.HotelAdminResponse'.
+2024-03-20 03:59:38.073 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API) in 151.0349ms
+2024-03-20 03:59:38.076 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 03:59:38.078 +02:00 [INF] HTTP POST /hotels responded 201 in 174.2030 ms
+2024-03-20 03:59:38.081 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/hotels application/json 170 - 201 - application/json;+charset=utf-8 192.9128ms
+2024-03-20 04:07:13.334 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 04:07:13.996 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 04:07:13.997 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 04:07:14.001 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 04:07:14.003 +02:00 [INF] Hosting environment: Development
+2024-03-20 04:07:14.004 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 04:07:24.530 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 04:07:26.761 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 1850.1848 ms
+2024-03-20 04:07:26.893 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 04:07:26.846 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 04:07:26.991 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 144.2797ms
+2024-03-20 04:07:26.993 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 2479.2427ms
+2024-03-20 04:07:27.138 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 245.6179ms
+2024-03-20 04:07:27.373 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 04:07:27.717 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 342.3426 ms
+2024-03-20 04:07:27.721 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 348.4351ms
+2024-03-20 04:07:41.581 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/hotels - -
+2024-03-20 04:07:41.796 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 04:07:41.817 +02:00 [INF] Route matched with {action = "GetHotels", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult] GetHotels() on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 04:08:31.080 +02:00 [INF] Entity Framework Core 6.0.23 initialized 'TravelAccommodationBookingDbContext' using provider 'Microsoft.EntityFrameworkCore.SqlServer:6.0.23' with options: None
+2024-03-20 04:08:31.799 +02:00 [INF] Executed DbCommand (59ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [h].[HotelId], [h].[CityId], [h].[CreationDate], [h].[Description], [h].[DiscountRate], [h].[LocationId], [h].[ModificationDate], [h].[Name], [h].[Owner], [h].[Price], [h].[StarRating], [h].[ThumbnailUrl]
+FROM [Hotel] AS [h]
+2024-03-20 04:08:31.931 +02:00 [INF] All Hotels successfully retrieved.
+2024-03-20 04:08:31.963 +02:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[TravelAccommodationBooking.Dtos.Hotel.HotelAdminResponse, TravelAccommodationBooking, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-03-20 04:08:32.007 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API) in 50181.8ms
+2024-03-20 04:08:32.011 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.GetHotels (TravelAccommodationBooking.API)'
+2024-03-20 04:08:32.015 +02:00 [INF] HTTP GET /hotels responded 200 in 50432.9808 ms
+2024-03-20 04:08:32.027 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/hotels - - - 200 - application/json;+charset=utf-8 50445.8177ms
+2024-03-20 04:23:17.857 +02:00 [INF] User profile is available. Using 'C:\Users\DELL\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2024-03-20 04:23:18.576 +02:00 [INF] Now listening on: https://localhost:7119
+2024-03-20 04:23:18.578 +02:00 [INF] Now listening on: http://localhost:5247
+2024-03-20 04:23:18.585 +02:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-03-20 04:23:18.586 +02:00 [INF] Hosting environment: Development
+2024-03-20 04:23:18.588 +02:00 [INF] Content root path: C:\Users\DELL\Documents\GitHub\Travel-Accommodation-Booking\TravelAccommodationBooking.API
+2024-03-20 04:23:24.940 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/index.html - -
+2024-03-20 04:23:26.231 +02:00 [INF] HTTP GET /swagger/index.html responded 200 in 1035.9171 ms
+2024-03-20 04:23:26.348 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - -
+2024-03-20 04:23:26.504 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/_vs/browserLink - -
+2024-03-20 04:23:26.658 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/index.html - - - 200 - text/html;charset=utf-8 1726.2942ms
+2024-03-20 04:23:26.668 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_framework/aspnetcore-browser-refresh.js - - - 200 12392 application/javascript;+charset=utf-8 319.5102ms
+2024-03-20 04:23:27.157 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/_vs/browserLink - - - 200 - text/javascript;+charset=UTF-8 652.7170ms
+2024-03-20 04:23:27.224 +02:00 [INF] Request starting HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - -
+2024-03-20 04:23:27.550 +02:00 [INF] HTTP GET /swagger/v1/swagger.json responded 200 in 323.1288 ms
+2024-03-20 04:23:27.555 +02:00 [INF] Request finished HTTP/2 GET https://localhost:7119/swagger/v1/swagger.json - - - 200 - application/json;charset=utf-8 331.0975ms
+2024-03-20 04:23:39.958 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/hotels application/json 167
+2024-03-20 04:23:39.979 +02:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+RolesAuthorizationRequirement:User.IsInRole must be true for one of the following roles: (Admin)
+2024-03-20 04:23:39.995 +02:00 [INF] AuthenticationScheme: Bearer was challenged.
+2024-03-20 04:23:40.000 +02:00 [INF] HTTP POST /hotels responded 401 in 38.4363 ms
+2024-03-20 04:23:40.006 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/hotels application/json 167 - 401 0 - 48.0443ms
+2024-03-20 04:23:52.456 +02:00 [INF] Request starting HTTP/2 POST https://localhost:7119/hotels application/json 167
+2024-03-20 04:23:52.679 +02:00 [INF] Executing endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 04:23:52.710 +02:00 [INF] Route matched with {action = "CreateHotel", controller = "Hotel"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[TravelAccommodationBooking.Dtos.Hotel.HotelAdminResponse]] CreateHotel(TravelAccommodationBooking.Dtos.Hotel.HotelAdminRequest) on controller TravelAccommodationBooking.API.Controllers.HotelController (TravelAccommodationBooking.API).
+2024-03-20 04:23:53.278 +02:00 [INF] Executing BadRequestObjectResult, writing value of type 'Microsoft.AspNetCore.Mvc.ValidationProblemDetails'.
+2024-03-20 04:23:53.328 +02:00 [INF] Executed action TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API) in 586.6205ms
+2024-03-20 04:23:53.333 +02:00 [INF] Executed endpoint 'TravelAccommodationBooking.API.Controllers.HotelController.CreateHotel (TravelAccommodationBooking.API)'
+2024-03-20 04:23:53.336 +02:00 [INF] HTTP POST /hotels responded 400 in 878.3385 ms
+2024-03-20 04:23:53.345 +02:00 [INF] Request finished HTTP/2 POST https://localhost:7119/hotels application/json 167 - 400 - application/problem+json;+charset=utf-8 888.8928ms

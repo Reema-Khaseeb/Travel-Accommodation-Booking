@@ -4,14 +4,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Reflection;
-using TravelAccommodationBooking.API.Services;
+using TravelAccommodationBooking.Services;
 using TravelAccommodationBooking.API.Utilities;
 using TravelAccommodationBooking.Db;
 using TravelAccommodationBooking.Db.Repositories.Interfaces;
 using TravelAccommodationBooking.Db.Repositories;
 using TravelAccommodationBooking.API.Utilities.Validators;
-using TravelAccommodationBooking.API.Services.Interfaces;
-using TravelAccommodationBooking.API.Utilities.MappingProfiles;
+using TravelAccommodationBooking.Services.Interfaces;
+using TravelAccommodationBooking.MappingProfiles;
 
 namespace TravelAccommodationBooking.API
 {
@@ -27,12 +27,14 @@ namespace TravelAccommodationBooking.API
         // Add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
-            ConfigureLogging(services);            
+            ConfigureLogging(services);
             ConfigureAuthentication(services);
             ConfigureAuthorization(services);
             ConfigureAutoMapper(services);
             ConfigureControllers(services);
-            ConfigureScopedServices(services);
+            ConfigureScopedServices(services);  // OR: services.AddTravelAccommodationBookings();
+
+            services.AddTransient<IEmailService, EmailService>(); //////////////////////////////////
             ConfigureRepositories(services);
             ConfigureSwagger(services);
             ConfigureDbContext(services);
@@ -75,6 +77,31 @@ namespace TravelAccommodationBooking.API
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below. Example: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>() //new string[] { }
+                    }
+                });
             });
         }
 
@@ -87,7 +114,7 @@ namespace TravelAccommodationBooking.API
             });
         }
 
-            public void ConfigureLogging(IServiceCollection services)
+        public void ConfigureLogging(IServiceCollection services)
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
@@ -120,33 +147,40 @@ namespace TravelAccommodationBooking.API
         private void ConfigureScopedServices(IServiceCollection services)
         {
             services.AddScoped<TravelAccommodationBookingDbContext>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IBookingService, BookingService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+            services.AddScoped<IHomeService, HomeService>();
+            services.AddScoped<IHotelLocationService, HotelLocationService>();
         }
 
         private void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
+            services.AddScoped<IHotelLocationRepository, HotelLocationRepository>();
         }
 
 
         private void ConfigureAutoMapper(IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            //services.AddAutoMapper(typeof(Startup), typeof(MappingProfile));
             services.AddAutoMapper(typeof(UserProfile));
-
         }
 
         private void ConfigureControllers(IServiceCollection services)
         {
             services.AddControllers()
                 .AddFluentValidation(fv => fv
-                .RegisterValidatorsFromAssemblyContaining<UserValidator>()
-                .RegisterValidatorsFromAssemblyContaining<LoginValidator>()
-                );
+                .RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         private void ConfigureDbContext(IServiceCollection services)

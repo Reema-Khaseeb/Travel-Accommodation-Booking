@@ -1,6 +1,6 @@
 ﻿using FluentValidation;
-using TravelAccommodationBooking.API.Dtos.User;
-using TravelAccommodationBooking.API.Services;
+using TravelAccommodationBooking.Dtos.User;
+using TravelAccommodationBooking.Services;
 
 public class UserValidator : AbstractValidator<UserRequest>
 {

@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TravelAccommodationBooking.API.Services.Interfaces;
+using TravelAccommodationBooking.Services.Interfaces;
 using TravelAccommodationBooking.Db.Models;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using Swashbuckle.AspNetCore.Annotations;
-using TravelAccommodationBooking.Db.Utilities.Enums;
-using TravelAccommodationBooking.API.Dtos.Hotel;
-using TravelAccommodationBooking.API.Dtos.Error;
-using TravelAccommodationBooking.Db.Utilities.Exceptions;
+using TravelAccommodationBooking.Common.Enums;
+using TravelAccommodationBooking.Dtos.Hotel;
+using TravelAccommodationBooking.Dtos.Error;
+using TravelAccommodationBooking.Common.Exceptions;
 
 namespace TravelAccommodationBooking.API.Controllers
 {
