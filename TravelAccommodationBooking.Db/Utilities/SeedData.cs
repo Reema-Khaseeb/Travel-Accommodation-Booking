@@ -63,7 +63,9 @@ namespace TravelAccommodationBooking.Db.Utilities
                     Name = $"Hotel{i}",
                     StarRating = (StarRating)rand.Next(1, 6),
                     Owner = $"Owner{i}",
-                    LocationId = i,
+                    Address = "123 Main St, Anytown, USA",
+                    Latitude = rand.NextDouble() * 180 - 90, // between -90 and 90
+                    Longitude = rand.NextDouble() * 360 - 180, // between -180 and 180
                     ThumbnailUrl = $"http://example.com/hotel{i}.jpg",
                     Price = rand.NextDouble() * 500,
                     Description = $"Description for Hotel{i}",
@@ -75,24 +77,6 @@ namespace TravelAccommodationBooking.Db.Utilities
             }
 
             return hotels;
-        }
-
-        public static List<HotelLocation> SeedLocations()
-        {
-            var locations = new List<HotelLocation>();
-            Random rand = new Random();
-
-            for (int i = 1; i <= 50; i++)
-            {
-                locations.Add(new HotelLocation
-                {
-                    LocationId = i,
-                    Latitude = rand.NextDouble() * 180 - 90, // between -90 and 90
-                    Longitude = rand.NextDouble() * 360 - 180 // between -180 and 180
-                });
-            }
-
-            return locations;
         }
 
         public static List<Review> SeedReviews()
