@@ -9,7 +9,6 @@ namespace TravelAccommodationBooking.Db
         public DbSet<User> Users { get; set; }
         public DbSet<City> Cities { get; set; }
         public DbSet<Hotel> Hotels { get; set; }
-        public DbSet<HotelLocation> Locations { get; set; }
         public DbSet<HotelImage> HotelImages { get; set; }
         public IEnumerable<Review> Reviews { get; set; }
         public DbSet<Room> Rooms { get; set; }
@@ -23,13 +22,6 @@ namespace TravelAccommodationBooking.Db
         {
         }
 
-        //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        //{
-        //    optionsBuilder.UseSqlServer(
-        //        @"Server=localhost\SQLEXPRESS;Database=TravelAccommodationBookingCore;Trusted_Connection=True;Encrypt=False"
-        //        );
-        //}
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             // Configure relationships and constraints
@@ -37,7 +29,6 @@ namespace TravelAccommodationBooking.Db
             modelBuilder.ApplyConfiguration(new CityConfiguration());
             modelBuilder.ApplyConfiguration(new HotelConfiguration());
             modelBuilder.ApplyConfiguration(new HotelImageConfiguration());
-            modelBuilder.ApplyConfiguration(new LocationConfiguration());
             modelBuilder.ApplyConfiguration(new ReviewConfiguration());
             modelBuilder.ApplyConfiguration(new RoomConfiguration());
             modelBuilder.ApplyConfiguration(new BookingConfiguration());
