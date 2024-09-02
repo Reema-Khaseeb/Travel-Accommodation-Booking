@@ -1,4 +1,4 @@
-﻿using TravelAccommodationBooking.Db.Utilities.Enums;
+﻿using TravelAccommodationBooking.Common.Enums;
 
 namespace TravelAccommodationBooking.Db.Models
 {

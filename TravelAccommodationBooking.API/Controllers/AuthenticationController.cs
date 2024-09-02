@@ -2,15 +2,15 @@
 using FluentValidation;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
-using TravelAccommodationBooking.API.Dtos.Error;
-using TravelAccommodationBooking.API.Dtos.Login;
-using TravelAccommodationBooking.API.Dtos.User;
-using TravelAccommodationBooking.API.Exceptions;
-using TravelAccommodationBooking.API.Services;
-using TravelAccommodationBooking.API.Services.Interfaces;
-using TravelAccommodationBooking.Db.Utilities.Enums;
-using TravelAccommodationBooking.Db.Utilities.Exceptions;
-using TravelAccommodationBooking.Db.Utilities.Exceptions.UserExceptions;
+using TravelAccommodationBooking.Dtos.Error;
+using TravelAccommodationBooking.Dtos.Login;
+using TravelAccommodationBooking.Dtos.User;
+using TravelAccommodationBooking.Services;
+using TravelAccommodationBooking.Services.Interfaces;
+using TravelAccommodationBooking.Common.Enums;
+using TravelAccommodationBooking.Common.Exceptions;
+using TravelAccommodationBooking.Common.Exceptions.UserExceptions;
+using TravelAccommodationBooking.Common.UserExceptions.Exceptions;
 
 namespace TravelAccommodationBooking.API.Controllers
 {

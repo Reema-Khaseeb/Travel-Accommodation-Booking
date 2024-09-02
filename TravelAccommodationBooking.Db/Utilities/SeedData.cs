@@ -1,5 +1,5 @@
 ﻿using TravelAccommodationBooking.Db.Models;
-using TravelAccommodationBooking.Db.Utilities.Enums;
+using TravelAccommodationBooking.Common.Enums;
 
 namespace TravelAccommodationBooking.Db.Utilities
 {
@@ -9,7 +9,7 @@ namespace TravelAccommodationBooking.Db.Utilities
         {
             var cities = new List<City>();
 
-            for (int i = 1; i <= 50; i++)
+            for (int i = 1; i <= 10; i++)
             {
                 cities.Add(new City
                 {
@@ -29,7 +29,7 @@ namespace TravelAccommodationBooking.Db.Utilities
             var hotelImages = new List<HotelImage>();
             Random rand = new Random();
             var imageCounter = 1; // Counter for unique ImageId
-            var numberOfHotels = 50;
+            var numberOfHotels = 20;
 
             for (int hotelId = 1; hotelId <= numberOfHotels; hotelId++)
             {
@@ -55,7 +55,7 @@ namespace TravelAccommodationBooking.Db.Utilities
             var hotels = new List<Hotel>();
             Random rand = new Random();
 
-            for (int i = 1; i <= 50; i++)
+            for (int i = 1; i <= 20; i++)
             {
                 hotels.Add(new Hotel
                 {
@@ -86,8 +86,8 @@ namespace TravelAccommodationBooking.Db.Utilities
 
             for (int i = 1; i <= 200; i++)
             {
-                var hotelId = rand.Next(1, 51);
-                var userId = rand.Next(3, 301);
+                var hotelId = rand.Next(1, 21);
+                var userId = rand.Next(3, 81);
                 reviewList.Add(new Review
                 {
                     ReviewId = i,
@@ -106,7 +106,7 @@ namespace TravelAccommodationBooking.Db.Utilities
             var rooms = new List<Room>();
             Random rand = new Random();
 
-            for (int i = 1; i <= 150; i++)
+            for (int i = 1; i <= 50; i++)
             {
                 rooms.Add(new Room
                 {
@@ -117,7 +117,7 @@ namespace TravelAccommodationBooking.Db.Utilities
                     RoomType = (RoomType)rand.Next(1, 4),
                     Price = rand.Next(50, 500),
                     ThumbnailUrl = $"http://example.com/room{i}.jpg",
-                    HotelId = rand.Next(1, 51),
+                    HotelId = rand.Next(1, 21),
                     CreationDate = DateTime.Now.AddDays(-rand.Next(1, 100)),
                     ModificationDate = DateTime.Now,
                     Description = $"Description for Room{i}",
@@ -262,7 +262,7 @@ namespace TravelAccommodationBooking.Db.Utilities
         public static List<User> SeedUsers()
         {
             var users = new List<User>();
-            for (int i = 3; i <= 300; i++)
+            for (int i = 3; i <= 80; i++)
             {
                 users.Add(new User
                 {

@@ -1,4 +1,4 @@
-﻿namespace TravelAccommodationBooking.API.Dtos.User
+﻿namespace TravelAccommodationBooking.Dtos.User
 {
     public record UserResponse(
         string Username,

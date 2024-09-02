@@ -1,5 +1,5 @@
 ﻿using FluentValidation;
-using TravelAccommodationBooking.API.Dtos.Login;
+using TravelAccommodationBooking.Dtos.Login;
 
 namespace TravelAccommodationBooking.API.Utilities.Validators
 {
