@@ -146,6 +146,7 @@ namespace TravelAccommodationBooking.API
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<ICityService, CityService>();
             services.AddScoped<IHotelService, HotelService>();
         }
 
@@ -153,6 +154,7 @@ namespace TravelAccommodationBooking.API
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IHotelRepository, HotelRepository>();
         }
 
