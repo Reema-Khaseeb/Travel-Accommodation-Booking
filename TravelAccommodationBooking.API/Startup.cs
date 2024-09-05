@@ -145,24 +145,20 @@ namespace TravelAccommodationBooking.API
             services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IHotelService, HotelService>();
         }
 
         private void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
             services.AddScoped<IHotelRepository, HotelRepository>();
         }
 
-
         private void ConfigureAutoMapper(IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            //services.AddAutoMapper(typeof(Startup), typeof(MappingProfile));
             services.AddAutoMapper(typeof(UserProfile));
-
         }
 
         private void ConfigureControllers(IServiceCollection services)
