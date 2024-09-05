@@ -1,4 +1,4 @@
-﻿namespace TravelAccommodationBooking.API.Dtos.Error
+﻿namespace TravelAccommodationBooking.Dtos.Error
 {
     public record ErrorResponse(
         string Message,

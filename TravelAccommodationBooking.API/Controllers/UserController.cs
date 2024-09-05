@@ -1,13 +1,15 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using TravelAccommodationBooking.API.Dtos.User;
-using TravelAccommodationBooking.API.Dtos.Error;
-using TravelAccommodationBooking.API.Services;
+using TravelAccommodationBooking.Dtos.User;
+using TravelAccommodationBooking.Dtos.Error;
+using TravelAccommodationBooking.Services;
 
 namespace TravelAccommodationBooking.API.Controllers
 {
     [ApiController]
     [Route("users")]
+    [Authorize]
     public class UserController : ControllerBase
     {
         private readonly IUserService _userService;

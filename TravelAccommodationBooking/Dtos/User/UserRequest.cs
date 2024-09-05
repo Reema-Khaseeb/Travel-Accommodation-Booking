@@ -1,6 +1,6 @@
-﻿using TravelAccommodationBooking.Db.Utilities.Enums;
+﻿using TravelAccommodationBooking.Common.Enums;
 
-namespace TravelAccommodationBooking.API.Dtos.User
+namespace TravelAccommodationBooking.Dtos.User
 {
     public record UserRequest(
         string Username,

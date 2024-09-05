@@ -22,9 +22,6 @@ namespace TravelAccommodationBooking.Db.Configurations
             builder.Property(h => h.Name)
                 .IsRequired();
 
-            builder.Property(h => h.LocationId)
-                .IsRequired();
-
             builder.Property(h => h.Price)
                 .IsRequired();
 
@@ -42,11 +39,6 @@ namespace TravelAccommodationBooking.Db.Configurations
             builder.HasMany(h => h.Reviews)
                 .WithOne(r => r.Hotel)
                 .HasForeignKey(r => r.HotelId)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.HasOne(h => h.Location)
-                .WithOne(l => l.Hotel)
-                .HasForeignKey<Hotel>(h => h.LocationId)
                 .OnDelete(DeleteBehavior.Cascade);
 
             // Seed Data

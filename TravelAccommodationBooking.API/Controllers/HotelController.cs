@@ -1,13 +1,14 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TravelAccommodationBooking.API.Services.Interfaces;
+using TravelAccommodationBooking.Services.Interfaces;
 using TravelAccommodationBooking.Db.Models;
 using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
 using Swashbuckle.AspNetCore.Annotations;
-using TravelAccommodationBooking.Db.Utilities.Enums;
-using TravelAccommodationBooking.API.Dtos.Hotel;
-using TravelAccommodationBooking.API.Dtos.Error;
-using TravelAccommodationBooking.Db.Utilities.Exceptions;
+using TravelAccommodationBooking.Common.Enums;
+using TravelAccommodationBooking.Dtos.Hotel;
+using TravelAccommodationBooking.Dtos.Error;
+using TravelAccommodationBooking.Common.Exceptions;
+using TravelAccommodationBooking.API.Models.Searching;
 
 namespace TravelAccommodationBooking.API.Controllers
 {
@@ -67,7 +68,7 @@ namespace TravelAccommodationBooking.API.Controllers
         /// <param name="hotelId">The ID of the hotel to be updated.</param>
         /// <param name="hotelDto">The hotel update request containing new hotel details.</param>
         /// <returns>An ActionResult indicating the result of the operation.</returns>
-        [HttpPatch("{hotelId:int}")]
+        [HttpPut("{hotelId:int}")]
         [Authorize(Roles = nameof(UserRole.Admin))]
         [SwaggerResponse(StatusCodes.Status204NoContent, "Successfully updated the hotel")]
         [SwaggerResponse(StatusCodes.Status400BadRequest,"Validation error",
