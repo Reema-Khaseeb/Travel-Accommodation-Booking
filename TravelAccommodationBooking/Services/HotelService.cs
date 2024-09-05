@@ -11,21 +11,18 @@ public class HotelService : IHotelService
 {
     private readonly IHotelRepository _hotelRepository;
     private readonly ICityService _cityService;
-    private readonly IHotelLocationService _hotelLocationService;
     private readonly ILogger<HotelService> _logger;
     private readonly IMapper _mapper;
 
     public HotelService(
         IHotelRepository hotelRepository,
         ICityService cityService,
-        IHotelLocationService hotelLocationService,
         ILogger<HotelService> logger,
         IMapper mapper
         )
     {
         _hotelRepository = hotelRepository;
         _cityService = cityService;
-        _hotelLocationService = hotelLocationService;
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         _mapper = mapper;
     }
@@ -44,7 +41,6 @@ public class HotelService : IHotelService
 
         // Validate and update foreign keys
         await UpdateCityForHotelAsync(existedHotel, hotelUpdateRequest.CityId);
-        await UpdateLocationForHotelAsync(existedHotel, hotelUpdateRequest.LocationId);
 
         existedHotel.ModificationDate = DateTime.UtcNow;
 
@@ -98,23 +94,6 @@ public class HotelService : IHotelService
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error while validating and setting City for the updated hotel.");
-                throw;
-            }
-        }
-    }
-
-    private async Task UpdateLocationForHotelAsync(Hotel existingHotel, int? locationId)
-    {
-        if (locationId.HasValue)
-        {
-            try
-            {
-                var existingLocation = await _hotelLocationService.GetLocationByIdAsync(locationId.Value);
-                existingHotel.Location = existingLocation;
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error while validating and setting Location for the updated hotel.");
                 throw;
             }
         }

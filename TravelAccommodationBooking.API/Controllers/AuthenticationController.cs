@@ -10,7 +10,6 @@ using TravelAccommodationBooking.Services.Interfaces;
 using TravelAccommodationBooking.Common.Enums;
 using TravelAccommodationBooking.Common.Exceptions;
 using TravelAccommodationBooking.Common.Exceptions.UserExceptions;
-using TravelAccommodationBooking.Common.UserExceptions.Exceptions;
 
 namespace TravelAccommodationBooking.API.Controllers
 {
