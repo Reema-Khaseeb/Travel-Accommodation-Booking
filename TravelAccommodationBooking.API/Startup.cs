@@ -4,14 +4,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using Serilog;
 using System.Reflection;
-using TravelAccommodationBooking.API.Services;
-using TravelAccommodationBooking.API.Utilities;
+using TravelAccommodationBooking.Services;
 using TravelAccommodationBooking.Db;
 using TravelAccommodationBooking.Db.Repositories.Interfaces;
 using TravelAccommodationBooking.Db.Repositories;
-using TravelAccommodationBooking.API.Utilities.Validators;
-using TravelAccommodationBooking.API.Services.Interfaces;
-using TravelAccommodationBooking.API.Utilities.MappingProfiles;
+using TravelAccommodationBooking.Services.Interfaces;
+using TravelAccommodationBooking.MappingProfiles;
 
 namespace TravelAccommodationBooking.API
 {
@@ -75,6 +73,30 @@ namespace TravelAccommodationBooking.API
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Description = "JWT Authorization header using the Bearer scheme. Enter 'Bearer' [space] and then your token in the text input below. Example: 'Bearer 12345abcdef'",
+                    Name = "Authorization",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer"
+            });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference
+                            {
+                                Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                            }
+                        },
+                        Array.Empty<string>() //new string[] { }
+                    }
+            });
             });
         }
 
@@ -120,33 +142,36 @@ namespace TravelAccommodationBooking.API
         private void ConfigureScopedServices(IServiceCollection services)
         {
             services.AddScoped<TravelAccommodationBookingDbContext>();
+            services.AddScoped<IPasswordHasher, PasswordHasher>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
-            services.AddScoped<IPasswordHasher, PasswordHasher>();
+            services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<ICityService, CityService>();
+            services.AddScoped<IHotelService, HotelService>();
         }
 
         private void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<ICityRepository, CityRepository>();
+            services.AddScoped<IHotelRepository, HotelRepository>();
         }
-
 
         private void ConfigureAutoMapper(IServiceCollection services)
         {
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            //services.AddAutoMapper(typeof(Startup), typeof(MappingProfile));
             services.AddAutoMapper(typeof(UserProfile));
-
         }
 
         private void ConfigureControllers(IServiceCollection services)
         {
             services.AddControllers()
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
+                })
                 .AddFluentValidation(fv => fv
-                .RegisterValidatorsFromAssemblyContaining<UserValidator>()
-                .RegisterValidatorsFromAssemblyContaining<LoginValidator>()
-                );
+                .RegisterValidatorsFromAssemblyContaining<Startup>());
         }
 
         private void ConfigureDbContext(IServiceCollection services)
