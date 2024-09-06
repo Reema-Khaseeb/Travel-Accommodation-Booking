@@ -1,4 +1,4 @@
-﻿namespace TravelAccommodationBooking.API.Utilities.Constants
+﻿namespace TravelAccommodationBooking.Common.Constants
 {
     public static class PaginationConstants
     {
