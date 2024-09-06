@@ -3,7 +3,11 @@ using TravelAccommodationBooking.Db.Models;
 using TravelAccommodationBooking.Db.Repositories.Interfaces;
 using TravelAccommodationBooking.Services.Interfaces;
 using TravelAccommodationBooking.Common.Exceptions;
+using TravelAccommodationBooking.Common.Enums;
+using Microsoft.EntityFrameworkCore;
 using TravelAccommodationBooking.Dtos.Hotel;
+using TravelAccommodationBooking.Dtos.Responses;
+using TravelAccommodationBooking.Dtos.Searching;
 using Microsoft.Extensions.Logging;
 
 namespace TravelAccommodationBooking.Services;
@@ -97,5 +101,102 @@ public class HotelService : IHotelService
                 throw;
             }
         }
+    }
+
+    public async Task<PaginatedResponse<HotelSearchResponse>> SearchPaginatedAsync(SearchCriteria criteria)
+    {
+        var query = _hotelRepository.GetHotelsQueryable();
+
+        //// Apply filters based on the provided criteria
+        query = FilterHotelsByCity(query, criteria.CityId);
+        query = FilterHotelsByMinPrice(query, criteria.MinPrice);
+        query = FilterHotelsByMaxPrice(query, criteria.MaxPrice);
+        query = FilterHotelsBySpecificStarRating(query, criteria.StarRating);
+        query = FilterHotelsByMinStarRating(query, criteria.MinStarRating);
+        query = FilterHotelsByMaxStarRating(query, criteria.MaxStarRating);
+        query = FilterHotelsByRoomType(query, criteria.RoomType);
+        query = FilterHotelsByAdultsCapacity(query, criteria.NumberOfAdults);
+        query = FilterHotelsByChildrenCapacity(query, criteria.NumberOfChildren);
+
+        // get search query result paginated
+        var paginatedHotels = await query
+            .Skip((criteria.PageNumber - 1) * criteria.PageSize)
+            .Take(criteria.PageSize)
+            .ToListAsync();
+        var totalCount = query.Count();  // await query.CountAsync();
+        var totalPages = (int)Math.Ceiling(totalCount / (double)criteria.PageSize);
+        var PaginatedhotelsResponses = _mapper.Map<IEnumerable<HotelSearchResponse>>(paginatedHotels);
+
+        return new PaginatedResponse<HotelSearchResponse>
+        {
+            Items = PaginatedhotelsResponses,
+            CurrentPage = criteria.PageNumber,
+            TotalPages = totalPages,
+            PageSize = criteria.PageSize,
+            TotalCount = totalCount
+        };
+    }
+
+    public IQueryable<Hotel> FilterHotelsByCity(IQueryable<Hotel> query, int? cityId)
+    {
+        return cityId.HasValue
+            ? _hotelRepository.FilterHotelsByCity(query, cityId.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByMinPrice(IQueryable<Hotel> query, double? minPrice)
+    {
+        return minPrice.HasValue
+            ? _hotelRepository.FilterHotelsByMinPrice(query, minPrice.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByMaxPrice(IQueryable<Hotel> query, double? maxPrice)
+    {
+        return maxPrice.HasValue
+            ? _hotelRepository.FilterHotelsByMaxPrice(query, maxPrice.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsBySpecificStarRating(IQueryable<Hotel> query, StarRating? specificStarRating)
+    {
+        return specificStarRating.HasValue
+            ? _hotelRepository.FilterHotelsBySpecificStarRating(query, specificStarRating.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByMinStarRating(IQueryable<Hotel> query, StarRating? minStarRating)
+    {
+        return minStarRating.HasValue
+            ? _hotelRepository.FilterHotelsByMinStarRating(query, minStarRating.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByMaxStarRating(IQueryable<Hotel> query, StarRating? maxStarRating)
+    {
+        return maxStarRating.HasValue
+            ? _hotelRepository.FilterHotelsByMaxStarRating(query, maxStarRating.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByRoomType(IQueryable<Hotel> query, RoomType? roomType)
+    {
+        return roomType.HasValue
+            ? _hotelRepository.FilterHotelsByRoomType(query, roomType.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByAdultsCapacity(IQueryable<Hotel> query, int? numberOfAdults)
+    {
+        return numberOfAdults.HasValue
+            ? _hotelRepository.FilterHotelsByAdultsCapacity(query, numberOfAdults.Value)
+            : query;
+    }
+
+    public IQueryable<Hotel> FilterHotelsByChildrenCapacity(IQueryable<Hotel> query, int? numberOfChildren)
+    {
+        return numberOfChildren.HasValue
+            ? _hotelRepository.FilterHotelsByChildrenCapacity(query, numberOfChildren.Value)
+            : query;
     }
 }
