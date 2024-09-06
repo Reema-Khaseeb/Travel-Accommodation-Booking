@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using TravelAccommodationBooking.Common.Enums;
 using TravelAccommodationBooking.Dtos.Hotel;
 using TravelAccommodationBooking.Dtos.Error;
+using TravelAccommodationBooking.Dtos.Searching;
 using TravelAccommodationBooking.Common.Exceptions;
 using TravelAccommodationBooking.API.Models.Searching;
 
@@ -205,6 +206,14 @@ namespace TravelAccommodationBooking.API.Controllers
                     new ErrorResponse("An internal server error occurred.",
                     ex.Message));
             }
+        }
+
+        [HttpGet("search")]
+        public async Task<IActionResult> SearchMorePaginationDetails([FromQuery] SearchCriteriaRequest criteriaDto)
+        {
+            var criteria = _mapper.Map<SearchCriteria>(criteriaDto);
+            var hotels = await _hotelService.SearchPaginatedAsync(criteria);
+            return Ok(hotels);
         }
     }
 }
