@@ -62,7 +62,7 @@ To get started with this project, follow these steps:
 - **JWT Bearer Authentication**: Implementation for secure user authentication.
 - **Serilog**: Logging mechanism.
 - **Swashbuckle**: Swagger tool for API documentation.
-
+- **xUnit**: for testing
 
 ## Getting Started
 ### Dependencies(Prerequisites)
