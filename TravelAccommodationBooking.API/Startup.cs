@@ -146,6 +146,7 @@ namespace TravelAccommodationBooking.API
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IHotelService, HotelService>();
         }

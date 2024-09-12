@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
 using TravelAccommodationBooking.Db.Models;
+using TravelAccommodationBooking.Db.Utilities;
 
 namespace TravelAccommodationBooking.Db.Configurations
 {
@@ -42,6 +43,9 @@ namespace TravelAccommodationBooking.Db.Configurations
             new { b.RoomId, b.CheckInDate, b.CheckOutDate})
                 .HasName("IX_Bookings_RoomId_CheckInDate_CheckOutDate")
                 .IsUnique();
+
+            // Seed Data
+            builder.HasData(SeedData.SeedBookings());
 
             // Table Name in Database
             builder.ToTable("Booking");
