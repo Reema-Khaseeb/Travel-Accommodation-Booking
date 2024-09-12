@@ -14,6 +14,8 @@ namespace TravelAccommodationBooking.Services
         private readonly IBookingRepository _bookingRepository;
         private readonly IHotelService _hotelService;
         private readonly IRoomService _roomService;
+        private readonly IUserService _userService;
+        private readonly IEmailService _emailService;
         private readonly ILogger<BookingService> _logger;
         private readonly IMapper _mapper;
 
@@ -21,6 +23,8 @@ namespace TravelAccommodationBooking.Services
             IBookingRepository bookingrepository,
             IHotelService hotelService,
             IRoomService roomService,
+            IUserService userService,
+            IEmailService emailService,
             ILogger<BookingService> logger,
             IMapper mapper
             )
@@ -28,6 +32,8 @@ namespace TravelAccommodationBooking.Services
             _bookingRepository = bookingrepository;
             _hotelService = hotelService;
             _roomService = roomService;
+            _userService = userService;
+            _emailService = emailService;
             _logger = logger;
             _mapper = mapper;
         }
@@ -69,6 +75,17 @@ namespace TravelAccommodationBooking.Services
             booking.Status = BookingStatus.Confirmed;
             booking.UpdatedAt = DateTime.UtcNow;
             await _bookingRepository.UpdateBookingAsync(booking);
+
+            var username = await _userService.GetUsernameByUserIdAsync(booking.UserId);
+            var email = await _userService.GetUserEmailByUserIdAsync(booking.UserId);
+
+            var emailSubject = $"Booking Confirmation - Booking ID: {booking.BookingId}";
+            var emailBody = $"Hello {username},\n" +
+                            $"Your booking is confirmed.\n" +
+                            $"Details: Room ID: {booking.RoomId},\n" +
+                            $"Check-in: {booking.CheckInDate.ToString("yyyy-MM-dd")}, Check-out: {booking.CheckOutDate.ToString("yyyy-MM-dd")}\n";
+
+            await _emailService.SendEmailAsync(email, emailSubject, emailBody);
         }
 
         public async Task<Booking> GetBookingByIdAsync(int bookingId)
