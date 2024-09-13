@@ -11,5 +11,7 @@ namespace TravelAccommodationBooking.Db.Repositories.Interfaces
         Task<bool> IsEmailUniqueAsync(string email);
         Task<bool> IsUsernameUniqueAsync(string username);
         Task<User> GetUserByEmailAsync(string email);
+        Task<string> GetUsernameByUserIdAsync(int userId);
+        Task<string> GetUserEmailByUserIdAsync(int userId);
     }
 }

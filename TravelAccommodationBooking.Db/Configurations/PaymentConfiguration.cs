@@ -21,17 +21,10 @@ namespace TravelAccommodationBooking.Db.Configurations
                 .IsRequired();
             
             builder.Property(p => p.PaymentDate)
-                .HasColumnType("decimal(10, 2)")
                 .IsRequired();
 
             builder.Property(p => p.Status)
-                .HasColumnType("decimal(10, 2)")
                 .IsRequired();
-
-            // Relationships and Constraints
-            builder.HasOne(p => p.Booking)
-                .WithOne(b => b.Payment)
-                .HasForeignKey<Payment>(p => p.BookingId);
 
             // Seed Data
             builder.HasData(SeedData.SeedPayments());

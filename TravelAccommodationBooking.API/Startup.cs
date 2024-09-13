@@ -31,6 +31,7 @@ namespace TravelAccommodationBooking.API
             ConfigureAutoMapper(services);
             ConfigureControllers(services);
             ConfigureScopedServices(services);
+            ConfigureTransientServices(services);
             ConfigureRepositories(services);
             ConfigureSwagger(services);
             ConfigureDbContext(services);
@@ -146,16 +147,26 @@ namespace TravelAccommodationBooking.API
             services.AddScoped<IAuthenticationService, AuthenticationService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IRoomService, RoomService>();
+            services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IPaymentService, PaymentService>();
+        }
+
+        private void ConfigureTransientServices(IServiceCollection services)
+        {
+            services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IPdfService, PdfService>();
         }
 
         private void ConfigureRepositories(IServiceCollection services)
         {
             services.AddScoped<IUserRepository, UserRepository>();
             services.AddScoped<IRoomRepository, RoomRepository>();
+            services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
         }
 
         private void ConfigureAutoMapper(IServiceCollection services)

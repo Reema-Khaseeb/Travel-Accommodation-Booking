@@ -52,5 +52,21 @@ namespace TravelAccommodationBooking.Db.Repositories
         {
             return !await _dbContext.Users.AnyAsync(u => u.Username == username);
         }
+
+        public async Task<string> GetUsernameByUserIdAsync(int userId)
+        {
+            return await _dbContext.Users
+                .Where(u => u.UserId == userId)
+                .Select(u => u.Username)
+                .FirstOrDefaultAsync();
+        }
+
+        public async Task<string> GetUserEmailByUserIdAsync(int userId)
+        {
+            return await _dbContext.Users
+                .Where(u => u.UserId == userId)
+                .Select(u => u.Email)
+                .SingleOrDefaultAsync();
+        }
     }
 }

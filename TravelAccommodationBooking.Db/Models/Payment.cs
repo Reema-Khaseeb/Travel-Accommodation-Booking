@@ -1,4 +1,4 @@
-﻿using TravelAccommodationBooking.Db.Utilities.Enums;
+﻿using TravelAccommodationBooking.Common.Enums;
 namespace TravelAccommodationBooking.Db.Models;
 
 public class Payment
@@ -11,7 +11,4 @@ public class Payment
     
     // Foreign key
     public int BookingId { get; set; }
-
-    // Navigation Property
-    public Booking Booking { get; set; }
 }
