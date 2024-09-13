@@ -150,6 +150,7 @@ namespace TravelAccommodationBooking.API
             services.AddScoped<IBookingService, BookingService>();
             services.AddScoped<ICityService, CityService>();
             services.AddScoped<IHotelService, HotelService>();
+            services.AddScoped<IPaymentService, PaymentService>();
         }
 
         private void ConfigureTransientServices(IServiceCollection services)
@@ -165,6 +166,7 @@ namespace TravelAccommodationBooking.API
             services.AddScoped<IBookingRepository, BookingRepository>();
             services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<IHotelRepository, HotelRepository>();
+            services.AddScoped<IPaymentRepository, PaymentRepository>();
         }
 
         private void ConfigureAutoMapper(IServiceCollection services)
