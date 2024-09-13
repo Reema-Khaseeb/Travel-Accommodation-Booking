@@ -11,4 +11,6 @@ public interface IUserService
     Task<IEnumerable<User>> GetUsersAsync();
     Task<bool> IsEmailUniqueAsync(string email);
     Task<bool> IsUsernameUniqueAsync(string username);
+    Task<string> GetUsernameByUserIdAsync(int userId);
+    Task<string> GetUserEmailByUserIdAsync(int userId);
 }

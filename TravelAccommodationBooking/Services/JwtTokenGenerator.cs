@@ -3,7 +3,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using TravelAccommodationBooking.Services.Interfaces;
-using TravelAccommodationBooking.API.Utilities;
 using TravelAccommodationBooking.Db.Models;
 using Microsoft.Extensions.Configuration;
 
