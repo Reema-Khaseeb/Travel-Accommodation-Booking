@@ -1,4 +1,4 @@
-﻿namespace TravelAccommodationBooking.Common.UserExceptions.Exceptions;
+﻿namespace TravelAccommodationBooking.Common.Exceptions.UserExceptions;
 
 public class DuplicateUsernameException : Exception
 {

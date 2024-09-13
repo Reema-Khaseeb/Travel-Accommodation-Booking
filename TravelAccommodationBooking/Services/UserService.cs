@@ -155,4 +155,36 @@ public class UserService : IUserService
     {
         return await _userRepository.IsUsernameUniqueAsync(username);
     }
+
+    public async Task<string> GetUsernameByUserIdAsync(int userId)
+    {
+        _logger.LogInformation("Retrieving username for user ID {UserId}", userId);
+
+        var username = await _userRepository.GetUsernameByUserIdAsync(userId);
+
+        if (username == null)
+        {
+            _logger.LogWarning("User with ID {UserId} not found.", userId);
+            throw new NotFoundException("User not found.");
+        }
+
+        _logger.LogInformation("Successfully retrieved username for user ID {UserId}", userId);
+        return username;
+    }
+
+    public async Task<string> GetUserEmailByUserIdAsync(int userId)
+    {
+        _logger.LogInformation("Retrieving email for user ID {UserId}", userId);
+
+        var email = await _userRepository.GetUserEmailByUserIdAsync(userId);
+
+        if (email == null)
+        {
+            _logger.LogWarning("User with ID {UserId} not found.", userId);
+            throw new NotFoundException("User not found.");
+        }
+
+        _logger.LogInformation("Successfully retrieved email for user ID {UserId}", userId);
+        return email;
+    }
 }
