@@ -16,6 +16,7 @@ namespace TravelAccommodationBooking.Services
         private readonly IRoomService _roomService;
         private readonly IUserService _userService;
         private readonly IEmailService _emailService;
+        private readonly IPdfService _pdfService;
         private readonly ILogger<BookingService> _logger;
         private readonly IMapper _mapper;
 
@@ -25,6 +26,7 @@ namespace TravelAccommodationBooking.Services
             IRoomService roomService,
             IUserService userService,
             IEmailService emailService,
+            IPdfService pdfService,
             ILogger<BookingService> logger,
             IMapper mapper
             )
@@ -34,6 +36,7 @@ namespace TravelAccommodationBooking.Services
             _roomService = roomService;
             _userService = userService;
             _emailService = emailService;
+            _pdfService = pdfService;
             _logger = logger;
             _mapper = mapper;
         }
@@ -135,6 +138,50 @@ namespace TravelAccommodationBooking.Services
             {
                 await _bookingRepository.DeleteBookingAsync(booking);
             }
+        }
+        
+        public async Task<byte[]> GenerateBookingConfirmationPdfAsync(int bookingId)
+        {
+            var bookingDetails = await GetBookingDetailsAsync(bookingId);
+            var htmlContent = GenerateBookingConfirmationHtml(bookingDetails);
+            return await _pdfService.GeneratePdf(htmlContent);
+        }
+
+        private async Task<BookingDetails> GetBookingDetailsAsync(int bookingId)
+        {
+            var booking = await _bookingRepository.GetBookingDetailsByIdAsync(bookingId)
+                ?? throw new NotFoundException("Booking not found");
+
+            return new BookingDetails(
+                booking.BookingId,
+                booking.Room.Hotel.Address,
+                booking.Room.Number,
+                booking.Room.RoomType,
+                booking.Room.Description,
+                booking.CheckInDate,
+                booking.CheckOutDate,
+                booking.TotalPrice);
+        }
+
+        private string GenerateBookingConfirmationHtml(BookingDetails bookingDetails)
+        {
+            return $@"
+            <html>
+            <head>
+                <title>Booking Confirmation</title>
+            </head>
+            <body>
+                <h1>Booking Confirmation</h1>
+                <p>Confirmation Number: {bookingDetails.BookingId}</p>
+                <p>Hotel Address: {bookingDetails.HotelAddress}</p>
+                <p>Room Number: {bookingDetails.RoomNumber}</p>
+                <p>Room Type: {bookingDetails.RoomType}</p>
+                <p>Room Description: {bookingDetails.Description}</p>
+                <p>Check-in Date: {bookingDetails.CheckInDate:yyyy-MM-dd}</p>
+                <p>Check-out Date: {bookingDetails.CheckOutDate:yyyy-MM-dd}</p>
+                <p>Total Price: ${bookingDetails.TotalPrice}</p>
+            </body>
+            </html>";
         }
     }
 }

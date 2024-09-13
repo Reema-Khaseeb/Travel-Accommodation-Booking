@@ -155,6 +155,7 @@ namespace TravelAccommodationBooking.API
         private void ConfigureTransientServices(IServiceCollection services)
         {
             services.AddTransient<IEmailService, EmailService>();
+            services.AddTransient<IPdfService, PdfService>();
         }
 
         private void ConfigureRepositories(IServiceCollection services)

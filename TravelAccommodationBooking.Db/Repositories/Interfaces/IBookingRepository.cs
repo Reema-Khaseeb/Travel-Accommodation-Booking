@@ -6,6 +6,7 @@ namespace TravelAccommodationBooking.Db.Repositories.Interfaces
     {
         Task<Booking> CreateBookingAsync(Booking booking);        
         Task<Booking> GetBookingByIdAsync(int bookingId);
+        Task<Booking> GetBookingDetailsByIdAsync(int bookingId);
         Task UpdateBookingAsync(Booking booking);
         Task DeleteBookingAsync(Booking booking);
         Task<bool> IsRoomAvailableAsync(Booking booking);

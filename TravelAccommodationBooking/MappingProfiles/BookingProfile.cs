@@ -11,5 +11,6 @@ public class BookingProfile : Profile
         CreateMap<BookingRequest, Booking>().ReverseMap();
         CreateMap<Booking, BookingResponse>();
         CreateMap<Booking, BookingDetails>();
+        CreateMap<BookingUpdateRequest, Booking>();
     }
 }

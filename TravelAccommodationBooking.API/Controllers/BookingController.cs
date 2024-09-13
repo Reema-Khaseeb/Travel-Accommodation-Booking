@@ -65,5 +65,12 @@ namespace TravelAccommodationBooking.API.Controllers
                 return StatusCode(500, "An error occurred while fetching the booking.");
             }
         }
+        
+        [HttpGet("generate-pdf/{bookingId}")]
+        public async Task<IActionResult> GenerateBookingConfirmationPdf(int bookingId)
+        {
+            var pdfBytes = await _bookingService.GenerateBookingConfirmationPdfAsync(bookingId);
+            return File(pdfBytes, "application/pdf", "BookingConfirmation.pdf");
+        }
     }
 }

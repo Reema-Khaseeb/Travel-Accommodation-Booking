@@ -27,6 +27,14 @@ namespace TravelAccommodationBooking.Db.Repositories
             return await _context.Bookings.FindAsync(bookingId);
         }
 
+        public async Task<Booking> GetBookingDetailsByIdAsync(int bookingId)
+        {
+            return await _context.Bookings
+                .Include(b => b.Room)
+                .ThenInclude(r => r.Hotel)
+                .FirstOrDefaultAsync(b => b.BookingId == bookingId);
+        }
+
         public async Task UpdateBookingAsync(Booking booking)
         {
             _context.Bookings.Update(booking);

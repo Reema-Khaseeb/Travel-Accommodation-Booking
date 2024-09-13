@@ -9,4 +9,5 @@ public interface IBookingService
     Task<Booking> GetBookingByIdAsync(int bookingId);
     Task<double> GetBookingPriceByBookingId(int bookingId);
     Task CancelReservationAsync(int bookingId);
+    Task<byte[]> GenerateBookingConfirmationPdfAsync(int bookingId);
 }
