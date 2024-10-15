@@ -41,6 +41,14 @@ namespace TravelAccommodationBooking.API
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseSerilogRequestLogging();
+
+            // Enforce HTTPS
+            if (!env.IsDevelopment())
+            {
+                app.UseHsts();  // Enforce HTTP Strict Transport Security (HSTS)
+            }
+            app.UseHttpsRedirection();  // Redirect HTTP requests to HTTPS
+
             app.UseExceptionLogging();
             app.UseAuthentication();
             app.UseRouting();
@@ -95,7 +103,7 @@ namespace TravelAccommodationBooking.API
                                 Id = "Bearer"
                             }
                         },
-                        Array.Empty<string>() //new string[] { }
+                        Array.Empty<string>()
                     }
             });
             });
@@ -114,7 +122,7 @@ namespace TravelAccommodationBooking.API
         {
             Log.Logger = new LoggerConfiguration()
                 .WriteTo.Console()
-                .WriteTo.File("log.txt", rollingInterval: RollingInterval.Day)  // Log to a file with daily rolling
+                .WriteTo.File("logs/log.txt", rollingInterval: RollingInterval.Day)  // Log to a file with daily rolling
                 .CreateLogger();
 
             services.AddLogging(builder => builder.AddSerilog()); // Add Serilog to the LoggerFactory
