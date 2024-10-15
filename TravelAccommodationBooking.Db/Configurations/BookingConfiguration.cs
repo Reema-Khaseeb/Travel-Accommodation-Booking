@@ -28,16 +28,7 @@ namespace TravelAccommodationBooking.Db.Configurations
             // Ensure CheckOutDate is after CheckInDate
             builder.HasCheckConstraint("CK_Booking_CheckOutDate_After_CheckInDate",
                 "[CheckOutDate] > [CheckInDate]");
-
-            // Relationships and Constraints
-            builder.HasOne(b => b.User)
-                .WithMany(u => u.Bookings)
-                .HasForeignKey(b => b.UserId);
-
-            builder.HasOne(b => b.Room)
-                .WithMany(r => r.Bookings)
-                .HasForeignKey(b => b.RoomId);
-
+            
             // indexing
             builder.HasIndex(b =>
             new { b.RoomId, b.CheckInDate, b.CheckOutDate})
