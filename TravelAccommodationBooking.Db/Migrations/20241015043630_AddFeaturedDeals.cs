@@ -4,28 +4,3197 @@
 
 namespace TravelAccommodationBooking.Db.Migrations
 {
-    public partial class CreateCityWithHotelsCountView : Migration
+    public partial class AddFeaturedDeals : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.Sql(@"
-                CREATE VIEW CityWithHotelsCountView AS
-                SELECT
-                    c.CityId,
-                    c.Name,
-                    c.Country,
-                    c.PostOffice,
-                    COUNT(h.HotelId) AS NumberOfHotels,
-                    c.CreationDate,
-                    c.ModificationDate
-                FROM
-                    City c
-                LEFT JOIN
-                    Hotel h ON c.CityId = h.CityId
-                GROUP BY
-                    c.CityId, c.Name, c.Country, c.PostOffice, c.CreationDate, c.ModificationDate;
-            "); 
-            
+            //migrationBuilder.AddColumn<string>(
+            //    name: "ConfirmationNumber",
+            //    table: "Booking",
+            //    type: "nvarchar(max)",
+            //    nullable: false,
+            //    defaultValue: "");
+
+            //migrationBuilder.AddColumn<string>(
+            //    name: "SpecialRequests",
+            //    table: "Booking",
+            //    type: "nvarchar(max)",
+            //    nullable: false,
+            //    defaultValue: "");
+
+            migrationBuilder.CreateTable(
+                name: "FeaturedDeal",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HotelId = table.Column<int>(type: "int", nullable: false),
+                    DiscountPercentage = table.Column<double>(type: "float", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FeaturedDeal", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FeaturedDeal_Hotel_HotelId",
+                        column: x => x.HotelId,
+                        principalTable: "Hotel",
+                        principalColumn: "HotelId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 1,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN001", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6758), "Late check-in, king size bed" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 2,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN002", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6767), "Late check-out" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 3,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN003", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6768), "Early check-in" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 4,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN004", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6770), "High floor, sea view" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 5,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN005", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6865), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 6,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN006", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6873), "High floor" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 7,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN007", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6875), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 8,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN008", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6876), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 9,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN009", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6877), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 10,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN010", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6879), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 11,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN011", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6880), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 12,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN012", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6882), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "Booking",
+                keyColumn: "BookingId",
+                keyValue: 13,
+                columns: new[] { "ConfirmationNumber", "CreatedAt", "SpecialRequests" },
+                values: new object[] { "CN013", new DateTime(2024, 10, 15, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(6883), "None" });
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 1,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5088));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 2,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5119));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 3,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5122));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 4,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5125));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 5,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5127));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 6,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5179));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 7,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5182));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 8,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5184));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 9,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5186));
+
+            migrationBuilder.UpdateData(
+                table: "City",
+                keyColumn: "CityId",
+                keyValue: 10,
+                column: "CreationDate",
+                value: new DateTime(2024, 10, 15, 4, 36, 29, 979, DateTimeKind.Utc).AddTicks(5189));
+
+            migrationBuilder.InsertData(
+                table: "FeaturedDeal",
+                columns: new[] { "Id", "DiscountPercentage", "EndDate", "HotelId", "StartDate" },
+                values: new object[,]
+                {
+                    { 1, 0.20000000000000001, new DateTime(2024, 10, 25, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8812), 1, new DateTime(2024, 10, 5, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8810) },
+                    { 2, 0.10000000000000001, new DateTime(2024, 10, 30, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8819), 2, new DateTime(2024, 10, 10, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8818) },
+                    { 3, 0.10000000000000001, new DateTime(2024, 10, 22, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8820), 1, new DateTime(2024, 10, 8, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8820) },
+                    { 4, 0.5, new DateTime(2024, 10, 29, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8822), 2, new DateTime(2024, 10, 12, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8821) },
+                    { 5, 0.40000000000000002, new DateTime(2024, 10, 20, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8823), 1, new DateTime(2024, 9, 30, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8823) },
+                    { 6, 0.59999999999999998, new DateTime(2024, 10, 27, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8825), 2, new DateTime(2024, 10, 7, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8825) },
+                    { 7, 0.20000000000000001, new DateTime(2024, 10, 23, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8826), 1, new DateTime(2024, 10, 11, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8826) },
+                    { 8, 0.20000000000000001, new DateTime(2024, 10, 24, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8828), 2, new DateTime(2024, 10, 13, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8827) },
+                    { 9, 0.40000000000000002, new DateTime(2024, 10, 21, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8829), 1, new DateTime(2024, 10, 6, 4, 36, 29, 980, DateTimeKind.Utc).AddTicks(8828) }
+                });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 1,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 2, new DateTime(2024, 9, 16, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8288), 0.89229371460745577, 46.280096292280575, 119.30424809803452, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8335), 340.78238602154352, 5 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 2,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 3, new DateTime(2024, 8, 3, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8348), 0.40369705841581005, -27.171823202383806, 115.2307584401924, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8351), 99.729314955182787, 4 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 3,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { 3, new DateTime(2024, 8, 7, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8357), 0.3138612482531481, 28.435746699084802, -46.092926969613785, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8365), 445.98151332636485 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 4,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 3, new DateTime(2024, 8, 18, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8374), 0.56800531082652006, 50.243103796589509, 119.87301732701656, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8376), 472.65409661685612, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 5,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 8, new DateTime(2024, 8, 8, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8381), 0.42520886893173926, 60.240450133701103, 133.41612043647115, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8383), 451.16791630749742, 4 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 6,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 5, new DateTime(2024, 9, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8392), 0.67032165671181387, 27.445522114146243, 169.78308336486481, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8394), 270.16217172406346, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 7,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 6, new DateTime(2024, 8, 30, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8405), 0.71309240537467788, -67.692065306271303, 102.12803879833365, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8407), 469.74861446705808, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 8,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 5, new DateTime(2024, 8, 24, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8421), 0.67072233727110464, 56.192714094326504, 113.25777007849808, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8436), 333.92719664963602, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 9,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 2, new DateTime(2024, 7, 26, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8441), 0.48292721280904949, 30.344878962579031, -172.87555641370244, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8443), 77.312042691298544, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 10,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 5, new DateTime(2024, 7, 12, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8449), 0.76897768706678182, -42.575047178581059, 48.429586815731795, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8451), 394.82853594727919, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 11,
+                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { new DateTime(2024, 8, 13, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8456), 0.080765355448162102, -52.823017787843966, -175.63702378388513, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8458), 385.93620210563313, 4 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 12,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 10, new DateTime(2024, 8, 22, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8463), 0.38760383179528091, 17.928719061314879, 24.30129115089693, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8465), 318.95319005646064, 4 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 13,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 1, new DateTime(2024, 9, 4, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8510), 0.04111186594126226, -57.201168286176291, 52.727852300110072, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8513), 492.184177778606, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 14,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 4, new DateTime(2024, 8, 7, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8518), 0.63069379602754172, -30.985881212272041, -41.458624867043, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8520), 251.02838336026801, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 15,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 4, new DateTime(2024, 9, 14, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8525), 0.85442858771699659, 57.278407606071397, -50.522135972400946, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8530), 499.46173407452824, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 16,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { 7, new DateTime(2024, 7, 27, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8559), 0.40555036055823046, -34.481963641367777, 138.650126756487, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8561), 256.83667692990502 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 17,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { 4, new DateTime(2024, 7, 8, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8566), 0.42876423634041927, -7.4384522922899805, -143.58813101400239, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8568), 65.007273645878001 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 18,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 4, new DateTime(2024, 10, 14, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8573), 0.16882543634203495, 47.145966711854413, -151.65127390644676, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8576), 477.04835090525972, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 19,
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 1, new DateTime(2024, 7, 30, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8581), 0.76638957857166412, 51.382324056026704, -154.94390272516779, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8583), 289.26629983730106, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Hotel",
+                keyColumn: "HotelId",
+                keyValue: 20,
+                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { new DateTime(2024, 10, 1, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8588), 0.97771915732915871, 75.279213573637747, 125.55805157833396, new DateTime(2024, 10, 15, 7, 36, 29, 979, DateTimeKind.Local).AddTicks(8590), 342.15765228930587 });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 3,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 2, "http://example.com/hotel2_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 4,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 2, "http://example.com/hotel2_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 5,
+                column: "ImageUrl",
+                value: "http://example.com/hotel2_image3.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 6,
+                column: "ImageUrl",
+                value: "http://example.com/hotel2_image4.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 7,
+                column: "ImageUrl",
+                value: "http://example.com/hotel2_image5.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 8,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 3, "http://example.com/hotel3_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 9,
+                column: "ImageUrl",
+                value: "http://example.com/hotel3_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 10,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 3, "http://example.com/hotel3_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 11,
+                column: "ImageUrl",
+                value: "http://example.com/hotel4_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 12,
+                column: "ImageUrl",
+                value: "http://example.com/hotel4_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 13,
+                column: "ImageUrl",
+                value: "http://example.com/hotel4_image3.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 17,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 6, "http://example.com/hotel6_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 18,
+                column: "ImageUrl",
+                value: "http://example.com/hotel6_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 19,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 7, "http://example.com/hotel7_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 20,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 7, "http://example.com/hotel7_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 21,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 7, "http://example.com/hotel7_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 22,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 8, "http://example.com/hotel8_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 23,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 8, "http://example.com/hotel8_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 24,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 8, "http://example.com/hotel8_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 25,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 9, "http://example.com/hotel9_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 26,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 9, "http://example.com/hotel9_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 27,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 9, "http://example.com/hotel9_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 28,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 10, "http://example.com/hotel10_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 29,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 10, "http://example.com/hotel10_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 30,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 10, "http://example.com/hotel10_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 31,
+                column: "ImageUrl",
+                value: "http://example.com/hotel10_image4.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 32,
+                column: "ImageUrl",
+                value: "http://example.com/hotel10_image5.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 37,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 11, "http://example.com/hotel11_image5.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 38,
+                column: "ImageUrl",
+                value: "http://example.com/hotel12_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 39,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 12, "http://example.com/hotel12_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 40,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 12, "http://example.com/hotel12_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 41,
+                column: "ImageUrl",
+                value: "http://example.com/hotel13_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 42,
+                column: "ImageUrl",
+                value: "http://example.com/hotel13_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 43,
+                column: "ImageUrl",
+                value: "http://example.com/hotel13_image3.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 44,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 13, "http://example.com/hotel13_image4.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 45,
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 46,
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 47,
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image3.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 48,
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image4.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 52,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 15, "http://example.com/hotel15_image4.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 53,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 15, "http://example.com/hotel15_image5.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 54,
+                column: "ImageUrl",
+                value: "http://example.com/hotel16_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 55,
+                column: "ImageUrl",
+                value: "http://example.com/hotel16_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 56,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 16, "http://example.com/hotel16_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 57,
+                column: "ImageUrl",
+                value: "http://example.com/hotel17_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 58,
+                column: "ImageUrl",
+                value: "http://example.com/hotel17_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 59,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 17, "http://example.com/hotel17_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 60,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 17, "http://example.com/hotel17_image4.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 61,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 17, "http://example.com/hotel17_image5.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 62,
+                column: "ImageUrl",
+                value: "http://example.com/hotel18_image1.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 63,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 18, "http://example.com/hotel18_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 64,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 18, "http://example.com/hotel18_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 65,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 19, "http://example.com/hotel19_image1.jpg" });
+
+            migrationBuilder.InsertData(
+                table: "HotelImage",
+                columns: new[] { "ImageId", "HotelId", "ImageUrl" },
+                values: new object[,]
+                {
+                    { 66, 19, "http://example.com/hotel19_image2.jpg" },
+                    { 67, 19, "http://example.com/hotel19_image3.jpg" },
+                    { 68, 19, "http://example.com/hotel19_image4.jpg" },
+                    { 69, 19, "http://example.com/hotel19_image5.jpg" },
+                    { 70, 20, "http://example.com/hotel20_image1.jpg" },
+                    { 71, 20, "http://example.com/hotel20_image2.jpg" }
+                });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 1,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 463m, new DateTime(2024, 9, 27, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 2,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 157m, new DateTime(2024, 10, 4, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 3,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 372m, new DateTime(2024, 10, 14, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 4,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 594m, new DateTime(2024, 10, 4, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 5,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 127m, new DateTime(2024, 10, 10, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 6,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 279m, new DateTime(2024, 9, 25, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 7,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 646m, new DateTime(2024, 10, 1, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 8,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 592m, new DateTime(2024, 9, 24, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 9,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 771m, new DateTime(2024, 9, 18, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 10,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 479m, new DateTime(2024, 10, 11, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 11,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 514m, new DateTime(2024, 10, 14, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 12,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 722m, new DateTime(2024, 9, 29, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Payment",
+                keyColumn: "PaymentId",
+                keyValue: 13,
+                columns: new[] { "Amount", "PaymentDate" },
+                values: new object[] { 568m, new DateTime(2024, 9, 30, 0, 0, 0, 0, DateTimeKind.Local) });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 1,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 8, 25, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1912), 44 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 2,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 5, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1933), 42 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 3,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 2, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1937), 23 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 4,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 9, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1941), 16 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 5,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 11, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1944), 79 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 6,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 8, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1948), 18 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 7,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 8, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1951), 17 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 8,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 4, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1954), 8 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 9,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 11, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1957), 55 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 10,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 4, 30, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1960), 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 11,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2023, 11, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1967), 29 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 12,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 2, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1970), 25 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 13,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 11, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1973), 68 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 14,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 8, 1, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1976), 75 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 15,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 9, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1979), 40 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 16,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 4, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1981), 45 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 17,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 10, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1984), 5 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 18,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 11, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1988), 54 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 19,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 9, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1991), 36 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 20,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 1, 18, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1994), 75 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 21,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 6, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(1997), 12 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 22,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 11, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2000), 44 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 23,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 9, 17, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2004), 38 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 24,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 2, 19, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2006), 72 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 25,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 1, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2009), 17 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 26,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 8, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2012), 46 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 27,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 8, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2055), 28 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 28,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 7, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2059), 70 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 29,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 7, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2062), 28 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 30,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 10, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2065), 67 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 31,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 1, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2068), 24 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 32,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 2, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2071), 33 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 33,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 6, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2074), 25 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 34,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 2, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2078), 35 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 35,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 1, 31, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2081), 42 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 36,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 10, 27, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2083), 36 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 37,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 9, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2086), 38 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 38,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 5, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2089), 67 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 39,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2092), 32 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 40,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 12, 17, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2095), 76 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 41,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 11, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2098), 46 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 42,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 4, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2101), 68 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 43,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 5, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2104), 31 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 44,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 1, 31, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2107), 31 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 45,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 9, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2110), 42 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 46,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 8, 19, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2113), 53 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 47,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 4, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2115), 51 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 48,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 4, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2118), 19 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 49,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 4, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2121), 46 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 50,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 7, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2124), 59 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 51,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 3, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2127), 64 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 52,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 11, 2, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2131), 63 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 53,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2023, 11, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2133), 6 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 54,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 11, 1, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2137), 58 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 55,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 7, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2140), 70 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 56,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 9, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2143), 21 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 57,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2023, 10, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2146), 78 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 58,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 10, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2148), 78 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 59,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 1, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2152), 15 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 60,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 6, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2155), 77 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 61,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 2, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2157), 55 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 62,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 1, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2161), 17 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 63,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 6, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2164), 63 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 64,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 7, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2166), 75 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 65,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 5, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2169), 35 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 66,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 11, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2173), 61 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 67,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 1, 17, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2175), 63 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 68,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 3, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2210), 73 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 69,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 3, 30, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2214), 37 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 70,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 3, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2216), 25 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 71,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 7, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2219), 33 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 72,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 11, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2222), 62 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 73,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 1, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2225), 48 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 74,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2023, 10, 27, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2228), 70 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 75,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 1, 31, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2231), 70 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 76,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 6, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2234), 19 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 77,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 9, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2237), 73 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 78,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 7, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2240), 75 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 79,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2243), 71 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 80,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 2, 27, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2246), 44 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 81,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 6, 10, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2249), 26 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 82,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2023, 12, 31, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2252), 15 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 83,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 12, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2255), 21 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 84,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 10, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2258), 17 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 85,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 1, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2261), 80 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 86,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 2, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2264), 58 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 87,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 9, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2267), 34 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 88,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 3, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2270), 56 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 89,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 1, 10, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2273) });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 90,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 7, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2276), 59 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 91,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 9, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2279), 27 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 92,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 1, 2, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2283), 70 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 93,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 11, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2286), 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 94,
+                column: "ReviewDate",
+                value: new DateTime(2024, 3, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2289));
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 95,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 2, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2292), 46 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 96,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 8, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2295), 68 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 97,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 2, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2298), 80 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 98,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 8, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2301), 37 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 99,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 10, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2304), 60 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 100,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 3, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2307), 58 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 101,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 3, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2310), 33 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 102,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 5, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2313), 37 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 103,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 12, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2316), 47 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 104,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 8, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2319), 50 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 105,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 1, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2322), 39 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 106,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 1, 17, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2325), 66 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 107,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 5, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2328), 76 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 108,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 6, 17, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2331), 28 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 109,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 8, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2334), 23 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 110,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 10, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2336), 59 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 111,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 11, 25, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2339), 44 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 112,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 7, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2342), 20 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 113,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 10, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2345), 14 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 114,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 2, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2348), 65 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 115,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 6, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2351), 48 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 116,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 4, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2354), 17 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 117,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 9, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2356), 64 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 118,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 3, 18, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2359), 17 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 119,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2023, 11, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2395), 50 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 120,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2023, 11, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2399), 19 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 121,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 6, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2402), 39 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 122,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 4, 30, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2405), 63 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 123,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 10, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2408), 33 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 124,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 4, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2411), 55 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 125,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2023, 12, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2414), 78 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 126,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 4, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2417), 75 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 127,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 12, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2419), 16 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 128,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 3, 2, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2422), 15 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 129,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 8, 10, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2425), 27 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 130,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 7, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2429), 36 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 131,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 3, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2432), 18 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 132,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 7, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2435), 48 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 133,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 5, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2438), 56 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 134,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 5, 31, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2441), 26 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 135,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 9, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2443), 29 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 136,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 10, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2446), 5 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 137,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 6, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2449), 47 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 138,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 8, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2452), 8 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 139,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 1, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2455), 70 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 140,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2458), 57 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 141,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 8, 25, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2461), 59 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 142,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 4, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2463), 60 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 143,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 4, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2467), 72 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 144,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 3, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2469), 44 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 145,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 5, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2472), 41 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 146,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 6, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2475), 73 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 147,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 3, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2478), 34 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 148,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 2, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2481), 66 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 149,
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 3, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2484), 49 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 150,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 1, 27, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2487), 80 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 151,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 8, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2489), 14 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 152,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 8, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2492), 47 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 153,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2495), 38 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 154,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 6, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2498), 32 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 155,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 9, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2501), 31 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 156,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 5, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2504), 30 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 157,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 2, 27, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2539), 52 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 158,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 5, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2543), 19 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 159,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 5, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2545), 57 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 160,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 9, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2548), 19 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 161,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 7, 27, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2551), 63 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 162,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 10, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2554), 57 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 163,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 9, 13, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2557), 48 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 164,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 11, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2560), 53 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 165,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 7, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2563), 16 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 166,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 2, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2566), 23 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 167,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 6, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2569), 69 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 168,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 9, 19, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2572), 57 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 169,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 6, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2575), 23 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 170,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 2, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2578), 50 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 171,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 6, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2581), 5 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 172,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 2, 1, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2584), 8 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 173,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 12, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2587) });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 174,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 2, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2590), 34 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 175,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 9, 19, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2593), 13 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 176,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 11, 25, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2596), 78 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 177,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 3, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2599), 64 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 178,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 9, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2602), 61 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 179,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 10, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2605), 35 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 180,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2023, 10, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2608), 9 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 181,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 8, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2611), 58 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 182,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 6, 18, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2613), 35 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 183,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2023, 12, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2616), 79 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 184,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 6, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2619), 67 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 185,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 7, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2622), 13 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 186,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 9, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2625), 59 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 187,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 8, 7, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2628), 26 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 188,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 7, 19, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2631), 71 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 189,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 8, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2634), 48 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 190,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 2, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2637), 73 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 191,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 9, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2640), 68 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 192,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 8, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2642), 19 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 193,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 2, 10, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2646), 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 194,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 5, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2649), 8 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 195,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 12, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2651), 9 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 196,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 2, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2655), 41 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 197,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 4, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2658), 54 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 198,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 9, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2661), 58 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 199,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 9, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2664), 14 });
+
+            migrationBuilder.UpdateData(
+                table: "Review",
+                keyColumn: "ReviewId",
+                keyValue: 200,
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 5, 18, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(2666), 67 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 1,
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, new DateTime(2024, 10, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3590), 11, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3604), 66m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 2,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 1, new DateTime(2024, 7, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3620), 6, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3624), 416m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 3,
+                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { new DateTime(2024, 8, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3630), 8, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3633), 324m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 4,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 0, new DateTime(2024, 8, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3638), 4, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3641), 299m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 5,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, new DateTime(2024, 9, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3648), 19, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3651), 140m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 6,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, 1, new DateTime(2024, 8, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3658), 18, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3666), 206m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 7,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, new DateTime(2024, 10, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3671), 18, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3673), 105m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 8,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, 0, new DateTime(2024, 8, 25, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3679), 20, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3682), 424m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 9,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, new DateTime(2024, 9, 26, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3686), 3, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3688), 200m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 10,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 2, new DateTime(2024, 8, 2, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3693), 3, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3695), 371m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 11,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, new DateTime(2024, 7, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3699), 7, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3701), 124m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 12,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 1, new DateTime(2024, 9, 6, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3705), 10, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3707), 485m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 13,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, 0, new DateTime(2024, 7, 16, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3711), 8, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3713), 357m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 14,
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, new DateTime(2024, 9, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3760), 6, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3762), 427m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 15,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, new DateTime(2024, 7, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3766), 12, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3768), 337m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 16,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, new DateTime(2024, 8, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3772), 9, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3774), 80m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 17,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, 2, new DateTime(2024, 7, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3777), 14, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3779), 303m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 18,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, 1, new DateTime(2024, 9, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3784), 6, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3786), 272m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 19,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, 2, new DateTime(2024, 8, 10, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3790), 1, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3792), 151m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 20,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 1, new DateTime(2024, 7, 22, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3796), 5, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3798), 298m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 21,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, new DateTime(2024, 8, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3802), 18, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3804), 484m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 22,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, 2, new DateTime(2024, 7, 29, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3808), 11, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3810), 84m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 23,
+                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { new DateTime(2024, 9, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3813), 1, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3815), 482m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 24,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price" },
+                values: new object[] { 4, 2, new DateTime(2024, 7, 21, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3819), new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3821), 286m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 25,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, 2, new DateTime(2024, 7, 11, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3825), 2, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3827), 83m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 26,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 1, 0, new DateTime(2024, 9, 25, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3831), new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3833), 277m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 27,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 1, new DateTime(2024, 7, 31, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3837), 11, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3839), 441m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 28,
+                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { new DateTime(2024, 10, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3842), 3, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3844), 215m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 29,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, new DateTime(2024, 10, 3, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3848), 1, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3850), 427m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 30,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, new DateTime(2024, 8, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3854), 10, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3856), 331m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 31,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 2, new DateTime(2024, 9, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3860), 17, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3862), 175m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 32,
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 0, new DateTime(2024, 10, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3866), 1, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3868), 346m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 33,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, new DateTime(2024, 8, 23, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3871), 4, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3873), 60m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 34,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 1, 2, new DateTime(2024, 7, 18, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3878), 11, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3880), 133m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 35,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, 1, new DateTime(2024, 8, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3884), 14, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3886), 221m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 36,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, new DateTime(2024, 7, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3890), 6, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3892), 233m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 37,
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, new DateTime(2024, 7, 20, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3896), 15, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3898), 116m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 38,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, 1, new DateTime(2024, 8, 4, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3901), 13, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3903), 455m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 39,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, 1, new DateTime(2024, 9, 5, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3907), 16, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3909), 160m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 40,
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, new DateTime(2024, 7, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3913), 3, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3915), 281m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 41,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, 1, new DateTime(2024, 9, 14, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3919), 20, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3921), 240m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 42,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, new DateTime(2024, 8, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3925), 17, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3927), 90m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 43,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, 2, new DateTime(2024, 9, 2, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3967), 7, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3969), 58m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 44,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, 0, new DateTime(2024, 8, 30, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3974), 11, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3976), 161m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 45,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, new DateTime(2024, 9, 24, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3979), 6, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3981), 364m });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 46,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, new DateTime(2024, 10, 12, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3985), 3, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3987), 368m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 47,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 2, new DateTime(2024, 8, 8, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3991), 3, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3993), 345m, 2 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 48,
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, new DateTime(2024, 9, 17, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3997), 6, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(3999), 363m, 3 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 49,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, 1, new DateTime(2024, 7, 9, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(4003), 19, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(4005), 147m, 1 });
+
+            migrationBuilder.UpdateData(
+                table: "Room",
+                keyColumn: "RoomId",
+                keyValue: 50,
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 1, new DateTime(2024, 7, 28, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(4008), 13, new DateTime(2024, 10, 15, 7, 36, 29, 980, DateTimeKind.Local).AddTicks(4010), 223m });
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 1,
+                column: "Password",
+                value: "$2a$11$CWmbNpRQPTtlWD8Zgp5bvePBc2KIrB9kYqpFYq9e8.F6ujt4DdIke");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 2,
+                column: "Password",
+                value: "$2a$11$R1l4uMV6L8gLuzcfRGSVVOqZsjgP9JwZDL3o5p7DOtpcTTl7MU47S");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 3,
+                column: "Password",
+                value: "$2a$11$9h5KCkrLbFUvWvvM6askHO4meiwdHtEb836ZaHa9yrT2lXwphhcZ6");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 4,
+                column: "Password",
+                value: "$2a$11$ImybZESdMxKcsBu0FX.4OO7Vl.7/jfEkTWEjrCdYHzx9RcT7Akywm");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 5,
+                column: "Password",
+                value: "$2a$11$Q1JlEJTSjtl.yNrmSoJAwOmSqMOFkN5E3eeY/s/JlCuC.EK5yx3Zq");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 6,
+                column: "Password",
+                value: "$2a$11$qt9KVm3Nff07TGd0HqytceRv47jinoSf2wHL84aXkqIvSwLZtqaeG");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 7,
+                column: "Password",
+                value: "$2a$11$elQFKgxnBKfiM76fgGFeiux/izyT7grVjfbEfB3FjQ0ocSJGvg9hW");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 8,
+                column: "Password",
+                value: "$2a$11$lkQqZIuGcL2YdK7SbhDuvO9dYRvZPsp.5lA5QbnRVDYqJzNgEu7iO");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 9,
+                column: "Password",
+                value: "$2a$11$jW4eCD3IRcsEZ0B1UNknBuFjv7wPHjPTvqXiaLHe7km7GW0ABT25u");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 10,
+                column: "Password",
+                value: "$2a$11$X26GAsKMnn.zy7fQhk1Oiu/4B0CbhqdA0MZrbKnAwOp1E7LcdoXPi");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 11,
+                column: "Password",
+                value: "$2a$11$TqL7GrT6i76A2a40Tnntk.Gjvi.b/b9lO8fktqPverpZVMbCEsV1G");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 12,
+                column: "Password",
+                value: "$2a$11$3iWD2PaB0Cxn8/PXyDPLQO440hiFzG./slE96oEKnu.qKB/y2MEx.");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 13,
+                column: "Password",
+                value: "$2a$11$Nl6Y/TP5GB6JzjKvpv0R9.Sfm6KJZmTjgls0nAFgBzlw5tEeJ7AUm");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 14,
+                column: "Password",
+                value: "$2a$11$i8OLMUmnvKpO1Mm8cg1/j./VvJmVI2q0CM8dZ3mfuMmAuPb6Wxjmq");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 15,
+                column: "Password",
+                value: "$2a$11$dcM.Jr0Prif04QGvUTmw.e7tjTer7.gMtfb2IeYMUnobNSCRwLXZK");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 16,
+                column: "Password",
+                value: "$2a$11$iwcspyqT7iVMzPMZ8pykPOqQtEaCh74wyY0.xtgtuCD0B2NhU20xy");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 17,
+                column: "Password",
+                value: "$2a$11$.wSPXQbWJJ0S0yUg4JZyWeOJZkUKFBtCRnqFtWMC6gmo5lVJuffcq");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 18,
+                column: "Password",
+                value: "$2a$11$J2uoyQ1vkW6upqE5I0hd4.l4uQJnz8be08ag15S.kHsSR4o9/oqO.");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 19,
+                column: "Password",
+                value: "$2a$11$HimZgEFZhsF4pDTJRU9BqeoFGAnqe2t2unzMtbWXRUHSwJn7LlJ3C");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 20,
+                column: "Password",
+                value: "$2a$11$Iy1f9eqSj9SHP/PQuiehD.0WEm1XMnhgx.nOfoDoOlBXy0IwPMd66");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 21,
+                column: "Password",
+                value: "$2a$11$FA53Q8k4jQsQjLn9CyesmuyiSJPCd.hdoMaC/Y/bh9Fjp.6ossOLq");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 22,
+                column: "Password",
+                value: "$2a$11$U.xPvBlMlC2qe6.jrVRd..7WSHx79Mcw4j7CrxZ5Y1dhCXwakXlrK");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 23,
+                column: "Password",
+                value: "$2a$11$cVV8bKqYgJx3oUVmGOKvwuaTlZDvinF5xDuJU6w38KD.hacJvr5ta");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 24,
+                column: "Password",
+                value: "$2a$11$KrpeJpK1l8bEtb4xLfwQnerUFyRa33qXYqi6DYT1jopJjB.y1Pjry");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 25,
+                column: "Password",
+                value: "$2a$11$T9QdOT03Q9Z0mRkKnginj.4aEp93f1KPDa4I1B6sok5Arp7oKJzWG");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 26,
+                column: "Password",
+                value: "$2a$11$wBUgaGf1Da1bgHEXk/70VOv27qECN7bG7xVuAoCjCqvsMoLnQBVa2");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 27,
+                column: "Password",
+                value: "$2a$11$24qoHdJQI1v5mhc6UCbfJOlkXZaeIJFtmfHNGj9/Np/HF7CcvsU1S");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 28,
+                column: "Password",
+                value: "$2a$11$NKm3q9bqIsV80zzg1pBXzubEaTUBc3I2.7GNppVYOCA1dQAJhfpVa");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 29,
+                column: "Password",
+                value: "$2a$11$woQpXaGVV17NltUWgMCW/elMsyRj/dNohQPwl/ERU63jVgr9g0/M2");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 30,
+                column: "Password",
+                value: "$2a$11$fAMTCkJ29EnfGlJnXC6NiuGzuydtFaSGh4ClSgKj4zQ33LpVGgdx6");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 31,
+                column: "Password",
+                value: "$2a$11$dXqJn8MWLoQG5UY7UPjBTuVE9uqH4jZvDZUo2l2nl5NFFHOtvlbKW");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 32,
+                column: "Password",
+                value: "$2a$11$z8AO7H9XkoCMcXfumBDGZOJVQL1A7DSkUBRiuodFAXq3J./oiFkmy");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 33,
+                column: "Password",
+                value: "$2a$11$LrM69P9bT.2yNtpZzii5F.woaEvBAxM9Db6X5rsprqq/m.5mIBf0m");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 34,
+                column: "Password",
+                value: "$2a$11$PrZzR25sDczTzJvM1jICz.jjrrSaOsZYBPmw.57R.9CSKz0zPvkP.");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 35,
+                column: "Password",
+                value: "$2a$11$Q7AykehUk5OSFWnWwAdw1Olzq.IqCSf2uPdoeY7bZeiGmS7T1I4Ri");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 36,
+                column: "Password",
+                value: "$2a$11$Vcwo0ioJS1tH5QO3zMJeg.wtJ2UCEXh0mS45cj8Gp8G.kyAS1hgSa");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 37,
+                column: "Password",
+                value: "$2a$11$b/hQ5jFMYEnDVeTmkxvOHOknDgqfJ6iD21VRHxPEnxCKgNlNJ6bfa");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 38,
+                column: "Password",
+                value: "$2a$11$Cxb1Xq/W4ud7p1Co36JzFe5XdytqDLGAqfpyiywrvT9O/lLzE0hju");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 39,
+                column: "Password",
+                value: "$2a$11$a8qv3DGCOMlUhjSsPZEfjuHaUhNS0sQta2w6rlq7LMuX9tr1hImV2");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 40,
+                column: "Password",
+                value: "$2a$11$/gUNsl4zIPbZ4k9rasi7beTNdFK7G7wPB97Tlr4/YMoRYsIohDU0i");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 41,
+                column: "Password",
+                value: "$2a$11$PUo9oY0a07m6G0WK4scI4.hYC6aqk1z6.6j62A0lIeOERAvlBYnmi");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 42,
+                column: "Password",
+                value: "$2a$11$YAhm.GSPrmbWA0Oc3teLGOUP4WQVjgLnkE/Qz0QMiFpW45wye2TPm");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 43,
+                column: "Password",
+                value: "$2a$11$Q9pr8CG04pch5wamy0oet.YtxwONeytcssx.2yJ/7xDhemtkwMjde");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 44,
+                column: "Password",
+                value: "$2a$11$ptbNVg2hfg2CoD.hyq1guOg6OdoZnyysKnxg7aGBmvDnrj11vketi");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 45,
+                column: "Password",
+                value: "$2a$11$Z5189wwXoE5WSuSpRbV1nuE33O.CLSEs/uLdwpFnupq7gKHN7B.Me");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 46,
+                column: "Password",
+                value: "$2a$11$PIk0GGLVldPlFLoMZAvpJe1tADNgmZiFkwIO1poOpzkFG98OW/9fG");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 47,
+                column: "Password",
+                value: "$2a$11$Z9OXQdqF2.xcnEV4RjRkduOn6R8rMwQIkQkJ9DaQUnKhz9beOHoUy");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 48,
+                column: "Password",
+                value: "$2a$11$YYG4n0iwhW2C/MT8Ws.t9uEv0Om3ish3LtFNsG1IZgUN/OWMIECJW");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 49,
+                column: "Password",
+                value: "$2a$11$DWimnLCjm19QxSeXqxLzTuZtW1vWK63.aeV4khUjkAP/hr9TVIWMm");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 50,
+                column: "Password",
+                value: "$2a$11$TsMgIEhbb9StM3stbFnF6.FU9wtT2HZFA5hfpFwAzcsBv1eEe6J7q");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 51,
+                column: "Password",
+                value: "$2a$11$mRWxJjv43NYm8hfGh.Znw.hFMkrnjfCdYIGIWbzp3gfxEzel6wQIa");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 52,
+                column: "Password",
+                value: "$2a$11$LMy7KU1335SOrCmSDZ6l0e/.7zcjWX96CD8Sgxa2zbMKTKgnyOGP.");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 53,
+                column: "Password",
+                value: "$2a$11$3bp1E6wCo45h1pL2taX3eu7ZFlO3QYM837EBTpmeUDKcKXQUTdnYi");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 54,
+                column: "Password",
+                value: "$2a$11$weRT3z/gMLd85IJOdOtxAe5OV8iM4yU8NgF2hB8GqKRVljKBOUaQO");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 55,
+                column: "Password",
+                value: "$2a$11$7RpS/S7nzZDGuTJe0j34GONhsc85D0DdIkd0WcG9GPAZA/7FuiPuS");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 56,
+                column: "Password",
+                value: "$2a$11$cgwVo5CaD7oY5JulpT0lO.cfj.Hy6lcBDjagvqGjNs7JS6hNmtI1K");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 57,
+                column: "Password",
+                value: "$2a$11$QN0Vwjs6/CCXXZn6F.YY0uI8Xy/SHy5T4P4LtMu5.xl1dui7EyNqK");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 58,
+                column: "Password",
+                value: "$2a$11$37MHxCHK4/7x0tSAPOGxgeQuh9jBsbJgWJ9j8XuwHgVEqlzCiwhEG");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 59,
+                column: "Password",
+                value: "$2a$11$T80dNMcY3JNeeKDU7pEfpu6gj3DATmqRDkhXq9I4168E8tZ9dkdx2");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 60,
+                column: "Password",
+                value: "$2a$11$SfItEwhivyyLcXei.vA4CO5Q2lk76E49iFbZlRNfC.cCyOhieakui");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 61,
+                column: "Password",
+                value: "$2a$11$PN7lR3nBK.VpLXad3oXIeeUN7kB77zWPAI5F0cZJ.vVZQI7ngCrJO");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 62,
+                column: "Password",
+                value: "$2a$11$nbf/PwcZHdPHGdq088pAKeHLeZeVZp0YYglwRcgSOme9UBHkvtPAK");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 63,
+                column: "Password",
+                value: "$2a$11$DaEOWDvAsSAe3eHmKDIqDOJI3qR8RG9FOhXuFcflqUqFY5rQ8r8mG");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 64,
+                column: "Password",
+                value: "$2a$11$IFqO0HTj1HkYHKhoIV8hleZn8v93Pjr4Fcg/mqvM3fV8HP2VQUm0q");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 65,
+                column: "Password",
+                value: "$2a$11$ApLnGZFHU8sjJLGgIFW7nuCxwmCMUKQIX7mFo.vNFQEmI1qT5NRG.");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 66,
+                column: "Password",
+                value: "$2a$11$D51.VY7AIYNLRGHxkuo23OwqipmG30P3zHvvrF2zvDsnmRDRhRyPO");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 67,
+                column: "Password",
+                value: "$2a$11$zb3a1rygTN.Gc0G7NB2zyu4F.GmGeEcLNO.epc.lT0TebGT1oRSjG");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 68,
+                column: "Password",
+                value: "$2a$11$qwEFAm8tmtHjze.XKg0sn.5DMJFmec1YfXIGtNMW5dqoj5vAtPdHC");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 69,
+                column: "Password",
+                value: "$2a$11$vD7PzbefnXYAcWMeeS91qupqR2ecMakOr8bOmD3XMFEnjhfmCizDK");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 70,
+                column: "Password",
+                value: "$2a$11$sqxtMdZg5FStVljSqaCeSuYsUpb81vnphppmPJ5JwAOI02vnhuOPO");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 71,
+                column: "Password",
+                value: "$2a$11$lh4NDPbCSFJzsnDuOw41MeMiSoRoKgmfpTXHOk3XBwYObajf1LBJe");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 72,
+                column: "Password",
+                value: "$2a$11$wQ8Iy9XIaarKbygMVyozQ.1RusXOzYbZ5XzA2cSAfRvBhTDzwy06m");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 73,
+                column: "Password",
+                value: "$2a$11$PSvvBBM6zI43r2DzxHBg7ujt9.BLIMgzPG.HFON8Sm4v9UJpi2z52");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 74,
+                column: "Password",
+                value: "$2a$11$JnQ.zF145yEG3YlAVKsNOeggbC9eB8xA/1HyGMZwRay4LZ0uRUD8O");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 75,
+                column: "Password",
+                value: "$2a$11$/ieN5V4JUmpSFhyz1t2s8uOVXf2MG4SCuPSThFuoTpPs4jNJPtpWe");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 76,
+                column: "Password",
+                value: "$2a$11$DwE1P.TZydY04GsQk/5SQuLsvXJusL8DrnNkNVMIb/HrkdgcnFcti");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 77,
+                column: "Password",
+                value: "$2a$11$v.oLppPMWPTizKNFdtg1YOgWqBCrKYisi774pAIuZkljXKgXmuZou");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 78,
+                column: "Password",
+                value: "$2a$11$lxkD.78yWNZnRPIrNb5T.eSkj/mf10rCeFHED9XNL3cCeNMdYqhGq");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 79,
+                column: "Password",
+                value: "$2a$11$i/JeXEiyCJf4M0rX0lGd/eddbxFJsVHiINdNYgrug7G2IFQginw2e");
+
+            migrationBuilder.UpdateData(
+                table: "User",
+                keyColumn: "UserId",
+                keyValue: 80,
+                column: "Password",
+                value: "$2a$11$Me5QZPZKIuKafV0NsQ9pPOjz89xkAjd/A1wFk.aeCG/51YZyV1uqu");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FeaturedDeal_HotelId",
+                table: "FeaturedDeal",
+                column: "HotelId");
+        }
+
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "FeaturedDeal");
+
+            migrationBuilder.DeleteData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 66);
+
+            migrationBuilder.DeleteData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 67);
+
+            migrationBuilder.DeleteData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 68);
+
+            migrationBuilder.DeleteData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 69);
+
+            migrationBuilder.DeleteData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 70);
+
+            migrationBuilder.DeleteData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 71);
+
+            migrationBuilder.DropColumn(
+                name: "ConfirmationNumber",
+                table: "Booking");
+
+            migrationBuilder.DropColumn(
+                name: "SpecialRequests",
+                table: "Booking");
+
             migrationBuilder.UpdateData(
                 table: "Booking",
                 keyColumn: "BookingId",
@@ -198,15 +3367,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 2,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { new DateTime(2024, 6, 8, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7486), 0.43454983748324882, -60.306146315234557, -35.235811708103057, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7489), 231.1027163445446, 1 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 7, new DateTime(2024, 6, 8, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7486), 0.43454983748324882, -60.306146315234557, -35.235811708103057, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7489), 231.1027163445446, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 3,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 4, new DateTime(2024, 6, 16, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7495), 0.52678523104552843, -89.619103465958759, 45.220206549043951, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7503), 87.500646844635042, 3 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { 4, new DateTime(2024, 6, 16, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7495), 0.52678523104552843, -89.619103465958759, 45.220206549043951, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7503), 87.500646844635042 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
@@ -226,8 +3395,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 6,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { 9, new DateTime(2024, 6, 4, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7538), 0.0043835605183621951, -74.533718861622205, -127.04799036297273, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7541), 373.27375880103392 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 9, new DateTime(2024, 6, 4, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7538), 0.0043835605183621951, -74.533718861622205, -127.04799036297273, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7541), 373.27375880103392, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
@@ -247,8 +3416,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 9,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { new DateTime(2024, 4, 15, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7588), 0.28362374463374895, 35.871763574383522, -152.84468418311241, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7590), 480.09755340250103, 4 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 10, new DateTime(2024, 4, 15, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7588), 0.28362374463374895, 35.871763574383522, -152.84468418311241, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7590), 480.09755340250103, 4 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
@@ -261,15 +3430,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 11,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 8, new DateTime(2024, 6, 27, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7607), 0.74842079254007199, 47.406234695364105, 77.408201773948406, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7609), 260.46950215158455, 2 });
+                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { new DateTime(2024, 6, 27, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7607), 0.74842079254007199, 47.406234695364105, 77.408201773948406, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7609), 260.46950215158455, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 12,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { new DateTime(2024, 4, 28, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7615), 0.086829936536606533, 13.120585167088223, -44.097266030168214, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7617), 1.2269173631159758 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 5, new DateTime(2024, 4, 28, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7615), 0.086829936536606533, 13.120585167088223, -44.097266030168214, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7617), 1.2269173631159758, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
@@ -282,8 +3451,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 14,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { 2, new DateTime(2024, 7, 5, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7683), 0.22860884440699858, 59.55643296196331, 25.299100933561988, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7685), 388.87546242228461 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 2, new DateTime(2024, 7, 5, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7683), 0.22860884440699858, 59.55643296196331, 25.299100933561988, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7685), 388.87546242228461, 5 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
@@ -296,36 +3465,36 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 16,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 1, new DateTime(2024, 5, 19, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7748), 0.56628825937890181, 71.082376443015136, -94.7323843077303, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7751), 209.32599402896219, 1 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { 1, new DateTime(2024, 5, 19, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7748), 0.56628825937890181, 71.082376443015136, -94.7323843077303, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7751), 209.32599402896219 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 17,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 6, new DateTime(2024, 5, 3, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7758), 0.92207913238285932, 38.833801190842735, -103.15170224212604, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7760), 309.53609000999921, 1 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { 6, new DateTime(2024, 5, 3, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7758), 0.92207913238285932, 38.833801190842735, -103.15170224212604, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7760), 309.53609000999921 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 18,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { 7, new DateTime(2024, 5, 1, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7767), 0.96955735464853654, -43.70942233091705, -141.32506144856671, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7769), 427.94752664591977 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 7, new DateTime(2024, 5, 1, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7767), 0.96955735464853654, -43.70942233091705, -141.32506144856671, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7769), 427.94752664591977, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 19,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { new DateTime(2024, 6, 23, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7775), 0.74711944398085783, -55.184314802700257, 146.14572304947222, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7777), 405.85723217573508, 2 });
+                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
+                values: new object[] { 10, new DateTime(2024, 6, 23, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7775), 0.74711944398085783, -55.184314802700257, 146.14572304947222, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7777), 405.85723217573508, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Hotel",
                 keyColumn: "HotelId",
                 keyValue: 20,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 10, new DateTime(2024, 6, 25, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7784), 0.85785905830133014, -81.077649813952561, 1.3365957849670735, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7786), 428.00242750007828, 2 });
+                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
+                values: new object[] { new DateTime(2024, 6, 25, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7784), 0.85785905830133014, -81.077649813952561, 1.3365957849670735, new DateTime(2024, 7, 17, 15, 21, 15, 784, DateTimeKind.Local).AddTicks(7786), 428.00242750007828 });
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -345,22 +3514,22 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 5,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 2, "http://example.com/hotel2_image1.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel2_image1.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 6,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 2, "http://example.com/hotel2_image2.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel2_image2.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 7,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 2, "http://example.com/hotel2_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel2_image3.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -373,8 +3542,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 9,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 3, "http://example.com/hotel3_image1.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel3_image1.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -387,43 +3556,22 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 11,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 4, "http://example.com/hotel4_image2.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel4_image2.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 12,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 4, "http://example.com/hotel4_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel4_image3.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 13,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 4, "http://example.com/hotel4_image4.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 14,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 15,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 16,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel4_image4.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -436,8 +3584,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 18,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 6, "http://example.com/hotel6_image1.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel6_image1.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -527,43 +3675,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 31,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 10, "http://example.com/hotel10_image1.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel10_image1.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 32,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 10, "http://example.com/hotel10_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 33,
                 column: "ImageUrl",
-                value: "http://example.com/hotel11_image1.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 34,
-                column: "ImageUrl",
-                value: "http://example.com/hotel11_image2.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 35,
-                column: "ImageUrl",
-                value: "http://example.com/hotel11_image3.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 36,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 11, "http://example.com/hotel11_image4.jpg" });
+                value: "http://example.com/hotel10_image2.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -576,43 +3696,43 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 38,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 12, "http://example.com/hotel12_image2.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel12_image2.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 39,
-                column: "ImageUrl",
-                value: "http://example.com/hotel13_image1.jpg");
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 13, "http://example.com/hotel13_image1.jpg" });
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 40,
-                column: "ImageUrl",
-                value: "http://example.com/hotel13_image2.jpg");
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 13, "http://example.com/hotel13_image2.jpg" });
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 41,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 13, "http://example.com/hotel13_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel13_image3.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 42,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 13, "http://example.com/hotel13_image4.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel13_image4.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 43,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 13, "http://example.com/hotel13_image5.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel13_image5.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -625,50 +3745,29 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 45,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image2.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image2.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 46,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image3.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 47,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image4.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image4.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 48,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image5.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 49,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 50,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 51,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel14_image5.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -688,15 +3787,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 54,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 16, "http://example.com/hotel16_image3.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel16_image3.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
                 keyColumn: "ImageId",
                 keyValue: 55,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 16, "http://example.com/hotel16_image4.jpg" });
+                column: "ImageUrl",
+                value: "http://example.com/hotel16_image4.jpg");
 
             migrationBuilder.UpdateData(
                 table: "HotelImage",
@@ -705,21 +3804,68 @@ namespace TravelAccommodationBooking.Db.Migrations
                 columns: new[] { "HotelId", "ImageUrl" },
                 values: new object[] { 17, "http://example.com/hotel17_image1.jpg" });
 
-            migrationBuilder.InsertData(
+            migrationBuilder.UpdateData(
                 table: "HotelImage",
-                columns: new[] { "ImageId", "HotelId", "ImageUrl" },
-                values: new object[,]
-                {
-                    { 57, 17, "http://example.com/hotel17_image2.jpg" },
-                    { 58, 17, "http://example.com/hotel17_image3.jpg" },
-                    { 59, 18, "http://example.com/hotel18_image1.jpg" },
-                    { 60, 18, "http://example.com/hotel18_image2.jpg" },
-                    { 61, 18, "http://example.com/hotel18_image3.jpg" },
-                    { 62, 18, "http://example.com/hotel18_image4.jpg" },
-                    { 63, 19, "http://example.com/hotel19_image1.jpg" },
-                    { 64, 19, "http://example.com/hotel19_image2.jpg" },
-                    { 65, 20, "http://example.com/hotel20_image1.jpg" }
-                });
+                keyColumn: "ImageId",
+                keyValue: 57,
+                column: "ImageUrl",
+                value: "http://example.com/hotel17_image2.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 58,
+                column: "ImageUrl",
+                value: "http://example.com/hotel17_image3.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 59,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 18, "http://example.com/hotel18_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 60,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 18, "http://example.com/hotel18_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 61,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 18, "http://example.com/hotel18_image3.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 62,
+                column: "ImageUrl",
+                value: "http://example.com/hotel18_image4.jpg");
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 63,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 19, "http://example.com/hotel19_image1.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 64,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 19, "http://example.com/hotel19_image2.jpg" });
+
+            migrationBuilder.UpdateData(
+                table: "HotelImage",
+                keyColumn: "ImageId",
+                keyValue: 65,
+                columns: new[] { "HotelId", "ImageUrl" },
+                values: new object[] { 20, "http://example.com/hotel20_image1.jpg" });
 
             migrationBuilder.UpdateData(
                 table: "Payment",
@@ -865,8 +4011,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 8,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2023, 12, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1918) });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2023, 12, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1918), 60 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -893,15 +4039,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 12,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 1, 3, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1936), 79 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 1, 3, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1936), 79 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 13,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 4, 22, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1940), 28 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 4, 22, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1940), 28 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -921,8 +4067,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 16,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 5, 13, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1951), 16 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 5, 13, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1951), 16 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -935,8 +4081,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 18,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 11, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1959), 22 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 11, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1959), 22 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -949,8 +4095,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 20,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 11, 6, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1966), 65 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 11, 6, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1966), 65 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -991,8 +4137,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 26,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 9, 10, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1987), 72 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 9, 10, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(1987), 72 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1082,8 +4228,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 39,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 11, 8, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2081), 43 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 11, 8, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2081), 43 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1145,8 +4291,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 48,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 7, 16, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2112), 27 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 7, 16, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2112), 27 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1201,8 +4347,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 56,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 19, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2140), 7 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 5, 19, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2140), 7 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1320,8 +4466,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 73,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 7, 26, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2199), 52 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2023, 7, 26, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2199), 52 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1432,8 +4578,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 89,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 8, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2292), 29 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 8, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2292) });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1467,8 +4613,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 94,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 7, 16, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2309), 44 });
+                column: "ReviewDate",
+                value: new DateTime(2024, 7, 16, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2309));
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1488,8 +4634,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 97,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 8, 24, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2319), 5 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 8, 24, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2319), 5 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1516,8 +4662,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 101,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2023, 8, 29, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2334), 10 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 8, 29, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2334), 10 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1530,8 +4676,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 103,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 5, 24, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2341), 7 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 5, 24, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2341), 7 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1565,8 +4711,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 108,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 5, 6, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2359), 14 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 5, 6, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2359), 14 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1593,15 +4739,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 112,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 3, 2, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2373), 62 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 3, 2, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2373), 62 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 113,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 7, 19, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2377), 11 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 7, 19, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2377), 11 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1621,8 +4767,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 116,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 9, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2387), 38 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 9, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2387), 38 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1677,8 +4823,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 124,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2023, 9, 16, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2416), 3 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2023, 9, 16, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2416), 3 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1810,8 +4956,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 143,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 1, 26, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2520), 57 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 1, 26, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2520), 57 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1852,8 +4998,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 149,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 5, 14, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2540), 74 });
+                columns: new[] { "ReviewDate", "UserId" },
+                values: new object[] { new DateTime(2024, 5, 14, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2540), 74 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -1936,8 +5082,8 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 161,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 11, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2582), 74 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2023, 11, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2582), 74 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -2013,15 +5159,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 172,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 2, 19, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2660) });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
+                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 2, 19, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2660), 78 });
 
             migrationBuilder.UpdateData(
                 table: "Review",
                 keyColumn: "ReviewId",
                 keyValue: 173,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 4, 7, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2663), 38 });
+                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
+                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 4, 7, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(2663) });
 
             migrationBuilder.UpdateData(
                 table: "Review",
@@ -2216,36 +5362,36 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 1,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { new DateTime(2024, 7, 2, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3757), 18, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3770), 290m });
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 0, new DateTime(2024, 7, 2, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3757), 18, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3770), 290m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 2,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 7, 10, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3783), 19, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3785), 433m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, 2, new DateTime(2024, 7, 10, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3783), 19, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3785), 433m, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 3,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 2, new DateTime(2024, 4, 28, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3790), 18, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3792), 208m, 3 });
+                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { new DateTime(2024, 4, 28, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3790), 18, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3792), 208m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 4,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 6, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3797), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3799), 152m, 3 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, 1, new DateTime(2024, 6, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3797), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3799), 152m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 5,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 2, 1, new DateTime(2024, 6, 21, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3803), 16, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3806), 294m });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, new DateTime(2024, 6, 21, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3803), 16, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3806), 294m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2258,22 +5404,22 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 7,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 1, new DateTime(2024, 5, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3818), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3820), 388m });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, new DateTime(2024, 5, 30, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3818), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3820), 388m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 8,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 2, new DateTime(2024, 5, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3825), new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3827), 97m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 2, new DateTime(2024, 5, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3825), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3827), 97m, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 9,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 4, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3832), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3834), 333m, 1 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, new DateTime(2024, 4, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3832), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3834), 333m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2286,43 +5432,43 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 11,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, 0, new DateTime(2024, 4, 14, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3846), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3848), 400m, 3 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, new DateTime(2024, 4, 14, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3846), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3848), 400m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 12,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, 1, new DateTime(2024, 6, 6, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3853), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3855), 461m, 3 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, new DateTime(2024, 6, 6, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3853), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3855), 461m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 13,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 4, 12, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3859), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3861), 238m, 1 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 1, new DateTime(2024, 4, 12, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3859), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3861), 238m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 14,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { new DateTime(2024, 6, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3866), 11, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3868), 370m, 2 });
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 0, new DateTime(2024, 6, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3866), 11, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3868), 370m, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 15,
-                columns: new[] { "AdultsCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, new DateTime(2024, 7, 7, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3872), new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3875), 88m, 3 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, new DateTime(2024, 7, 7, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3872), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3875), 88m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 16,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { new DateTime(2024, 6, 22, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3924), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3927), 188m, 2 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, new DateTime(2024, 6, 22, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3924), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3927), 188m, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2335,22 +5481,22 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 18,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 5, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3939), 7, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3941), 285m, 1 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 1, 0, new DateTime(2024, 5, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3939), 7, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3941), 285m, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 19,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { new DateTime(2024, 6, 24, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3946), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3948), 146m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 0, new DateTime(2024, 6, 24, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3946), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3948), 146m, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 20,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 4, 29, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3952), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3954), 255m, 1 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 1, 2, new DateTime(2024, 4, 29, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3952), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3954), 255m, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2363,57 +5509,57 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 22,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, new DateTime(2024, 4, 21, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3966), 18, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3968), 337m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, 0, new DateTime(2024, 4, 21, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3966), 18, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3968), 337m, 2 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 23,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, new DateTime(2024, 7, 4, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3972), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3974), 382m, 1 });
+                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { new DateTime(2024, 7, 4, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3972), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3974), 382m, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 24,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 0, new DateTime(2024, 5, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3979), 15, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3981), 487m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price" },
+                values: new object[] { 3, 0, new DateTime(2024, 5, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3979), new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3981), 487m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 25,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 1, new DateTime(2024, 7, 13, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3985), 8, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3987), 92m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, 1, new DateTime(2024, 7, 13, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3985), 8, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3987), 92m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 26,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, 2, new DateTime(2024, 4, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3992), 4, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3994), 148m, 3 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, 2, new DateTime(2024, 4, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3992), new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3994), 148m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 27,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, 2, new DateTime(2024, 6, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3998), 15, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4001), 436m, 1 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, 2, new DateTime(2024, 6, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(3998), 15, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4001), 436m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 28,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, 0, new DateTime(2024, 4, 14, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4005), 2, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4007), 119m, 3 });
+                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { new DateTime(2024, 4, 14, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4005), 2, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4007), 119m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 29,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, new DateTime(2024, 6, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4012), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4014), 287m, 1 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, new DateTime(2024, 6, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4012), 10, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4014), 287m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2426,22 +5572,22 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 31,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 0, new DateTime(2024, 5, 12, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4025), 11, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4028), 249m, 3 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, 0, new DateTime(2024, 5, 12, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4025), 11, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4028), 249m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 32,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 1, 2, new DateTime(2024, 6, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4032), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4034), 90m });
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, new DateTime(2024, 6, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4032), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4034), 90m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 33,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 4, 0, new DateTime(2024, 7, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4039), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4041), 499m });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 4, new DateTime(2024, 7, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4039), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4041), 499m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2454,43 +5600,43 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 35,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 0, new DateTime(2024, 6, 28, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4053), 13, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4055), 65m, 1 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 0, new DateTime(2024, 6, 28, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4053), 13, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4055), 65m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 36,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 1, new DateTime(2024, 5, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4060), 19, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4062), 486m, 3 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, new DateTime(2024, 5, 18, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4060), 19, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4062), 486m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 37,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 2, new DateTime(2024, 5, 23, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4066), new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4068), 220m, 3 });
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 2, new DateTime(2024, 5, 23, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4066), 3, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4068), 220m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 38,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 2, new DateTime(2024, 4, 9, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4073), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4075), 95m, 3 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 4, 2, new DateTime(2024, 4, 9, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4073), 17, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4075), 95m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 39,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 3, 0, new DateTime(2024, 7, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4080), 8, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4082), 285m });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, 0, new DateTime(2024, 7, 5, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4080), 8, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4082), 285m, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 40,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 4, 0, new DateTime(2024, 4, 27, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4086), 7, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4089), 184m });
+                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 0, new DateTime(2024, 4, 27, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4086), 7, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4089), 184m, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2510,29 +5656,29 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 43,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 4, 23, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4107), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4109), 405m, 3 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, 1, new DateTime(2024, 4, 23, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4107), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4109), 405m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 44,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 6, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4113), 3, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4116), 342m, 2 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 1, 1, new DateTime(2024, 6, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4113), 3, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4116), 342m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 45,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, new DateTime(2024, 5, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4157), 3, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4160), 271m, 2 });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
+                values: new object[] { 3, new DateTime(2024, 5, 15, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4157), 3, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4160), 271m });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 46,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { new DateTime(2024, 6, 28, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4164), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4167), 218m });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 3, new DateTime(2024, 6, 28, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4164), 6, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4167), 218m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -2545,15 +5691,15 @@ namespace TravelAccommodationBooking.Db.Migrations
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 48,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 1, 1, new DateTime(2024, 6, 1, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4178), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4180), 196m });
+                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 1, new DateTime(2024, 6, 1, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4178), 5, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4180), 196m, 1 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
                 keyColumn: "RoomId",
                 keyValue: 49,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 5, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4185), 7, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4187), 348m, 3 });
+                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
+                values: new object[] { 2, 0, new DateTime(2024, 5, 11, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4185), 7, new DateTime(2024, 7, 17, 15, 21, 15, 785, DateTimeKind.Local).AddTicks(4187), 348m, 3 });
 
             migrationBuilder.UpdateData(
                 table: "Room",
@@ -3121,3136 +6267,6 @@ namespace TravelAccommodationBooking.Db.Migrations
                 keyValue: 80,
                 column: "Password",
                 value: "$2a$11$nBw9aXdT82b97uMdHlB0f.eXWGPBqcKiWr0xnJUaZJqTE.b9O3fy6");
-        }
-
-        protected override void Down(MigrationBuilder migrationBuilder)
-        {
-            migrationBuilder.Sql(@"DROP VIEW CityWithHotelsCountView;");
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 57);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 58);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 59);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 60);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 61);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 62);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 63);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 64);
-
-            migrationBuilder.DeleteData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 65);
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 1,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2679));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 2,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2687));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 3,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2688));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 4,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2689));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 5,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2787));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 6,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2795));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 7,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2796));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 8,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2798));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 9,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2799));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 10,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2801));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 11,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2802));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 12,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2803));
-
-            migrationBuilder.UpdateData(
-                table: "Booking",
-                keyColumn: "BookingId",
-                keyValue: 13,
-                column: "CreatedAt",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 879, DateTimeKind.Utc).AddTicks(2804));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 1,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1372));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 2,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1407));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 3,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1410));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 4,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1412));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 5,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1414));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 6,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1418));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 7,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1420));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 8,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1422));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 9,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1425));
-
-            migrationBuilder.UpdateData(
-                table: "City",
-                keyColumn: "CityId",
-                keyValue: 10,
-                column: "CreationDate",
-                value: new DateTime(2024, 7, 17, 12, 16, 58, 878, DateTimeKind.Utc).AddTicks(1428));
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 1,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 4, new DateTime(2024, 4, 12, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4432), 0.54187358297284349, -73.439359019753908, 132.499573658614, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4476), 17.537112787935015, 4 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 2,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { new DateTime(2024, 4, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4489), 0.72071847734267369, 4.5903147072519772, -178.91090980741225, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4491), 408.6262242183825, 5 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 3,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 1, new DateTime(2024, 4, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4496), 0.55915001685310106, 5.5678106691130012, -88.023026556951393, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4504), 348.4038695976484, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 4,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 2, new DateTime(2024, 6, 8, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4512), 0.9761272157468831, -38.683479513122769, -78.766828854225395, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4514), 358.62141095235091, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 5,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 4, new DateTime(2024, 5, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4519), 0.40103554665263219, -19.673971454190152, 7.2723449893031216, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4521), 293.98661685297708, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 6,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { 1, new DateTime(2024, 6, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4530), 0.70715843239989817, -16.87329677772027, 46.652569357650748, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4532), 488.23785826760667 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 7,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 4, new DateTime(2024, 5, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4542), 0.35429449858981177, -53.447174092716587, -161.39501571941838, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4544), 275.56613646022475, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 8,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 3, new DateTime(2024, 7, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4555), 0.0028477289949424556, 78.021559446664583, 33.381504547610831, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4569), 179.29667327859389, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 9,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { new DateTime(2024, 4, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4574), 0.40622836845110422, -8.4981532150616488, 121.22897573710168, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4576), 66.31453610142718, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 10,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 6, new DateTime(2024, 7, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4582), 0.42281478794595773, -84.006362170992077, 71.147458591269839, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4584), 213.35860334308231, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 11,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 4, new DateTime(2024, 5, 12, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4589), 0.95988726779578759, 42.056477679151442, 179.68749966608902, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4591), 37.649807212214725, 4 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 12,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { new DateTime(2024, 5, 31, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4596), 0.76552062859683223, 86.33660178073751, 130.21818428780853, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4598), 112.37283949481119 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 13,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 2, new DateTime(2024, 5, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4645), 0.71592858361487999, 30.473579487191685, 78.917612641585663, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4647), 241.47584601910626, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 14,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { 1, new DateTime(2024, 5, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4652), 0.0055012418824158527, -60.39019243519634, -85.872512731601631, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4654), 71.137051237495413 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 15,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 7, new DateTime(2024, 5, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4659), 0.41194693893505685, -56.277968045924815, 179.81302480343868, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4663), 490.05532017056072, 5 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 16,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 3, new DateTime(2024, 6, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4696), 0.94284841994875679, -3.711288250270627, 108.18105493930926, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4698), 119.80773245456345, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 17,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 1, new DateTime(2024, 7, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4703), 0.41649320244504417, 34.19548836901015, -120.42301736951944, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4705), 189.64474902924789, 4 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 18,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price" },
-                values: new object[] { 6, new DateTime(2024, 6, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4711), 0.80671683972545505, 68.761105812077062, -78.24089707689626, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4712), 456.86948085093002 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 19,
-                columns: new[] { "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { new DateTime(2024, 4, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4717), 0.24092542703637532, -25.881199932425659, 172.40391194718143, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4719), 22.102489911368096, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Hotel",
-                keyColumn: "HotelId",
-                keyValue: 20,
-                columns: new[] { "CityId", "CreationDate", "DiscountRate", "Latitude", "Longitude", "ModificationDate", "Price", "StarRating" },
-                values: new object[] { 3, new DateTime(2024, 6, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4724), 0.84164405559311339, 78.771881753362806, -7.0024998858004892, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(4726), 319.07432390472491, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 3,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 2, "http://example.com/hotel2_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 4,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 3, "http://example.com/hotel3_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 5,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 3, "http://example.com/hotel3_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 6,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 4, "http://example.com/hotel4_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 7,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 4, "http://example.com/hotel4_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 8,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 9,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 10,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 11,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image4.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 12,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 5, "http://example.com/hotel5_image5.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 13,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 6, "http://example.com/hotel6_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 14,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 6, "http://example.com/hotel6_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 15,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 6, "http://example.com/hotel6_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 16,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 6, "http://example.com/hotel6_image4.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 17,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 7, "http://example.com/hotel7_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 18,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 7, "http://example.com/hotel7_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 19,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 7, "http://example.com/hotel7_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 20,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 7, "http://example.com/hotel7_image4.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 21,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 8, "http://example.com/hotel8_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 22,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 8, "http://example.com/hotel8_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 23,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 8, "http://example.com/hotel8_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 24,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 9, "http://example.com/hotel9_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 25,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 9, "http://example.com/hotel9_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 26,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 9, "http://example.com/hotel9_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 27,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 9, "http://example.com/hotel9_image4.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 28,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 9, "http://example.com/hotel9_image5.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 29,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 10, "http://example.com/hotel10_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 30,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 10, "http://example.com/hotel10_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 31,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 11, "http://example.com/hotel11_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 32,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 11, "http://example.com/hotel11_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 33,
-                column: "ImageUrl",
-                value: "http://example.com/hotel11_image3.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 34,
-                column: "ImageUrl",
-                value: "http://example.com/hotel11_image4.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 35,
-                column: "ImageUrl",
-                value: "http://example.com/hotel11_image5.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 36,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 12, "http://example.com/hotel12_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 37,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 13, "http://example.com/hotel13_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 38,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 13, "http://example.com/hotel13_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 39,
-                column: "ImageUrl",
-                value: "http://example.com/hotel13_image3.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 40,
-                column: "ImageUrl",
-                value: "http://example.com/hotel13_image4.jpg");
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 41,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 42,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 43,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 14, "http://example.com/hotel14_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 44,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 45,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 46,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 47,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image4.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 48,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 15, "http://example.com/hotel15_image5.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 49,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 16, "http://example.com/hotel16_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 50,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 17, "http://example.com/hotel17_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 51,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 17, "http://example.com/hotel17_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 52,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 17, "http://example.com/hotel17_image3.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 53,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 18, "http://example.com/hotel18_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 54,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 19, "http://example.com/hotel19_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 55,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 19, "http://example.com/hotel19_image2.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "HotelImage",
-                keyColumn: "ImageId",
-                keyValue: 56,
-                columns: new[] { "HotelId", "ImageUrl" },
-                values: new object[] { 20, "http://example.com/hotel20_image1.jpg" });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 1,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 342m, new DateTime(2024, 6, 22, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 2,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 312m, new DateTime(2024, 6, 21, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 3,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 421m, new DateTime(2024, 6, 19, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 4,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 301m, new DateTime(2024, 7, 14, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 5,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 829m, new DateTime(2024, 7, 2, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 6,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 722m, new DateTime(2024, 7, 11, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 7,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 233m, new DateTime(2024, 6, 28, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 8,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 543m, new DateTime(2024, 7, 11, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 9,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 702m, new DateTime(2024, 7, 11, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 10,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 676m, new DateTime(2024, 7, 1, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 11,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 560m, new DateTime(2024, 6, 27, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 12,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 746m, new DateTime(2024, 7, 13, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Payment",
-                keyColumn: "PaymentId",
-                keyValue: 13,
-                columns: new[] { "Amount", "PaymentDate" },
-                values: new object[] { 643m, new DateTime(2024, 6, 18, 0, 0, 0, 0, DateTimeKind.Local) });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 1,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 7, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8094), 72 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 2,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 11, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8113), 46 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 3,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2023, 9, 28, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8117), 25 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 4,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 5, 31, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8120), 55 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 5,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 2, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8122), 40 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 6,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 6, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8167), 70 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 7,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2023, 10, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8171), 52 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 8,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 7, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8174) });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 9,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2023, 8, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8177), 21 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 10,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 10, 18, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8180), 5 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 11,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 6, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8185), 5 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 12,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 3, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8188), 59 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 13,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 4, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8190), 66 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 14,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 5, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8193), 42 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 15,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2023, 9, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8196), 52 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 16,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 3, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8199), 75 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 17,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 9, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8202), 42 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 18,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 1, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8205), 9 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 19,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 5, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8208), 79 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 20,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 1, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8211), 58 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 21,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 11, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8213), 56 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 22,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 8, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8216), 29 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 23,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 10, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8219), 48 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 24,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 11, 3, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8222), 10 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 25,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 10, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8224), 20 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 26,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 8, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8227), 66 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 27,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 1, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8230), 53 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 28,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 8, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8233), 49 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 29,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 5, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8235), 80 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 30,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 10, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8238), 4 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 31,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 2, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8241), 42 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 32,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 8, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8244), 54 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 33,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 8, 3, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8247), 7 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 34,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 1, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8250), 15 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 35,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 4, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8253), 42 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 36,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 3, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8255), 72 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 37,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 5, 31, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8258), 43 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 38,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2023, 7, 30, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8261), 19 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 39,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 12, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8264), 73 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 40,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 2, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8267), 36 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 41,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 10, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8269), 51 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 42,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 9, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8272), 11 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 43,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 1, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8275), 32 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 44,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2023, 11, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8278), 26 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 45,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 6, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8280), 62 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 46,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 12, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8283), 55 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 47,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 6, 8, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8286), 69 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 48,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 3, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8289), 47 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 49,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 5, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8291), 37 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 50,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2023, 11, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8294), 39 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 51,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 3, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8354), 66 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 52,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2023, 10, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8358), 8 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 53,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 3, 31, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8361), 13 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 54,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 6, 28, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8364), 41 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 55,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 1, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8366), 57 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 56,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 3, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8369), 9 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 57,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2023, 12, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8372), 51 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 58,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2023, 12, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8375), 12 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 59,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 6, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8378), 43 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 60,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 3, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8381), 67 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 61,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 5, 2, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8383), 77 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 62,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2023, 11, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8386), 37 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 63,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2023, 9, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8389), 77 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 64,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2023, 8, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8392), 48 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 65,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 1, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8395), 9 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 66,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 2, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8398), 29 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 67,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 4, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8401), 50 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 68,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 2, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8403), 73 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 69,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 6, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8406), 50 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 70,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 8, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8409), 41 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 71,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 4, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8412), 13 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 72,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 9, 8, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8414), 61 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 73,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 12, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8417), 62 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 74,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2023, 9, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8420), 57 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 75,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 5, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8423), 70 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 76,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 3, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8425), 68 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 77,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 6, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8428), 66 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 78,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 2, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8431), 74 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 79,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 9, 18, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8434), 24 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 80,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 6, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8437), 76 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 81,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 5, 30, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8439), 65 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 82,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 4, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8442), 67 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 83,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 3, 8, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8445), 47 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 84,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2023, 9, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8448), 26 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 85,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 5, 28, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8451), 9 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 86,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 2, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8453), 61 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 87,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 11, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8456), 80 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 88,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 11, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8459), 69 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 89,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2023, 9, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8462), 73 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 90,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2023, 10, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8464), 43 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 91,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 3, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8467), 58 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 92,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2023, 12, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8470), 47 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 93,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2023, 10, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8473), 47 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 94,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2023, 11, 12, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8475), 33 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 95,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 2, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8511), 30 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 96,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 12, 18, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8515), 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 97,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 1, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8517), 13 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 98,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 3, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8520), 69 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 99,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 6, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8523), 36 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 100,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2024, 6, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8526), 15 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 101,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 3, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8528), 27 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 102,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 6, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8531), 26 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 103,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 10, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8534), 34 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 104,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 5, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8537), 26 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 105,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 1, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8539), 58 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 106,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2023, 11, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8542), 40 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 107,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 10, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8545), 15 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 108,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 5, 18, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8547), 57 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 109,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2023, 11, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8550), 66 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 110,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 3, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8553), 73 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 111,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 7, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8556), 12 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 112,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 5, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8558), 27 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 113,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2023, 11, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8561), 61 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 114,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 7, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8564), 49 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 115,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 1, 8, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8566), 78 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 116,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2023, 10, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8569), 13 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 117,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 10, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8572), 60 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 118,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2023, 8, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8574), 37 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 119,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 7, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8577), 50 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 120,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2023, 10, 31, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8580), 14 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 121,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 3, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8582), 63 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 122,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 10, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8585), 67 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 123,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 2, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8588), 14 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 124,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2023, 7, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8591), 32 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 125,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 9, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8594), 41 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 126,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 2, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8596), 79 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 127,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2024, 2, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8599), 80 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 128,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 5, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8602), 56 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 129,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 9, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8605), 69 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 130,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 9, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8608), 54 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 131,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 2, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8611), 72 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 132,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2023, 8, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8614), 27 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 133,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2023, 9, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8647), 23 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 134,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 5, 3, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8650), 36 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 135,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2023, 12, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8653), 40 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 136,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2023, 11, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8656), 18 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 137,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 6, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8659), 58 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 138,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2023, 7, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8661), 5 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 139,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 10, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8664), 7 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 140,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 14, "This is a review content for Hotel 14", new DateTime(2024, 3, 2, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8667), 37 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 141,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2023, 11, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8669), 7 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 142,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 11, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8672), 64 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 143,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 1, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8675), 28 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 144,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 12, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8678), 16 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 145,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 3, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8680), 67 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 146,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 8, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8683), 58 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 147,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 11, 2, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8686), 29 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 148,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 10, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8688), 69 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 149,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 5, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8691), 32 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 150,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 2, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8694), 25 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 151,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 11, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8697), 10 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 152,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 4, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8699), 18 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 153,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2023, 9, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8702), 41 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 154,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 4, 28, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8705), 36 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 155,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 4, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8707), 64 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 156,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2024, 6, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8710), 57 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 157,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 5, "This is a review content for Hotel 5", new DateTime(2024, 2, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8713), 79 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 158,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 6, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8715), 50 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 159,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 7, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8718), 45 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 160,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2024, 7, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8721), 7 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 161,
-                columns: new[] { "ReviewDate", "UserId" },
-                values: new object[] { new DateTime(2024, 5, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8724), 14 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 162,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 10, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8726), 34 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 163,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2024, 5, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8729), 62 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 164,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2023, 11, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8732), 11 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 165,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2023, 8, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8734), 49 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 166,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 10, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8737), 42 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 167,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 1, "This is a review content for Hotel 1", new DateTime(2024, 1, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8740), 40 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 168,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 1, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8743), 20 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 169,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 9, "This is a review content for Hotel 9", new DateTime(2023, 12, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8746), 31 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 170,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2023, 9, 28, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8749), 47 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 171,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 9, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8751), 51 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 172,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 10, 12, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8754) });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 173,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 5, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8757), 29 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 174,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2023, 9, 2, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8760), 7 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 175,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 17, "This is a review content for Hotel 17", new DateTime(2023, 11, 29, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8762), 43 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 176,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 8, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8765), 72 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 177,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2023, 11, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8768), 34 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 178,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2023, 12, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8771), 70 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 179,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 5, 30, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8774), 26 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 180,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 16, "This is a review content for Hotel 16", new DateTime(2023, 11, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8777), 27 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 181,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 7, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8779), 58 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 182,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 11, "This is a review content for Hotel 11", new DateTime(2024, 6, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8782), 75 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 183,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 7, "This is a review content for Hotel 7", new DateTime(2024, 1, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8784), 37 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 184,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 13, "This is a review content for Hotel 13", new DateTime(2024, 7, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8818), 66 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 185,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 12, "This is a review content for Hotel 12", new DateTime(2024, 2, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8821), 42 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 186,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2023, 10, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8824), 45 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 187,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 18, "This is a review content for Hotel 18", new DateTime(2024, 5, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8826), 25 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 188,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2023, 8, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8829), 77 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 189,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2023, 11, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8832), 78 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 190,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 2, "This is a review content for Hotel 2", new DateTime(2024, 5, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8835), 73 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 191,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2024, 3, 22, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8837), 41 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 192,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 4, "This is a review content for Hotel 4", new DateTime(2023, 8, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8840), 64 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 193,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 3, "This is a review content for Hotel 3", new DateTime(2024, 6, 19, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8843), 56 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 194,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 3, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8846), 22 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 195,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 15, "This is a review content for Hotel 15", new DateTime(2024, 5, 31, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8849), 57 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 196,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 6, "This is a review content for Hotel 6", new DateTime(2024, 5, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8851), 57 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 197,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 8, "This is a review content for Hotel 8", new DateTime(2023, 11, 24, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8854), 15 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 198,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 20, "This is a review content for Hotel 20", new DateTime(2024, 4, 5, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8857), 13 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 199,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 10, "This is a review content for Hotel 10", new DateTime(2023, 8, 3, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8859), 30 });
-
-            migrationBuilder.UpdateData(
-                table: "Review",
-                keyColumn: "ReviewId",
-                keyValue: 200,
-                columns: new[] { "HotelId", "ReviewContent", "ReviewDate", "UserId" },
-                values: new object[] { 19, "This is a review content for Hotel 19", new DateTime(2024, 7, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(8862), 20 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 1,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { new DateTime(2024, 7, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9678), 19, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9687), 459m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 2,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 4, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9698), 2, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9700), 228m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 3,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, 0, new DateTime(2024, 6, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9703), 19, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9705), 87m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 4,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, new DateTime(2024, 4, 9, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9708), 14, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9710), 463m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 5,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 4, 2, new DateTime(2024, 5, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9713), 14, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9715), 415m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 6,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 2, 0, new DateTime(2024, 7, 11, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9720), 3, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9722), 132m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 7,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 0, new DateTime(2024, 5, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9725), 3, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9727), 476m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 8,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, 1, new DateTime(2024, 7, 16, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9731), new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9733), 205m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 9,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 0, new DateTime(2024, 4, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9736), 1, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9738), 467m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 10,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 2, new DateTime(2024, 5, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9742), 19, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9744), 130m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 11,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, 2, new DateTime(2024, 6, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9747), 8, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9749), 154m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 12,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 2, new DateTime(2024, 4, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9753), 1, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9755), 463m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 13,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 7, 12, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9758), 4, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9760), 97m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 14,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { new DateTime(2024, 4, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9764), 7, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9765), 374m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 15,
-                columns: new[] { "AdultsCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 5, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9769), new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9771), 298m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 16,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { new DateTime(2024, 5, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9774), 13, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9776), 469m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 17,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 0, new DateTime(2024, 4, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9779), 13, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9781), 326m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 18,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, new DateTime(2024, 6, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9785), 18, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9787), 351m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 19,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { new DateTime(2024, 4, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9791), 8, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9792), 202m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 20,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 5, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9796), 19, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9797), 55m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 21,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 3, new DateTime(2024, 6, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9801), 17, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9803), 244m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 22,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, new DateTime(2024, 7, 3, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9807), 9, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9808), 168m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 23,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, new DateTime(2024, 7, 8, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9812), 19, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9813), 248m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 24,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 4, 18, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9817), 14, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9819), 351m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 25,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, 2, new DateTime(2024, 5, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9822), 12, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9824), 217m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 26,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 1, new DateTime(2024, 4, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9828), 20, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9829), 342m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 27,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 1, new DateTime(2024, 6, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9833), 5, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9835), 121m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 28,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 2, new DateTime(2024, 7, 1, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9875), 7, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9877), 88m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 29,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, new DateTime(2024, 6, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9880), 15, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9882), 324m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 30,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 1, new DateTime(2024, 4, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9886), 11, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9888), 376m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 31,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 7, 15, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9891), 14, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9893), 103m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 32,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 4, 0, new DateTime(2024, 4, 26, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9897), 10, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9898), 490m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 33,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 1, 1, new DateTime(2024, 6, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9902), 12, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9904), 425m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 34,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, 2, new DateTime(2024, 7, 4, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9908), 16, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9910), 72m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 35,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 5, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9913), 5, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9915), 225m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 36,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 3, 2, new DateTime(2024, 6, 7, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9919), 16, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9921), 59m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 37,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 0, new DateTime(2024, 5, 23, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9924), new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9926), 170m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 38,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 1, new DateTime(2024, 6, 18, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9929), 2, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9931), 322m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 39,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 1, 2, new DateTime(2024, 6, 6, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9935), 20, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9937), 165m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 40,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 2, 2, new DateTime(2024, 6, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9940), 5, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9942), 258m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 41,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 2, 2, new DateTime(2024, 5, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9945), 19, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9947), 176m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 42,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 5, 20, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9951), 5, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9953), 185m, 3 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 43,
-                columns: new[] { "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 0, new DateTime(2024, 5, 25, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9956), 13, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9958), 65m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 44,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, new DateTime(2024, 4, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9962), 16, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9963), 338m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 45,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 1, new DateTime(2024, 6, 14, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9967), 15, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9969), 141m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 46,
-                columns: new[] { "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { new DateTime(2024, 5, 13, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9972), 18, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9974), 172m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 47,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, 2, new DateTime(2024, 6, 28, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9978), 18, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9980), 254m, 2 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 48,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 2, 0, new DateTime(2024, 6, 27, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9983), 8, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9985), 158m });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 49,
-                columns: new[] { "AdultsCapacity", "CreationDate", "HotelId", "ModificationDate", "Price", "RoomType" },
-                values: new object[] { 4, new DateTime(2024, 4, 10, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9989), 9, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9990), 296m, 1 });
-
-            migrationBuilder.UpdateData(
-                table: "Room",
-                keyColumn: "RoomId",
-                keyValue: 50,
-                columns: new[] { "AdultsCapacity", "ChildrenCapacity", "CreationDate", "HotelId", "ModificationDate", "Price" },
-                values: new object[] { 3, 2, new DateTime(2024, 6, 21, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9994), 1, new DateTime(2024, 7, 17, 15, 16, 58, 878, DateTimeKind.Local).AddTicks(9995), 381m });
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 1,
-                column: "Password",
-                value: "$2a$11$qhXBKaykR74Q6Z0m5yu/QunKWc3ftzT12IxcAAqcbcx.Jbs5Z.802");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 2,
-                column: "Password",
-                value: "$2a$11$WF738yPZ2bYs9TcA5a474.wJcBb0IbOqDgP3isJQpBGLn87r0e6zS");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 3,
-                column: "Password",
-                value: "$2a$11$qKoNyrGcgsKy02fw6aF1WOnBbfdwdkWh.63aOJUdX5/KwjXbxKlbq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 4,
-                column: "Password",
-                value: "$2a$11$5.o9jZ8sFIJE5OfTXk4w/uhjLT/MkLtxQSv00C3GDb99DED6iFsem");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 5,
-                column: "Password",
-                value: "$2a$11$Z0pP3RFKtlFctrjrFUprMuPjzaionfv2vl33o0iINxCEmKUF3Vxe2");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 6,
-                column: "Password",
-                value: "$2a$11$SK80MLaaTXOHimwuX1U13uTPdpSyeCP/bZmzpuxiihxvWm18OPmBG");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 7,
-                column: "Password",
-                value: "$2a$11$T99bkNfpLvZHEiQ3zNsx5OAHYzy4nJ46zAdg2cA3zqoHCXL/NP.oG");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 8,
-                column: "Password",
-                value: "$2a$11$ECememmfsqaegQbAo2dm7.iKmCAcfcDCV3wczWOYpon08SXpbwrC6");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 9,
-                column: "Password",
-                value: "$2a$11$mqitG72jYkfOrhY0aOIUDOE0eFwqWUWFg./K/BxE95dsqMfGOgVBS");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 10,
-                column: "Password",
-                value: "$2a$11$is5lgK8s.RDDwd7MD6IPVeED5Kfsc1e7qYDt.ugC9GPcmtUdPmste");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 11,
-                column: "Password",
-                value: "$2a$11$uDfu5uLkyceWkOv/3PIjo.lmIY4hYTUPGZKbiueGgd3y3kvq98lpO");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 12,
-                column: "Password",
-                value: "$2a$11$0Mcqt5Cn9W1bjYW2mvEqHOjZaL/sXk0U9o5HvYtlPK/Mz2Xbbkw4u");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 13,
-                column: "Password",
-                value: "$2a$11$bnlzSYhK7a4rbsLC8pmvxOzOXHhg54VKyLOcS1nIvXDgF7oAMo/nW");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 14,
-                column: "Password",
-                value: "$2a$11$j8IYylCTyJ.hqlau2CfB9O7DXQe/Ch.zHwN1cFNom6OMO133XkS9q");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 15,
-                column: "Password",
-                value: "$2a$11$/tTEXRIR4s6nmwOjFjqWZ.G3DaRT/rxMseM2YS2zyb81e/50B0P0a");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 16,
-                column: "Password",
-                value: "$2a$11$.nGmFCWfmUtf./tWiIEbKuaTpvy11CyG4GG1F5nJQVLtN9KY.ifVK");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 17,
-                column: "Password",
-                value: "$2a$11$0ZVgELAZmcgC7sGRmxCupuoKrf0xUcxDcDln3ZLN1NmmI54COGm4y");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 18,
-                column: "Password",
-                value: "$2a$11$YpCCV/GxBFUBq7Bhla6FjOjWDpdYrXO4/iOTJ9RUTAbsxqGPr51Wq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 19,
-                column: "Password",
-                value: "$2a$11$tECLercKmFiLUi464e9Xheq/dGHU0pJ8AE68SGc62tDvOWLvGxX8K");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 20,
-                column: "Password",
-                value: "$2a$11$7F.zkqmRlF7YEolHMhhCwe6TziJ61YV81oP5.koBnJkNsjvDcvXGa");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 21,
-                column: "Password",
-                value: "$2a$11$.f8AIZ.LkTyA.tkTDY9NeOP0CsEoj02DKRSUPDGSELhRy.NITjmSa");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 22,
-                column: "Password",
-                value: "$2a$11$P3vBrEY1492VhwQaYn08qe97XDSfsG0Y1GDGDYYpfeSpUXQL3xgMe");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 23,
-                column: "Password",
-                value: "$2a$11$L7RmHovvXbKSO8W9WJ8A4.l2DWV0wpOTH6Gu0unV/5o.aphZ7VSm2");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 24,
-                column: "Password",
-                value: "$2a$11$9Q67TB9L.Edt6wOuQ9fbsOiCQVV3KzDVB0Ua4a3Rer9YlxFc5eU86");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 25,
-                column: "Password",
-                value: "$2a$11$OHcgW9rgqOBhGjHJDJS2ieJIK.bMtLGGFpXgJ.agUrcEimF1iwViu");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 26,
-                column: "Password",
-                value: "$2a$11$rf/H6PnyoCg2QUxGxTZLx.F8U5BRwl3oFZPkSSXbjJSOar1sGdp4u");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 27,
-                column: "Password",
-                value: "$2a$11$DUUoI3TMkq7NiPusRPo5wO4t6I1tJZLnorGwlOTUMyCpjh2ctXBUS");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 28,
-                column: "Password",
-                value: "$2a$11$SRha6hizYxGX881a7OyBWeS/SCVv/MJz5JpQuzSxOI5lah/TFQKti");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 29,
-                column: "Password",
-                value: "$2a$11$U8GTIMnWe3BfqrCYEciAvecskaI7z6v9vMAUNwBe9DGoHzkGtiPVG");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 30,
-                column: "Password",
-                value: "$2a$11$hIblGhvFBVrWigDkcZRj1OzY8/T.5iPmLii4SKWE2BqEmFyBHeNZy");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 31,
-                column: "Password",
-                value: "$2a$11$9VVQdJEQXexwv/fEYgnv/.32gdUg5nF4VKq5OLJIy5xzg47O2wdf2");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 32,
-                column: "Password",
-                value: "$2a$11$yNTia3T1eVWFglWy1g4vbu8LQt5BYf0nAgKDLTFWYSKIytqectk5C");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 33,
-                column: "Password",
-                value: "$2a$11$YP0D0bsyWhxbmmKZn8uGOuQJ3KAQiDrlGRVJres7cpzZKdv2Q8iiy");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 34,
-                column: "Password",
-                value: "$2a$11$WeeVgYVbklUC5opmi1Ir5.9iE9VNEwChvn0gwk.2fAXYrZsSqO23G");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 35,
-                column: "Password",
-                value: "$2a$11$Gu74mrbUzT6YUOCoeo5W/eCDf/lSOz/OFCoaNUmDzLq0wo/NoS9Ay");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 36,
-                column: "Password",
-                value: "$2a$11$m3fozfOTsyWh7edTthJ7yOTyaXY5CGApkag9ed9TaVe0HYIIFf3Ue");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 37,
-                column: "Password",
-                value: "$2a$11$HnuS3cdx6rjHDVLCR1p.4OG/OdPZymD7x0W5Tr97RMMlfIQCeIWXO");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 38,
-                column: "Password",
-                value: "$2a$11$TkpA63fwYFfqIEZAFgHUUuquYtqRRAnz5XIJiKGRitE4I/GcUxbmS");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 39,
-                column: "Password",
-                value: "$2a$11$9fZGfzAvqUML4sgu5fVem.zmr464AQlvYvNwMqJosNCaoQ333FH4W");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 40,
-                column: "Password",
-                value: "$2a$11$oQbMTxcJGGFWfBsOmzmEheYC0WOsFM7TmTST4tL2mCt1jb8kHXT/C");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 41,
-                column: "Password",
-                value: "$2a$11$bSFxlRwepJLHlrPI2S4ZaeMV3A.LEWjgiRadX7Tr/JvQxqFs0mkFq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 42,
-                column: "Password",
-                value: "$2a$11$x8/JRVukutIXPocFwKa9UOsisaPjqjmqkv2rW6XYxwKdhx.I8hGWi");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 43,
-                column: "Password",
-                value: "$2a$11$MktTRU0Cyzz0Xqb8SK1pLOQQ6vt6lW2c3BrFpwlKZtqNz90kKRbay");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 44,
-                column: "Password",
-                value: "$2a$11$jY/b.aG8WVNj5vRGPz92KechBlUEnVrWwScEdol8dWn1w/98Yl15G");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 45,
-                column: "Password",
-                value: "$2a$11$dLVNgTZT.W5NFEzZnHX.yer6MmhS8GjLfkJfMZsSjRKsbmL8yKEMq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 46,
-                column: "Password",
-                value: "$2a$11$rGw06C9EEu8s9Ep6bRyEHe/rz3/fqKOwCVDAOmFrnjM.zK2IDVkhC");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 47,
-                column: "Password",
-                value: "$2a$11$ArHUlH5NvfqGJBfx./v2.Oz4pit.5/fHBg1RrtDtZYBDS.HvAfsCy");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 48,
-                column: "Password",
-                value: "$2a$11$Y5PMZiVu6mzxmXJV31Jqr.d9hq2ma9pvgcI8IidQJ3b8kvGL4x66K");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 49,
-                column: "Password",
-                value: "$2a$11$CsEgH0zUaiK0e98ufZITmO1K3h3fS3dAfogD3ymSNhBG1dleB4/oG");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 50,
-                column: "Password",
-                value: "$2a$11$dCuCLqZtOihmqeZDK2C4t.yI/BytiBs0Y9QWUm3puxGWaMBZVNkjy");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 51,
-                column: "Password",
-                value: "$2a$11$kDM6WdNqgpSfhDWZ4GqqWu9/WXQjyycxxLIeaGaGB11YP1Cs9QQiO");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 52,
-                column: "Password",
-                value: "$2a$11$53Gw1XS0qkrc37HstskIL.KR4b9In9afA6rE5CGx3.n18Wo9F.Pci");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 53,
-                column: "Password",
-                value: "$2a$11$5mJsmZ8JDniYSwS5nKI7G.Y4QW9nh.96RAxDjoZV3pzhy39lWQGka");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 54,
-                column: "Password",
-                value: "$2a$11$uLAMAS0rKdVtD6uX1sLUOOs09IYrILTu6WNRC60OvfNtfSfXlgN5.");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 55,
-                column: "Password",
-                value: "$2a$11$3rtw7dv/ud4RrSnR0E2P5Oqsgu0Hv23LakY6trbVvgdjlSSxcJfPa");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 56,
-                column: "Password",
-                value: "$2a$11$jMo1aVFWxjhL9pzrgJuGK.Vhgs8Jl7Dvf40f54/lucSN5S3UFKLmS");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 57,
-                column: "Password",
-                value: "$2a$11$zxqviVec0rsNsQmPEDxJ7..UYI9QDO4yQGbWmz/ccciftJyGSv5hK");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 58,
-                column: "Password",
-                value: "$2a$11$xzmkSO4uwv9ZzppC3Wn3wu6rU3OK3ZenYRfcAIntWyVcwDF3RovVq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 59,
-                column: "Password",
-                value: "$2a$11$7rrnaE1.VRYmirVzHtgdFOOh5WwWDby0ILwnQc8Z5xfAp2jyCuLgK");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 60,
-                column: "Password",
-                value: "$2a$11$MpwEIwwsz5d3AmLfxBmANuR6u2Iuc6VmUnwErRcOjIqcCKAEhahsm");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 61,
-                column: "Password",
-                value: "$2a$11$./w4JDvooaIoKKL7oQ2fc.mQcOG9iRI9Q4UT80ci1cMBySlqteGTu");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 62,
-                column: "Password",
-                value: "$2a$11$bIDDjQhSFY23UafURXP7B.JGbUw8QjUyzQtjkDtRjEzNNOu4cuFxu");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 63,
-                column: "Password",
-                value: "$2a$11$T5zuWNzAndfRw99bLM6xfePJGxSSUIYMtOAXxxo006qIM5wLC1NPm");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 64,
-                column: "Password",
-                value: "$2a$11$8r8QQi8DdcAm7g0X.yQ6iegZQWyvN7WIuLIxy191Mfz3JIN08SWuO");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 65,
-                column: "Password",
-                value: "$2a$11$LzkYSad8ECHSBSsfUwZy0.mKEkTKMP31MsuwYRfqh9MEQy7lB0zeW");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 66,
-                column: "Password",
-                value: "$2a$11$FCMssp02C4o6VhSHMAUvceq2p/jkrYscQO4C0dSDps0j2SdSCe8Fq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 67,
-                column: "Password",
-                value: "$2a$11$pB1JMRO2d46f1KXNDJfJGueMAd6mCn5aQ0ylfG66mJHTNq/92WnBu");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 68,
-                column: "Password",
-                value: "$2a$11$2uurJL7yhKqNKF91Xb7rf.P7LgCe7BDTccFn9RiEVMh5ZAhfkNigi");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 69,
-                column: "Password",
-                value: "$2a$11$eKfJJ8P.WfeyoVZ6M4ROwOMbIOE4fj9shscyqFTanIeAtEZe5ltKm");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 70,
-                column: "Password",
-                value: "$2a$11$2hQYaKtp7Uv8bTPiwoqjPObJj3xc6wmGRNNLQVL6oxSrc2vWvNnNS");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 71,
-                column: "Password",
-                value: "$2a$11$vZays7Osj4i29Vp784ywJ.XempR7fZxdQyswoeagxZEm7RsM1Tb46");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 72,
-                column: "Password",
-                value: "$2a$11$uMWBmDX4qmy1kobfSrT87e5Gn3oG9VX5pAYoQLM2Z4EJYxIYWIZrq");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 73,
-                column: "Password",
-                value: "$2a$11$BRioEXe7QsddZpsZCnZv4eLb8GOkvoJQ6fWpTgraD8/kXp56sJNnO");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 74,
-                column: "Password",
-                value: "$2a$11$/Zpic/p1BuZZvknpHK1fJuIuh4hNdC2SOBHr4j9aOTB7k9huDGEgm");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 75,
-                column: "Password",
-                value: "$2a$11$iC23R8No5hAgEVW0Po4QluhOVYMCZLOq9c7GATMw7Rb9Bxc10quWK");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 76,
-                column: "Password",
-                value: "$2a$11$Fxwuazqreo9flb7q4PqJT.qObOSLx4EHm0SqU.91htF0JM3mawh1a");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 77,
-                column: "Password",
-                value: "$2a$11$GbulQ1tQPSzxrrzYeyV92O97L0dj875mKnz/5gNnjaWVdWEKltSgi");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 78,
-                column: "Password",
-                value: "$2a$11$o2s.382Ms8KmjiithPjWPO.VRjrUM0OP1jCyXjK6wx6DUxZVU8ki2");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 79,
-                column: "Password",
-                value: "$2a$11$3ATqSrH.YGFAlWVcbOlbZ.aaP4cbRN3/ZQ4sGibtfCDKeKfrBHnl2");
-
-            migrationBuilder.UpdateData(
-                table: "User",
-                keyColumn: "UserId",
-                keyValue: 80,
-                column: "Password",
-                value: "$2a$11$QCNIBwuXo4jGI6tunUgQveiAIcTd6joO/dpkXkh5gv7TKAYhB2gvG");
         }
     }
 }
