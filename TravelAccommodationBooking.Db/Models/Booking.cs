@@ -1,4 +1,4 @@
-﻿using TravelAccommodationBooking.Db.Utilities.Enums;
+﻿using TravelAccommodationBooking.Common.Enums;
 
 namespace TravelAccommodationBooking.Db.Models
 {
@@ -11,14 +11,14 @@ namespace TravelAccommodationBooking.Db.Models
         public BookingStatus Status { get; set; }
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime? UpdatedAt { get; set; }
+        public string SpecialRequests { get; set; }
+        public string ConfirmationNumber { get; set; }
 
         // Foreign keys
         public int UserId { get; set; }
         public int RoomId { get; set; }
 
         // Navigation
-        public User User { get; set; }
         public Room Room { get; set; }
-        public Payment Payment { get; set; }
     }
 }
