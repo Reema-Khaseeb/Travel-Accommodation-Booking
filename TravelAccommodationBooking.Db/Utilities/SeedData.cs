@@ -1,10 +1,26 @@
 ﻿using TravelAccommodationBooking.Db.Models;
 using TravelAccommodationBooking.Common.Enums;
 
-namespace TravelAccommodationBooking.Db.Utilities
-{
+namespace TravelAccommodationBooking.Db.Utilities;
+
     public static class SeedData
     {
+    public static List<FeaturedDeal> SeedFeaturedDeals()
+    {
+        return new List<FeaturedDeal>
+        {
+            new FeaturedDeal { Id = 1, HotelId = 1, DiscountPercentage = 0.2, StartDate = DateTime.UtcNow.AddDays(-10), EndDate = DateTime.UtcNow.AddDays(10) },
+            new FeaturedDeal { Id = 2, HotelId = 2, DiscountPercentage = 0.1, StartDate = DateTime.UtcNow.AddDays(-5), EndDate = DateTime.UtcNow.AddDays(15) },
+            new FeaturedDeal { Id = 3, HotelId = 1, DiscountPercentage = 0.1, StartDate = DateTime.UtcNow.AddDays(-7), EndDate = DateTime.UtcNow.AddDays(7) },
+            new FeaturedDeal { Id = 4, HotelId = 2, DiscountPercentage = 0.5, StartDate = DateTime.UtcNow.AddDays(-3), EndDate = DateTime.UtcNow.AddDays(14) },
+            new FeaturedDeal { Id = 5, HotelId = 1, DiscountPercentage = 0.4, StartDate = DateTime.UtcNow.AddDays(-15), EndDate = DateTime.UtcNow.AddDays(5) },
+            new FeaturedDeal { Id = 6, HotelId = 2, DiscountPercentage = 0.6, StartDate = DateTime.UtcNow.AddDays(-8), EndDate = DateTime.UtcNow.AddDays(12) },
+            new FeaturedDeal { Id = 7, HotelId = 1, DiscountPercentage = 0.2, StartDate = DateTime.UtcNow.AddDays(-4), EndDate = DateTime.UtcNow.AddDays(8) },
+            new FeaturedDeal { Id = 8, HotelId = 2, DiscountPercentage = 0.2, StartDate = DateTime.UtcNow.AddDays(-2), EndDate = DateTime.UtcNow.AddDays(9) },
+            new FeaturedDeal { Id = 9, HotelId = 1, DiscountPercentage = 0.4, StartDate = DateTime.UtcNow.AddDays(-9), EndDate = DateTime.UtcNow.AddDays(6) }
+        };
+    }
+
         public static List<City> SeedCities()
         {
             var cities = new List<City>();
@@ -305,4 +321,3 @@ namespace TravelAccommodationBooking.Db.Utilities
             return BCrypt.Net.BCrypt.HashPassword(password);
         }
     }
-}
